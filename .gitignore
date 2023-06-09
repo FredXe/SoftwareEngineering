@@ -1,0 +1,6 @@
+# NPM modules
+node_modules
+
+# vscode config
+.vscode
+

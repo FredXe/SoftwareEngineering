@@ -1,0 +1,23 @@
+{
+	"name": "softwareengineering",
+	"version": "1.0.0",
+	"description": "",
+	"main": "app.js",
+	"scripts": {
+		"start": "node app.js",
+		"test": "node bin/test.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/FredXe/SoftwareEngineering.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/FredXe/SoftwareEngineering/issues"
+	},
+	"homepage": "https://github.com/FredXe/SoftwareEngineering#readme",
+	"dependencies": {
+		"express": "^4.18.2"
+	}
+}

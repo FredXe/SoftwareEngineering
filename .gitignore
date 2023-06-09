@@ -1,0 +1,8 @@
+# NPM modules
+node_modules
+
+# vscode config
+.vscode
+
+# for testing
+bin/test.js

@@ -1,6 +1,9 @@
 # NPM modules
 node_modules
 
+# environment
+models/.env
+
 # vscode config
 .vscode
 

@@ -18,6 +18,8 @@
 	},
 	"homepage": "https://github.com/FredXe/SoftwareEngineering#readme",
 	"dependencies": {
-		"express": "^4.18.2"
+		"dotenv": "^16.1.4",
+		"express": "^4.18.2",
+		"mysql": "^2.18.1"
 	}
 }

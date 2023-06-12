@@ -1,8 +1,11 @@
 # NPM modules
 node_modules
 
-# vscode config
-.vscode
+# environment
+models/.env
 
 # for testing
 bin/test.js
+
+# vscode config
+.vscode

@@ -4,7 +4,7 @@
 	"description": "",
 	"main": "app.js",
 	"scripts": {
-		"start": "node app.js",
+		"start": "node bin/www.js",
 		"test": "node bin/test.js"
 	},
 	"repository": {
@@ -18,6 +18,9 @@
 	},
 	"homepage": "https://github.com/FredXe/SoftwareEngineering#readme",
 	"dependencies": {
-		"express": "^4.18.2"
+		"dotenv": "^16.1.4",
+		"ejs": "^3.1.9",
+		"express": "^4.18.2",
+		"mysql": "^2.18.1"
 	}
 }

@@ -1,7 +1,7 @@
 const mysql = require('mysql');
 const fs = require('fs/promises');
-const util = require('util');
 require('dotenv').config({ path: './models/.env' })
+const util = require('util');
 
 /**
  * Check if `.env` is exist, create a `.env` file
@@ -41,7 +41,8 @@ const conn = mysql.createConnection({
 });
 
 const public = {
-	query: util.promisify(conn.query).bind(conn)
+	query: util.promisify(conn.query).bind(conn),
+	querycb: conn.query
 }
 
 importEnv();

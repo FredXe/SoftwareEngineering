@@ -7,6 +7,10 @@ const public = {
 	 */
 	decodeRows: function (rows) {
 		return JSON.parse(JSON.stringify(rows));
+	},
+
+	itObject: function* (obj) {
+		for (let k in obj) yield [k, obj[k]];
 	}
 }
 

@@ -22,6 +22,16 @@ router.post('/reset', function (req, res) {
 	res.redirect('/db');
 });
 
+router.post('/import', function (req, res) {
+	tables.import();
+	res.redirect('/db');
+});
+
+router.post('/selectUser', function (req, res) {
+	tables.selectUser();
+	res.redirect('/db');
+});
+
 
 
 module.exports = router;

@@ -4,8 +4,8 @@ node_modules
 # environment
 models/.env
 
-# vscode config
-.vscode
-
 # for testing
 bin/test.js
+
+# vscode config
+.vscode

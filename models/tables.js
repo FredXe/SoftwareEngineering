@@ -36,6 +36,6 @@ const public = {
 
 // public.drop();
 // public.init();
-public.reset();
+// public.reset();
 
 module.exports = public;

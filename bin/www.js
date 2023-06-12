@@ -1,10 +1,4 @@
-const express = require('express');
-const app = express();
+const app = require('../app');
+const route = require('../routes/route');
 
-
-const port = 8888;
-
-app.listen(port, function () {
-	console.log(`http://localhost:${port}`);
-});
 

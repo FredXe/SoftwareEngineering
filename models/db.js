@@ -1,5 +1,6 @@
 const mysql = require('mysql');
 const fs = require('fs/promises');
+const util = require('util');
 require('dotenv').config({ path: './models/.env' })
 
 /**
@@ -30,14 +31,19 @@ async function importEnv() {
 /**
  * The connection to database
  */
-const db = mysql.createConnection({
+const conn = mysql.createConnection({
 	host: process.env.DB_HOST,
 	port: process.env.DB_PORT,
 	user: process.env.DB_ADMIN,
 	password: process.env.DB_ADMIN_PASSWORD,
-	database: process.env.DATABASE
+	database: process.env.DATABASE,
+	multipleStatements: true
 });
+
+const public = {
+	query: util.promisify(conn.query).bind(conn)
+}
 
 importEnv();
 
-module.exports = db;
+module.exports = public;

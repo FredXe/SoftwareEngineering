@@ -1,8 +1,35 @@
 const mysql = require('mysql');
-const fs = require('fs');
+const fs = require('fs/promises');
 require('dotenv').config({ path: './models/.env' })
 
+/**
+ * Check if `.env` is exist, create a `.env` file
+ * and you should config your `.env`
+ */
+async function importEnv() {
+	try {
+		// Check if `.env` is exist
+		await fs.access('models/.env', fs.constants.F_OK);
+	} catch {
+		try {
+			/**
+			 * Copy a `.env.default` to create `.env`
+			 * if `.env` does not exist.
+			 */
+			await fs.copyFile('models/.env.default', 'models/.env');
 
+			console.log('You should config your \'.env\'');
+			process.exit(1);
+		} catch {
+			console.error('error while copying .env');
+			console.trace();
+		}
+	}
+}
+
+/**
+ * The connection to database
+ */
 const db = mysql.createConnection({
 	host: process.env.DB_HOST,
 	port: process.env.DB_PORT,
@@ -11,24 +38,6 @@ const db = mysql.createConnection({
 	database: process.env.DATABASE
 });
 
-/**
- * Check if `.env` is exist, create a `.env` file
- * and you should config your `.env`
- */
-fs.access('models/.env', fs.constants.F_OK, function (err) {
-	if (err) {
-		// copy a `.env.default` to create `.env`
-		fs.copyFile('models/.env.default', 'models/.env', function (err) {
-			if (err)
-				console.error(err);
-			else {
-				console.log('You should config your \'.env\'');
-				process.exit(1);
-			}
-		});
-	}
-
-	return;
-});
+importEnv();
 
 module.exports = db;

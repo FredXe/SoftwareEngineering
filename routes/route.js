@@ -1,8 +1,8 @@
 const express = require('express');
 const app = require('../app');
-const foo = require('./foo');
+const dbAdmin = require('./dbAdmin');
 
 app.use(express.static('public'));
 
-app.use('/', foo);
+app.use('/db', dbAdmin);
 

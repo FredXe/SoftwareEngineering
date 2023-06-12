@@ -9,6 +9,14 @@
 	<script src='main.js'></script>
 </head>
 <body>
-	:D:D
+	<form action='/db/drop' method="post">
+		<input id="board" type="submit" name="button" value="drop" />
+	</form>
+	<form action='/db/init' method="post">
+		<input id="board" type="submit" name="button" value="init" />
+	</form>
+	<form action='/db/reset' method="post">
+		<input id="board" type="submit" name="button" value="reset" />
+	</form>
 </body>
 </html>

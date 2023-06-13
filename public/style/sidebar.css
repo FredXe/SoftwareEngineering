@@ -2,6 +2,7 @@
     width: 5rem;
     height: 100vh;
     position: fixed;
+    z-index: 10;
     background-color: var(--primary-color);
 
     transition: 100ms ease;
@@ -45,6 +46,7 @@
     
     & svg {
         min-width: 1.5rem;
+        width: 1.5rem;
         margin: 0 1.75rem;
         fill: rgb(92, 80, 99);
         

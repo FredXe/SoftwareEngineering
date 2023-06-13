@@ -1,31 +1,157 @@
-const utils = require('./utils');
 const db = require('./db');
+const utils = require('./utils');
 
 const public = {
-	showPassword: async (user) => {
-		const query = `SELECT password FROM users WHERE user_ID='${user}'`;
+	showAdmin: async function () {
+		const query = `select * from users where role = 'admin';`;
 
-		const row = await db.query(query);
+		const rows = await db.query(query);
 
 		return new Promise(resolve => {
-			resolve(utils.decodeRows(row)[0].password);
-		})
+			resolve(utils.decodeRows(rows));
+		});
 	},
 
-	showRole: async (user) => {
-		const query = `SELECT IF ((SELECT COUNT(*) FROM admin WHERE user_ID='${user}'), 'admin', ` +
-			`IF ((SELECT COUNT(*) FROM housemaster WHERE user_ID='${user}'), 'housemaster', ` +
-			`IF ((SELECT COUNT(*) FROM resident_student WHERE user_ID='${user}'), 'resident_student', ` +
-			`IF ((SELECT COUNT(*) FROM non_resident_student WHERE user_ID='${user}'), 'non_resident_student', ` +
-			`IF ((SELECT COUNT(*) FROM maintainer WHERE user_ID='${user}'), 'maintainer', 'guest'` +
-			`))))) AS role;`;
+	showHousemaster: async function () {
+		const query = `select * from users where role = 'housemaster';`;
 
-		const row = await db.query(query);
+		const rows = await db.query(query);
 
 		return new Promise(resolve => {
-			resolve(utils.decodeRows(row)[0].role);
-		})
-	}
+			resolve(utils.decodeRows(rows));
+		});
+	},
+
+	showMaintainer: async function () {
+		const query = `select * from users where role = 'maintainer';`;
+
+		const rows = await db.query(query);
+
+		return new Promise(resolve => {
+			resolve(utils.decodeRows(rows));
+		});
+	},
+
+	showNonResidentStudent: async function () {
+		const query = `select * from users where role = 'non_resident_student';`;
+
+		const rows = await db.query(query);
+
+		return new Promise(resolve => {
+			resolve(utils.decodeRows(rows));
+		});
+	},
+
+	showResidentStudent: async function () {
+		const query = `select * , dorm_name , r_number from users , resident_student where role = 'resident_student';`;
+
+		const rows = await db.query(query);
+
+		return new Promise(resolve => {
+			resolve(utils.decodeRows(rows));
+		});
+	},
+
+	insertAdmin: async function (user_ID, user_name, sex, password, email, eroll_year, phnumber) {
+		const insertUsers = `insert users value ('${user_ID}' , '${user_name}' , 'admin' , ${sex} , '${password}' , '${email}' , '${eroll_year}' , '${phnumber}');`
+		const insertAdmin = `insert admin value ('${user_ID}')`;
+
+		try {
+			await db.query(insertUsers);
+			await db.query(insertAdmin);
+		} catch (err) {
+			console.error(err);
+		}
+	},
+
+	insertHousemaster: async function (user_ID, user_name, sex, password, email, eroll_year, phnumber) {
+		const insertUsers = `insert users value ('${user_ID}' , '${user_name}' , 'housemaster' , ${sex} , '${password}' , '${email}' , '${eroll_year}' , '${phnumber}');`
+		const insertHousemaster = `insert housemaster value ('${user_ID}')`;
+
+		try {
+			await db.query(insertUsers);
+			await db.query(insertHousemaster);
+		} catch (err) {
+			console.error(err);
+		}
+	},
+
+	insertMaintainer: async function (user_ID, user_name, sex, password, email, eroll_year, phnumber) {
+		const insertUsers = `insert users value ('${user_ID}' , '${user_name}' , 'maintainer' , ${sex} , '${password}' , '${email}' , '${eroll_year}' , '${phnumber}');`
+		const insertMaintainer = `insert maintainer value ('${user_ID}')`;
+
+		try {
+			await db.query(insertUsers);
+			await db.query(insertMaintainer);
+		} catch (err) {
+			console.error(err);
+		}
+	},
+
+	insertNonResidentStudent: async function (user_ID, user_name, sex, password, email, eroll_year, phnumber) {
+		const insertUsers = `insert users value ('${user_ID}' , '${user_name}' , 'non_resident_student' , ${sex} , '${password}' , '${email}' , '${eroll_year}' , '${phnumber}');`
+		const insertStudent = `insert maintainer value ('${user_ID}')`;
+		const insertnonResidentStudent = `insert non_resident_student value ('${user_ID}')`;
+		try {
+			await db.query(insertUsers);
+			await db.query(insertStudent);
+			await db.query(insertnonResidentStudent);
+		} catch (err) {
+			console.error(err);
+		}
+	},
+
+	delAdmin: async function (user_ID) {
+		const delAdmin = `delete from admin where user_ID = '${user_ID}';`;
+		const deltUsers = `delete from users where user_ID = '${user_ID}';`;
+
+
+		try {
+			await db.query(delAdmin);
+			await db.query(deltUsers);
+		} catch (err) {
+			console.error(err);
+		}
+	},
+
+	delHousemaster: async function (user_ID) {
+		const delHousemaster = `delete from housemaster where user_ID = '${user_ID}';`;
+		const deltUsers = `delete from users where user_ID = '${user_ID}';`;
+
+
+		try {
+			await db.query(delAdmin);
+			await db.query(deltUsers);
+		} catch (err) {
+			console.error(err);
+		}
+	},
+
+	delMaintainer: async function (user_ID) {
+		const delMaintainer = `delete from maintainer where user_ID = '${user_ID}';`;
+		const deltUsers = `delete from users where user_ID = '${user_ID}';`;
+
+
+		try {
+			await db.query(delMaintainer);
+			await db.query(deltUsers);
+		} catch (err) {
+			console.error(err);
+		}
+	},
+
+	delnonResidentStudent: async function (user_ID) {
+		const delnonResidentStudent = `delete from non_resident_student where user_ID = '${user_ID}';`;
+		const deltUsers = `delete from users where user_ID = '${user_ID}';`;
+
+
+		try {
+			await db.query(delnonResidentStudent);
+			await db.query(deltUsers);
+		} catch (err) {
+			console.error(err);
+		}
+	},
 }
 
 module.exports = public;

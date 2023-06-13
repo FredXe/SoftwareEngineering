@@ -15,9 +15,29 @@ const public = {
         });
     },
 
+    showRoom: async function (dormName) {
+        const rows = await db.query(`select dorm_name , r_volume , r_cost' +
+            'from room where dorm_name = '${dormName}';`)
+        const content = utils.decodeRows(rows);
+
+        return new Promise(resolve => {
+            resolve(content);
+        });
+    },
+
+    shwoEquip: async function (dormName , roomNum) {
+        const rows = await db.query(`select * ` +
+            `from equipment where dorm_name = '${dormName} and r_number = ${roomNum}';`)
+        const content = utils.decodeRows(rows);
+
+        return new Promise(resolve => {
+            resolve(content);
+        });
+    },
 
     modify: async function (dorm_name, want_update_attribute, update_value) {
-        const query = `update dormitory set ${want_update_attribute} = ${update_value} from dormitory where dorm_name = ${dorm_name};`;
+        const quote = (want_update_attribute != "dorm_volume") ? "\'" :"";
+        const query = `update dormitory set ${want_update_attribute} = ${quote + update_value + quote} where dorm_name = '${dorm_name}';`;
 
         try {
             await db.query(query);
@@ -28,10 +48,53 @@ const public = {
     },
 
     insert: async function (dormName, dormVolume, housemasterID) {
-        const query = `insert dormitory values ( ${dormName} , ${dormVolume} , ${housemasterID});`;
+        const query = `insert into dormitory (dorm_name , dorm_volume , housemaster_ID) ` + 
+                        `values ( '${dormName}' , ${dormVolume} , '${housemasterID}');`;
 
         try {
             await db.query(query);
+        } catch (err) {
+            console.error(err);
+        }
+    },
+
+    insertRoom: async function (dormName , roomVolume , roomCost) {
+        const query = `insert into room (r_volume , r_cost , dorm_Name) ` + 
+                        `values ( '${roomVolume}' , ${roomCost} , '${dormName}');`;
+
+        try {
+            await db.query(query);
+        } catch (err) {
+            console.error(err);
+        }
+    },
+
+    insertEquipment: async function(eType , eCondition , roomNum , dormName) {
+        const query = `insert into equipment (e_type , e_condition , r_number , dorm_Name) ` + 
+                        `values ( '${eType}' , ${eCondition} , ${roomNum} , '${dormName}');`;
+        try {
+            await db.query(query);
+        } catch (err) {
+            console.error(err);
+        }
+    },
+
+    delRoom: async function(dormName , roomNum) {
+        const query = `delete from room where dorm_name = '${dormName}' and r_number = ${roomNum};`;
+        const queryEquip = `delete from equipment where dorm_name = '${dormName}' and r_number = ${roomNum};`;
+        try {
+            await db.query(query);
+            await db.query(queryEquip);
+        } catch (err) {
+            console.error(err);
+        }
+    },
+
+    delEquip: async function(eID , dormName , roomNum) {
+        const query = `delete from equipment where e_ID = ${eID} and dorm_name = '${dormName}' and r_number = ${roomNum};`;
+        try {
+            await db.query(query);
+            await db.query(queryEquip);
         } catch (err) {
             console.error(err);
         }

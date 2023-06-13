@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Css Tesing Page👍</title>
+    <link rel="stylesheet" href="style/sidebar.css">
+    <link rel="stylesheet" href="style/shared.css">
+    <link rel="stylesheet" href="style/inputs.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC">
+    <link rel="stylesheet" href="style/table.css">
+
+    <script src="js/themeManager.js"></script>
+</head>
+<body>
+    <%- include('partials/sidebar') %>
+
+    <main>
+        <div>
+            <p>The quick brown fox jumps over the lazy dog</p>
+            <button>yes</button>
+            <button>no</button>
+        </div>
+    
+        <div class="center-container">
+            <table class="white-gray-table table--radius-border">
+                <tr>
+                    <th>名字</th>
+                    <th>年紀</th>
+                    <th>性別</th>
+                </tr>
+                <tr>
+                    <td>包柏</td>
+                    <td>27</td>
+                    <td>男</td>
+                </tr>
+                <tr>
+                    <td>捷克</td>
+                    <td>17</td>
+                    <td>男</td>
+                </tr>
+                <tr>
+                    <td>莉莉</td>
+                    <td>87</td>
+                    <td>女</td>
+                </tr>
+            </table>
+        </div>
+    
+        <div>
+            <input class="bottom-line-input" type="text" name="foo" id="">
+            <button class="apply-button">確認</button>
+        </div>
+
+        <div class="center-container">
+            <ul class="list-table table--radius-border">
+                <li>
+                    <div>
+                        <p>標題</p>
+                        <br>
+                        <p>內容</p>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <p>標題</p>
+                        <br>
+                        <p>內容</p>
+                    </div>
+                </li>
+            </ul>
+            <!-- The following is an example structure of the text input -->
+            <!-- Notice that the input MUST has a placeholder with a space in it for the css to work properly-->
+            <div class="input-text">
+                <input type="text" name="foo" id="uName" placeholder=" ">
+                <label for="uName">帳號</label>
+            </div>
+            <div class="input-text">
+                <input type="password" name="bar" id="uPass" placeholder=" ">
+                <label for="uPass">密碼</label>
+            </div>
+            <button>送出</button>
+        </div>
+    </main>
+
+</body>
+</html>

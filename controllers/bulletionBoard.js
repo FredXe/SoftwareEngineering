@@ -3,54 +3,48 @@ const bulletionBoard = require('../models/bulletionBoard');
 const public = {
 	showBulletionTitles: async (req, res) => {
 		const bulletionTitle = await bulletionBoard.showBulletion();
-		res.render('bulletionBoard', bulletionTitle);
+		console.log(bulletionTitle);
+		res.render('bulletion', bulletionTitle);
 	},
 
 	showBulletionContent: async (req, res) => {
-		const bulletionTitle = req.url.split('/')[3];
-		const bulletionText = await bulletionBoard.showBulletionContent();
-		const chat = await bulletionBoard.showHousemasterChat();
-		res.render(`bulletionBoard`, { bulletionText, chat });
+		const bb_ID = req.params.bb_ID;
+		var bulletion = await bulletionBoard.showBulletionContent(bb_ID);
+		const chat = await bulletionBoard.showComment(bb_ID);
+
+		bulletion[0].comments = chat;
+
+		console.log(bulletion);
+
+		res.render(`bulletion`, { bulletion, chat });
 	},
 
-	addBulletion: (req, res) => {
-		bulletionBoard.insertBulletion(req.body.housemasterID, req.doby.bbTitle, req.body.bbText);
-		res.redirect('/bulletionBoard');
+	postPost: async (req, res) => {
+		await bulletionBoard.insertBulletion(req.body.housemasterID, req.body.title, req.body.text);
+		res.redirect('/bulletion');
 	},
 
-	addStuChat: (req, res) => {
-		const bulletionTitle = req.url.split('/')[3];
-		bulletionBoard.insertStudentChat(req.body.bbID, req.body.residentID, req.body.mestext);
-		res.redirect(`/bulletionBoard/${bulletionTitle}`);
+	comment: async (req, res) => {
+		const bb_ID = req.params.bb_ID;
+		const user_ID = req.body.user_ID;
+		const content = req.body.content;
+
+		await bulletionBoard.insertComment(bb_ID, user_ID, content);
+
+		res.redirect('/bulletion/' + bb_ID);
 	},
 
-	addHouseChat: (req, res) => {
-		const bulletionTitle = req.url.split('/')[3];
-		bulletionBoard.insertHousemasterChat(req.body.bbID, req.body.housemasterID, req.body.mestext);
-		res.redirect(`/bulletionBoard/${bulletionTitle}`);
+	delBulletion: async (req, res) => {
+		await bulletionBoard.deleteBulletion(req.body.bb_ID, req.body.housemaster_ID);
+		res.redirect('/bulletion');
 	},
 
-	delBulletion: (req, res) => {
-		bulletionBoard.deleteBulletion(req.body.bbID, req.body.housemasterID);
-		res.redirect('/bulletionBoard');
-	},
+	delComment: async (req, res) => {
+		const bb_ID = req.params.bb_ID;
+		bulletionBoard.deleteComment(req.body.bb_ID, req.body.comment_ID);
 
-	delStuChat: (req, res) => {
-		const bulletionTitle = req.url.split('/')[3];
-		bulletionBoard.deleteStudentChat(req.body.bbID, req.body.mesID, req.body.residentID);
-		res.redirect(`/bulletionboard/${bulletionTitle}`);
+		res.redirect('/bulletion/' + bb_ID);
 	},
-
-	delHouseChat: (req, res) => {
-		const bulletionTitle = req.url.split('/')[3];
-		bulletionBoard.deleteHousemasterChat(req.body.bbID, req.body.mesID, req.body.housemasterID);
-		res.redirect(`/bulletionboard/${bulletionTitle}`);
-	},
-
-	directList: (req, res) => {
-		// res.redirect('/bulletionBoard');
-		res.render('bulletionBoard');
-	}
 
 }
 

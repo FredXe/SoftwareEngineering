@@ -3,17 +3,12 @@ const router = express.Router();
 
 const bulletionBoardCtrl = require('../controllers/bulletionBoard');
 
-
-
-router.get('/', bulletionBoardCtrl.directList);
 router.get('/', bulletionBoardCtrl.showBulletionTitles);
-router.get('/*', bulletionBoardCtrl.showBulletionContent);
-router.post('/addBulletion', bulletionBoardCtrl.addBulletion);
-router.post('/*/addStuChat', bulletionBoardCtrl.addStuChat);
-router.post('/*/addHouseChat', bulletionBoardCtrl.addHouseChat);
-router.delete('/delBulletion', bulletionBoardCtrl.delBulletion);
-router.delete('/*/delStuChat', bulletionBoardCtrl.delStuChat);
-router.delete('/*/delHouseChat', bulletionBoardCtrl.delHouseChat);
+router.get('/:bb_ID', bulletionBoardCtrl.showBulletionContent);
+router.post('/post', bulletionBoardCtrl.postPost);
+router.post('/:bb_ID/comment', bulletionBoardCtrl.comment);
+router.post('/:bb_ID/comment/delete', bulletionBoardCtrl.delComment);
+router.post('/delete', bulletionBoardCtrl.delBulletion);
 
 
 module.exports = router;

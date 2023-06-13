@@ -6,6 +6,7 @@ const logger = require('../middlewares/logger');
 
 const bulletionBoard = require('./bulletionBoard');
 const dormitory = require('./dormitory');
+const root = require('./root');
 const users = require('./users');
 const myInfo = require('./myInfo');
 const residentApplication = require('./residentApplication');
@@ -15,6 +16,7 @@ const visitor = require('./visitor');
 const applyRepair = require('./applyRepair');
 
 const dbAdmin = require('./dbAdmin');
+const cssTest = require('./cssTest'); // ! DELETE ME WHEN MERGING
 
 /**
  * setup middleware
@@ -30,7 +32,7 @@ app.use(session({
 		maxAge: 30 * 60 * 1000 // 30 min
 	}
 }));
-// app.use(logger);
+app.use(logger);
 /**
  * setup static routers
  */
@@ -38,8 +40,9 @@ app.use(express.static('public'));
 /**
  * setup routers
  */
-app.use('/', users);
-app.use('/bulletionBoard', bulletionBoard);
+app.use('/', root);
+app.use('/users', users);
+app.use('/bulletion', bulletionBoard);
 app.use('/dormitory', dormitory);
 app.use('/myInfo', myInfo);
 app.use('/applyRepair', applyRepair);
@@ -51,4 +54,5 @@ app.use('/visitor', visitor);
  * routers for admin
  */
 app.use('/db', dbAdmin);
+app.use('/css', cssTest);
 

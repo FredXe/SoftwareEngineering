@@ -1,0 +1,126 @@
+.sidebar {
+    width: 5rem;
+    height: 100vh;
+    position: fixed;
+    z-index: 10;
+    background-color: var(--primary-color);
+
+    transition: 100ms ease;
+
+    &:hover {
+        width: 16rem;
+
+        & .sidebar-bottons__text{
+            display: block;
+        }
+    }
+}
+
+.sidebar-container {
+    height: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar-botton {
+    width: 100%;
+
+    &:nth-last-child(2){
+        margin-top: auto;
+    }
+}
+
+.sidebar-botton-link {
+    display: flex;
+    align-items: center;
+    height: 5rem;
+    color: var(--text-color);
+    text-decoration: none;
+
+    --_transition-time: 200ms;
+    transition: var(--_transition-time);
+    
+    & svg {
+        min-width: 1.5rem;
+        width: 1.5rem;
+        margin: 0 1.75rem;
+        fill: var(--icon-color);
+        
+        transition: var(--_transition-time);
+    }
+
+    &:hover{
+        background-color: var(--primary-color-darker);
+
+        & svg {
+            fill: var(--accent-color);
+        }
+    }
+
+    & > .sidebar-bottons__text {
+        overflow-x: hidden;
+        white-space: nowrap;
+        color: var(--text-color);
+        display: none;
+    }
+}
+
+.sidebar-botton-logo {
+    display: flex;
+    align-items: center;
+    height: 5rem;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.4rem;
+
+    --_transition-time: 200ms;
+    transition: var(--_transition-time);
+
+    & svg {
+        min-width: 1.5rem;
+        width: 1.5rem;
+        margin: 0 1.75rem;
+        fill: var(--accent-color);
+        
+        transition: var(--_transition-time);
+    }
+
+    & > .sidebar-bottons__text {
+        overflow-x: hidden;
+        white-space: nowrap;
+        color: var(--text-color);
+        display: none;
+    }
+}
+
+
+
+:root {
+    &.light-theme {
+        & .sidebar-botton-link__light-icon {
+            display: flex;
+        }
+    
+        & .sidebar-botton-link__dark-icon {
+            display: none;
+        }
+    }
+    &.dark-theme {
+        & .sidebar-botton-link__light-icon {
+            display: none;
+        }
+    
+        & .sidebar-botton-link__dark-icon {
+            display: flex;
+        }
+    }
+}
+
+.sidebar-botton-link__light-icon, .sidebar-botton-link__dark-icon {
+    display: flex;
+    align-items: center;
+}

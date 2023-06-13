@@ -26,11 +26,9 @@ const public = {
 		const bb_ID = req.url.split('/')[1];
 		const user_ID = req.body.user_ID;
 		const content = req.body.content;
-		// if (req.session.role == 'non_resident_student') {
-		// await bulletionBoard.insertStudentChat();
-		// } else if (req.session.role == 'housemaster') {
+
 		await bulletionBoard.insertComment(bb_ID, user_ID, content);
-		// }
+
 		res.redirect('/bulletion/' + bb_ID);
 	},
 

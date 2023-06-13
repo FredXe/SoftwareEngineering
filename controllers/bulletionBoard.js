@@ -8,13 +8,15 @@ const public = {
 	},
 
 	showBulletionContent: async (req, res) => {
-		const bb_ID = req.url.split('/')[1];
-		const bulletionText = await bulletionBoard.showBulletionContent(bb_ID);
+		const bb_ID = req.params.bb_ID;
+		var bulletion = await bulletionBoard.showBulletionContent(bb_ID);
 		const chat = await bulletionBoard.showComment(bb_ID);
 
-		console.log(bulletionText, chat);
+		bulletion[0].comments = chat;
 
-		res.render(`bulletion`, { bulletionText, chat });
+		console.log(bulletion);
+
+		res.render(`bulletion`, { bulletion, chat });
 	},
 
 	postPost: async (req, res) => {
@@ -23,7 +25,7 @@ const public = {
 	},
 
 	comment: async (req, res) => {
-		const bb_ID = req.url.split('/')[1];
+		const bb_ID = req.params.bb_ID;
 		const user_ID = req.body.user_ID;
 		const content = req.body.content;
 
@@ -38,7 +40,7 @@ const public = {
 	},
 
 	delComment: async (req, res) => {
-		const bb_ID = req.url.split('/')[1];
+		const bb_ID = req.params.bb_ID;
 		bulletionBoard.deleteComment(req.body.bb_ID, req.body.comment_ID);
 
 		res.redirect('/bulletion/' + bb_ID);

@@ -42,11 +42,11 @@ app.use('/', users);
 app.use('/bulletionBoard', bulletionBoard);
 app.use('/dormitory', dormitory);
 app.use('/myInfo', myInfo);
-app.use('/applyRepair' , applyRepair);
-// app.use('/residentApplication', residentApplication);
+app.use('/applyRepair', applyRepair);
+app.use('/residentApplication', residentApplication);
 app.use('/userInfo', userInfo);
-// app.use('/violationRecord', violationRecord);
-// app.use('/visitor', visitor);
+app.use('/violationRecord', violationRecord);
+app.use('/visitor', visitor);
 /**
  * routers for admin
  */

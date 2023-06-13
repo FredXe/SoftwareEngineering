@@ -1,11 +1,11 @@
 const hash = require('../models/hash');
-const users = require('../models/users');
+const root = require('../models/root');
 
 const public = {
 	postLogin: async (req, res) => {
 		const user_ID = req.body.user_ID;
 		const password = req.body.password;
-		const hashpasswd = await users.showPassword(user_ID);
+		const hashpasswd = await root.showPassword(user_ID);
 
 		const success = await hash.compare(password, hashpasswd);
 
@@ -14,7 +14,7 @@ const public = {
 				if (err)
 					next(err);
 
-				const role = await users.showRole(user_ID);
+				const role = await root.showRole(user_ID);
 
 				req.session.user_ID = user_ID;
 				req.session.role = role;

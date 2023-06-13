@@ -1,7 +1,7 @@
 const residentApplication = require('../models/residentApplication');
 
 const public = {
-    postResidentApply: (req, res) => {
+    postResidentApply: async (req, res) => {
         residentApplication.insertRA(req,body.rA_ID, 
             req,body.rA_semester, req,body.dorm_name, 
             req,body.rA_approve, req,body.rA_fee, 
@@ -9,27 +9,27 @@ const public = {
         res.redirect('residentApplication/Info');
     },
 
-    getResidentApplyList: (req, res) => {
-        const residentApplicationInfo = residentApplication.selectAllRA();
+    getResidentApplyList: async (req, res) => {
+        const residentApplicationInfo = await residentApplication.selectAllRA();
         res.render('residentApplicationInfo', {residentApplicationInfo});
     },
 
-    getApproveResidentFee: (req, res) => {
-        const residentFee = residentApplication.selectALLRAFee();
+    getApproveResidentFee: async (req, res) => {
+        const residentFee = await residentApplication.selectALLRAFee();
         res.render('residentFee', {residentFee});
     },
 
-    getResidentApplyInfo: (req, res) => {
-        const residentApplicationInfo = residentApplication.selectRA(req.body.rA_ID);
+    getResidentApplyInfo: async (req, res) => {
+        const residentApplicationInfo = await residentApplication.selectRA(req.body.rA_ID);
         res.render('residentApplicationInfo', {residentApplicationInfo});
     },
 
-    postResidentApprove: (req, res) => {
+    postResidentApprove: async (req, res) => {
         residentApplication.approveRA(req.body.rA_ID, req.body.dorm_name);
         res.redirect('residentApplication/list');
     },
 
-    postResidentApplyModify: (req, res) => {
+    postResidentApplyModify: async (req, res) => {
         residentApplication.modifyRA(req,body.rA_ID, 
             req,body.rA_semester, req,body.dorm_name, 
             req,body.rA_approve, req,body.rA_fee, 
@@ -37,7 +37,7 @@ const public = {
         res.redirect('residentApplication/Info');
     },
 
-    postResidentApplyDelete: (req, res) => {
+    postResidentApplyDelete: async (req, res) => {
         residentApplication.deleteRA(req.body.rA_ID);
         res.redirect('residentApplication/');
     }

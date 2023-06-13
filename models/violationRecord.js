@@ -24,8 +24,8 @@ async function sendSqlFromFile(sqlPath) {
  */
 const public = {
 
-    import: async function () {
-		const content = (await fs.readFile('./models/json/import.json')).toString();
+    insertVR: async function (file) {
+		const content = (await fs.readFile(file)).toString();
 		const data = JSON.parse(content);
 
 		for (let [table, rows] of utils.itObject(data)) {
@@ -51,27 +51,38 @@ const public = {
 
 	},
     
-
-    insertVR: async function (vr_ID, vr_date, vr_type, resident_ID, housemaster_ID) {
-        await db.query(`INSERT INTO violation_record (vr_ID, vr_date, vr_type, resident_ID, housemaster_ID) VALUES(${vr_ID},${vr_date},${vr_type},${resident_ID},${housemaster_ID});`);
-    },
-    
     deleteVR: async function (vr_ID) {
-        await db.query(`DELETE FROM violation_record WHERE vr_ID=${vr_ID};`);
-    },
+        db.query(`DELETE FROM violation_record WHERE vr_ID=${vr_ID};`);
+    
+		console.log('已刪除');
+	},
 
     modifyVR: async function (vr_ID, vr_date, vr_type, resident_ID, housemaster_ID) {
-        await db.query(`UPDATE violation_record SET vr_date=${vr_date}, vr_type=${vr_type}, resident_ID=${resident_ID}, housemaster_ID=${housemaster_ID} WHERE guest_id=${vr_ID};`);
-    },
+        db.query(`UPDATE violation_record 
+				SET vr_date=${vr_date}, vr_type=${vr_type}, resident_ID=${resident_ID}, 
+				housemaster_ID=${housemaster_ID} 
+				WHERE guest_id=${vr_ID};`);
+    
+		return new Promise (resolve => {
+			resolve('已更新');
+		});
+	},
 
     selectVR: async function (vr_ID) {
         const row = await db.query(`SELECT * FROM violation_record WHERE vr_ID=${vr_ID};`);
-        console.log(row);
+        
+		return new Promise (resolve => {
+			resolve(row);
+		});
     },
+
 	selectAllVR: async function () {
 		const rows = await db.query('SELECT * FROM violation_record;');
 		const content = JSON.parse(JSON.stringify(rows));
-		console.log(content);
+		
+		return new Promise (resolve => {
+			resolve(content);
+		});
 	}
 	
 }

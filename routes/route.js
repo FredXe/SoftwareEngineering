@@ -16,6 +16,7 @@ const visitor = require('./visitor');
 const applyRepair = require('./applyRepair');
 
 const dbAdmin = require('./dbAdmin');
+const cssTest = require('./cssTest'); // ! DELETE ME WHEN MERGING
 
 /**
  * setup middleware
@@ -53,4 +54,5 @@ app.use('/visitor', visitor);
  * routers for admin
  */
 app.use('/db', dbAdmin);
+app.use('/css', cssTest);
 

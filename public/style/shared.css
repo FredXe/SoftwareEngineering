@@ -1,0 +1,70 @@
+:root {
+    font-size: 16px;
+    font-family: 'Noto Sans TC';
+
+    --accent-color: rgba(173, 50, 255);
+    --icon-color: rgb(105, 92, 112);
+
+    &.light-theme{
+        --background-color: rgb(255, 255, 255);
+        --primary-color: rgb(238, 232, 243);
+        --primary-color-darker: rgb(216, 209, 222);
+        --text-color: black;
+    }
+    
+    &.dark-theme{
+        --background-color: rgb(34, 30, 35);
+        --primary-color: rgb(40, 31, 44);
+        --primary-color-darker: rgb(31, 24, 33);
+        --text-color: rgb(195, 195, 195);
+    }
+}
+
+.noTransition {
+    transition: none !important;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: 100ms ease;
+}
+
+body, p {
+    margin: 0;
+}
+
+main {
+    padding: 2rem;
+    margin-left: 5rem;
+}
+
+.apply-button{
+    border:none;
+    display:inline-block;
+    padding:6px 12px;
+    vertical-align:middle;
+    overflow:hidden;
+    color:var(--text-color);
+    background-color:var(--accent-color);
+    text-align:center;
+    border-radius:8px
+}
+.apply-button:hover{
+    color:var(--primary-color);
+    background-color:var(--text-color);
+    box-shadow:0 8px 8px 0 rgba(0,0,0,0.2);
+}
+.center-container{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+.bottom-line-input{
+    background-color: var(--background-color);
+    padding:8px;
+    border:none;
+    border-bottom:1px solid var(--accent-color);
+}

@@ -3,6 +3,8 @@ const router = express.Router();
 
 const userInfoCtrl = require('../controllers/userInfo');
 
+router.use(express.urlencoded({ extended: false }));
+
 router.get('/' , userInfoCtrl.directList);
 
 // 也許會有身分驗證 : 權限舍監以上才可以看到該網頁

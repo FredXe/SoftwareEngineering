@@ -9,8 +9,10 @@ const { log } = require('console');
  */
 const public = {
 
-	insertVR: async function (file) {
-		const query = `...`;
+	insertRA: async function (rA_ID, rA_semester, dorm_name, rA_approve, rA_fee, student_ID) {
+		const query = `INSERT INTO residentApplication 
+					(rA_ID, rA_semester, dorm_name, rA_approve, rA_fee, student_ID) 
+					VALUES(${rA_ID},${rA_semester},${dorm_name},${rA_approve},${rA_fee},${student_ID});`;
 
 		try {
 			await db.query(query);
@@ -26,7 +28,7 @@ const public = {
 			console.error(err);
 		}
 
-		console.log('已刪除');
+		console.log('deleteVR()');
 	},
 
 	modifyVR: async function (vr_ID, vr_date, vr_type, resident_ID, housemaster_ID) {
@@ -40,7 +42,7 @@ const public = {
 		}
 
 		return new Promise(resolve => {
-			resolve('已更新');
+			resolve('modifyVR()');
 		});
 	},
 
@@ -48,7 +50,7 @@ const public = {
 		const row = await db.query(`SELECT * FROM violation_record WHERE vr_ID=${vr_ID};`);
 
 		return new Promise(resolve => {
-			resolve(row);
+			resolve(utils.decodeRows(row));
 		});
 	},
 

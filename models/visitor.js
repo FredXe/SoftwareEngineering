@@ -10,8 +10,10 @@ const { query } = require('express');
  * Table operations
  */
 const public = {
-	insertVisitor: async function (file) {
-		const query = `...`;
+	insertVisitor: async function (guest_id, dorm_name, visit_date, visit_approve) {
+    
+		const query = `INSERT INTO apply_visit (guest_id, dorm_name, visit_date, visit_approve) 
+						VALUES(${guest_id},${dorm_name},${visit_date},${visit_approve});`;
 
 		try {
 			await db.query(query);
@@ -21,14 +23,18 @@ const public = {
 	},
 
 	deleteVisitor: async function (guest_id) {
-		db.query(`DELETE FROM apply_visit WHERE guest_id=${guest_id};`);
+		try {
+			await db.query(`DELETE FROM apply_visit WHERE guest_id=${guest_id};`);
+		} catch (err) {
+			console.error(err);
+		}
 
-		console.log('已刪除');
+		console.log('deleteVisitor()');
 	},
 
 	modifyVisitor: async function (guest_id, dorm_name, visit_date, visit_approve) {
 		try {
-			db.query(`UPDATE apply_visit SET dorm_name=${dorm_name},` +
+			await db.query(`UPDATE apply_visit SET dorm_name=${dorm_name},` +
 				`visit_date=${visit_date}, visit_approve=${visit_approve} ` +
 				`WHERE guest_id=${guest_id};`);
 		} catch (err) {
@@ -36,7 +42,7 @@ const public = {
 		}
 
 		return new Promise(resolve => {
-			resolve('已更新');
+			resolve('modifyVisitor()');
 		});
 	},
 
@@ -67,11 +73,15 @@ const public = {
 
 	approveVisit: async function (guest_id) {
 		const approve = 1;
-		await db.query(`UPDATE apply_visit SET visit_approve=${approve} 
+		try {
+			await db.query(`UPDATE apply_visit SET visit_approve=${approve} 
 						WHERE guest_id=${guest_id};`);
+		} catch (err) {
+			console.error(err);
+		}
 
 		return new Promise(resolve => {
-			resolve('已准許訪問');
+			resolve('approveVisit()');
 		});
 	}
 

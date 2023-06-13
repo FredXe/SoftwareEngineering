@@ -8,8 +8,10 @@ const { log } = require('console');
  */
 const public = {
 
-	insertRA: async function (file) {
-		const query = `...`;
+	insertRA: async function (rA_ID, rA_semester, dorm_name, rA_approve, rA_fee, student_ID) {
+		const query = `INSERT INTO residentApplication 
+						(rA_ID, rA_semester, dorm_name, rA_approve, rA_fee, student_ID) 
+						VALUES(${rA_ID},${rA_semester},${dorm_name},${rA_approve},${rA_fee},${student_ID});`;
 
 		try {
 			await db.query(query);
@@ -26,7 +28,7 @@ const public = {
 			console.error(err);
 		}
 
-		console.log('已刪除');
+		console.log('deleteRA()');
 	},
 
 	modifyRA: async function (rA_ID, rA_semester, dorm_name, rA_approve, rA_fee, student_ID) {
@@ -40,7 +42,7 @@ const public = {
 		}
 
 		return new Promise(resolve => {
-			resolve('已更新');
+			resolve('modifyRA()');
 		});
 	},
 
@@ -90,7 +92,7 @@ const public = {
 		}
 
 		return new Promise(resolve => {
-			resolve('已核准');
+			resolve('approveRA()');
 		});
 	}
 

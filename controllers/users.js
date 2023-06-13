@@ -7,16 +7,16 @@ const public = {
 	},
 
 	getAdminShow: async (req, res) => {
-		
+
 		res.send(await users.showAdmin());
 	},
 
 	getHousemasterShow: async (req, res) => {
-		res.send(await users.showUsers());
+		res.send(await users.showHousemaster());
 	},
 
 	getNonResidentStudentShow: async (req, res) => {
-		res.send(await users.showUsers());
+		res.send(await users.showNonResidentStudent());
 	},
 
 	getMaintainerShow: async (req, res) => {
@@ -42,7 +42,7 @@ const public = {
 			phnumber
 		);
 
-		res.render('users');
+		res.redirect('/users');
 	},
 
 	postHousemasterInsert: async (req, res) => {
@@ -64,7 +64,7 @@ const public = {
 			phnumber
 		);
 
-		res.render('users');
+		res.redirect('/users');
 	},
 
 	postNonResidentStudentInsert: async (req, res) => {
@@ -76,7 +76,7 @@ const public = {
 		const eroll_year = req.body.eroll_year;
 		const phnumber = req.body.phnumber;
 
-		await users.insertMaintainer(
+		await users.insertNonResidentStudent(
 			user_ID,
 			user_name,
 			sex,
@@ -86,7 +86,7 @@ const public = {
 			phnumber
 		);
 
-		res.render('users');
+		res.redirect('/users');
 	},
 
 	postMaintainer: async (req, res) => {
@@ -108,7 +108,7 @@ const public = {
 			phnumber
 		);
 
-		res.render('users');
+		res.redirect('/users');
 	},
 }
 

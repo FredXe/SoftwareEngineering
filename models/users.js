@@ -12,7 +12,7 @@ const public = {
 		});
 	},
 
-    showHousemaster: async function () {
+	showHousemaster: async function () {
 		const query = `select * from users where role = 'housemaster';`;
 
 		const rows = await db.query(query);
@@ -22,7 +22,7 @@ const public = {
 		});
 	},
 
-    showMaintainer: async function () {
+	showMaintainer: async function () {
 		const query = `select * from users where role = 'maintainer';`;
 
 		const rows = await db.query(query);
@@ -32,7 +32,7 @@ const public = {
 		});
 	},
 
-    showNonResidentStudent: async function () {
+	showNonResidentStudent: async function () {
 		const query = `select * from users where role = 'non_resident_student';`;
 
 		const rows = await db.query(query);
@@ -42,7 +42,7 @@ const public = {
 		});
 	},
 
-    showResidentStudent: async function () {
+	showResidentStudent: async function () {
 		const query = `select * , dorm_name , r_number from users , resident_student where role = 'resident_student';`;
 
 		const rows = await db.query(query);
@@ -88,7 +88,7 @@ const public = {
 		}
 	},
 
-	insertnonResidentStudent: async function (user_ID, user_name, sex, password, email, eroll_year, phnumber) {
+	insertNonResidentStudent: async function (user_ID, user_name, sex, password, email, eroll_year, phnumber) {
 		const insertUsers = `insert users value ('${user_ID}' , '${user_name}' , 'non_resident_student' , ${sex} , '${password}' , '${email}' , '${eroll_year}' , '${phnumber}');`
 		const insertStudent = `insert maintainer value ('${user_ID}')`;
 		const insertnonResidentStudent = `insert non_resident_student value ('${user_ID}')`;

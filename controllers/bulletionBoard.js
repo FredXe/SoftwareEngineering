@@ -3,53 +3,55 @@ const bulletionBoard = require('../models/bulletionBoard');
 const public = {
 	showBulletionTitles: async (req, res) => {
 		const bulletionTitle = await bulletionBoard.showBulletion();
-		res.render('bulletionBoard', bulletionTitle);
+		console.log(bulletionTitle);
+		res.render('bulletion', bulletionTitle);
 	},
 
 	showBulletionContent: async (req, res) => {
-		const bulletionTitle = req.url.split('/')[3];
-		const bulletionText = await bulletionBoard.showBulletionContent();
-		const chat = await bulletionBoard.showHousemasterChat();
-		res.render(`bulletionBoard`, { bulletionText, chat });
+		const bb_ID = req.url.split('/')[1];
+		const bulletionText = await bulletionBoard.showBulletionContent(bb_ID);
+		const chat = await bulletionBoard.showHousemasterChat(bb_ID);
+
+		console.log(bulletionText, chat);
+
+		res.render(`bulletion`, { bulletionText, chat });
 	},
 
-	addBulletion: (req, res) => {
-		bulletionBoard.insertBulletion(req.body.housemasterID, req.doby.bbTitle, req.body.bbText);
-		res.redirect('/bulletionBoard');
+	postPost: async (req, res) => {
+		await bulletionBoard.insertBulletion(req.body.housemasterID, req.body.title, req.body.text);
+		res.redirect('/bulletion');
 	},
 
 	addStuChat: (req, res) => {
-		const bulletionTitle = req.url.split('/')[3];
-		bulletionBoard.insertStudentChat(req.body.bbID, req.body.residentID, req.body.mestext);
-		res.redirect(`/bulletionBoard/${bulletionTitle}`);
+		const bb_ID = req.url.split('/')[1];
+		console.log(req.body);
+
+		bulletionBoard.insertStudentChat(bb_ID, req.body.residentID, req.body.mestext);
+		res.redirect(`/bulletion/${bulletionTitle}`);
 	},
 
 	addHouseChat: (req, res) => {
 		const bulletionTitle = req.url.split('/')[3];
-		bulletionBoard.insertHousemasterChat(req.body.bbID, req.body.housemasterID, req.body.mestext);
-		res.redirect(`/bulletionBoard/${bulletionTitle}`);
+		bulletionBoard.insertHousemasterChat(req.body.bb_ID, req.body.housemasterID, req.body.mestext);
+		res.redirect(`/bulletion/${bulletionTitle}`);
 	},
 
-	delBulletion: (req, res) => {
-		bulletionBoard.deleteBulletion(req.body.bbID, req.body.housemasterID);
-		res.redirect('/bulletionBoard');
+	delBulletion: async (req, res) => {
+		console.log(req.body.bb_ID, req.body.housemasterID);
+		await bulletionBoard.deleteBulletion(req.body.bb_ID, req.body.housemasterID);
+		res.redirect('/bulletion');
 	},
 
 	delStuChat: (req, res) => {
 		const bulletionTitle = req.url.split('/')[3];
 		bulletionBoard.deleteStudentChat(req.body.bbID, req.body.mesID, req.body.residentID);
-		res.redirect(`/bulletionboard/${bulletionTitle}`);
+		res.redirect(`/bulletion/${bulletionTitle}`);
 	},
 
 	delHouseChat: (req, res) => {
 		const bulletionTitle = req.url.split('/')[3];
 		bulletionBoard.deleteHousemasterChat(req.body.bbID, req.body.mesID, req.body.housemasterID);
-		res.redirect(`/bulletionboard/${bulletionTitle}`);
-	},
-
-	directList: (req, res) => {
-		// res.redirect('/bulletionBoard');
-		res.render('bulletionBoard');
+		res.redirect(`/bulletion/${bulletionTitle}`);
 	}
 
 }

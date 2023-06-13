@@ -6,6 +6,7 @@ const logger = require('../middlewares/logger');
 
 const bulletionBoard = require('./bulletionBoard');
 const dormitory = require('./dormitory');
+const root = require('./root');
 const users = require('./users');
 const myInfo = require('./myInfo');
 const residentApplication = require('./residentApplication');
@@ -38,7 +39,8 @@ app.use(express.static('public'));
 /**
  * setup routers
  */
-app.use('/', users);
+app.use('/', root);
+app.use('/users', users);
 app.use('/bulletionBoard', bulletionBoard);
 app.use('/dormitory', dormitory);
 app.use('/myInfo', myInfo);

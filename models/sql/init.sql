@@ -4,6 +4,7 @@ CREATE TABLE IF NOT EXISTS users
 (
   user_ID char(8) NOT NULL,
   user_name VARCHAR(30) NOT NULL,
+  `role` VARCHAR(30) NOT NULL,
   sex INT NOT NULL,
   `password` char(60) NOT NULL,
   email varchar(50) NOT NULL DEFAULT 'default@example.host',

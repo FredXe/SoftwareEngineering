@@ -94,6 +94,7 @@ const public = {
 			await db.query(`INSERT INTO resident_student
 							(user_ID, r_number, dorm_name) 
 							VALUES(${user_ID},${r_number},${dorm_name});`);
+			await db.query(`UPDATE users SET role=${resident_student} WHERE user_ID=${user_ID};`);
 		} catch (err) {
 			console.error(err);
 		}

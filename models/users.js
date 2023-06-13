@@ -2,8 +2,48 @@ const db = require('./db');
 const utils = require('./utils');
 
 const public = {
-	showUsers: async function () {
-		const query = ``;
+	showAdmin: async function () {
+		const query = `select * from users where role = 'admin';`;
+
+		const rows = await db.query(query);
+
+		return new Promise(resolve => {
+			resolve(utils.decodeRows(rows));
+		});
+	},
+
+    showHousemaster: async function () {
+		const query = `select * from users where role = 'housemaster';`;
+
+		const rows = await db.query(query);
+
+		return new Promise(resolve => {
+			resolve(utils.decodeRows(rows));
+		});
+	},
+
+    showMaintainer: async function () {
+		const query = `select * from users where role = 'maintainer';`;
+
+		const rows = await db.query(query);
+
+		return new Promise(resolve => {
+			resolve(utils.decodeRows(rows));
+		});
+	},
+
+    showNonResidentStudent: async function () {
+		const query = `select * from users where role = 'non_resident_student';`;
+
+		const rows = await db.query(query);
+
+		return new Promise(resolve => {
+			resolve(utils.decodeRows(rows));
+		});
+	},
+
+    showResidentStudent: async function () {
+		const query = `select * , dorm_name , r_number from users , resident_student where role = 'resident_student';`;
 
 		const rows = await db.query(query);
 
@@ -13,7 +53,7 @@ const public = {
 	},
 
 	insertAdmin: async function (user_ID, user_name, sex, password, email, eroll_year, phnumber) {
-		const insertUsers = `insert users value ('${user_ID}' , '${user_name}' , ${sex} , '${password}' , '${email}' , '${eroll_year}' , '${phnumber}');`
+		const insertUsers = `insert users value ('${user_ID}' , '${user_name}' , 'admin' , ${sex} , '${password}' , '${email}' , '${eroll_year}' , '${phnumber}');`
 		const insertAdmin = `insert admin value ('${user_ID}')`;
 
 		try {
@@ -25,7 +65,7 @@ const public = {
 	},
 
 	insertHousemaster: async function (user_ID, user_name, sex, password, email, eroll_year, phnumber) {
-		const insertUsers = `insert users value ('${user_ID}' , '${user_name}' , ${sex} , '${password}' , '${email}' , '${eroll_year}' , '${phnumber}');`
+		const insertUsers = `insert users value ('${user_ID}' , '${user_name}' , 'housemaster' , ${sex} , '${password}' , '${email}' , '${eroll_year}' , '${phnumber}');`
 		const insertHousemaster = `insert housemaster value ('${user_ID}')`;
 
 		try {
@@ -37,7 +77,7 @@ const public = {
 	},
 
 	insertMaintainer: async function (user_ID, user_name, sex, password, email, eroll_year, phnumber) {
-		const insertUsers = `insert users value ('${user_ID}' , '${user_name}' , ${sex} , '${password}' , '${email}' , '${eroll_year}' , '${phnumber}');`
+		const insertUsers = `insert users value ('${user_ID}' , '${user_name}' , 'maintainer' , ${sex} , '${password}' , '${email}' , '${eroll_year}' , '${phnumber}');`
 		const insertMaintainer = `insert maintainer value ('${user_ID}')`;
 
 		try {
@@ -49,7 +89,7 @@ const public = {
 	},
 
 	insertnonResidentStudent: async function (user_ID, user_name, sex, password, email, eroll_year, phnumber) {
-		const insertUsers = `insert users value ('${user_ID}' , '${user_name}' , ${sex} , '${password}' , '${email}' , '${eroll_year}' , '${phnumber}');`
+		const insertUsers = `insert users value ('${user_ID}' , '${user_name}' , 'non_resident_student' , ${sex} , '${password}' , '${email}' , '${eroll_year}' , '${phnumber}');`
 		const insertStudent = `insert maintainer value ('${user_ID}')`;
 		const insertnonResidentStudent = `insert non_resident_student value ('${user_ID}')`;
 		try {

@@ -7,7 +7,8 @@ const public = {
 	},
 
 	getAdminShow: async (req, res) => {
-		res.send(await users.showUsers());
+		
+		res.send(await users.showAdmin());
 	},
 
 	getHousemasterShow: async (req, res) => {

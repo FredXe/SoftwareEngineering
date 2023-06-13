@@ -16,18 +16,35 @@ const public = {
     },
 
     
-    update: async function (dorm_name , want_update_attribute , update_value) {
+    modify: async function (dorm_name , want_update_attribute , update_value) {
         if(want_update_attribute = "dorm_name"){
-            await db.query(`update dormitory set dorm_name = ${update_value} from dormitory where dorm_name = ${dorm_name};`);
-        }else if(want_update_attribute = "dorm_volume"){
-            await db.query(`update dormitory set dorm_volume = ${update_value} from dormitory where dorm_name = ${dorm_name};`);
-        }else if(want_update_attribute = "housemaster_ID"){
-            await db.query(`update dormitory set housemaster_ID = ${update_value} from dormitory where dorm_name = ${dorm_name};`)
-        }
+            const query = `update dormitory set dorm_name = ${update_value} from dormitory where dorm_name = ${dorm_name};`;
+        
+            try {
+			    db.query(query);
+            } catch (err) {
+                console.error(err);
+            }
 
-        return new Promise(resolve => {
-            resolve('大樓資訊更新完畢');
-        });
+        }else if(want_update_attribute = "dorm_volume"){
+            const query = `update dormitory set dorm_volume = ${update_value} from dormitory where dorm_name = ${dorm_name};`;
+
+            try {
+			    db.query(query);
+            } catch (err) {
+                console.error(err);
+            }
+        
+        
+        }else if(want_update_attribute = "housemaster_ID"){
+            const query = `update dormitory set housemaster_ID = ${update_value} from dormitory where dorm_name = ${dorm_name};`;
+            
+            try {
+			    db.query(query);
+		    } catch (err) {
+			    console.error(err);
+		    }
+        }
 
         
     },
@@ -43,11 +60,14 @@ const public = {
     },
 
     applyRepair: async function (dorm_name , room_num , equipment_ID) {
-        await db.query(`update equipment set e_condition = 0 from equipment ` + 
-                        `where equipment.dorm_name = ${dorm_name} and equipment.r_number = ${room_num} and equipment.e_ID = ${equipment_ID};`);
-        return new Promise(resolve => {
-            resolve('申請維修成功!');
-        });
+        const query = `update equipment set e_condition = 0 from equipment ` + 
+                        `where equipment.dorm_name = ${dorm_name} and equipment.r_number = ${room_num} and equipment.e_ID = ${equipment_ID};`;
+        
+        try {
+			db.query(query);
+		} catch (err) {
+			console.error(err);
+		}
     },
 
     showApplyRepair: async function () {
@@ -60,11 +80,13 @@ const public = {
     },
 
     finishRepair: async function (dorm_name , room_num , equipment_ID) {
-        await db.query(`update equipment set e_condition = 1 from equipment ` + 
-                        `where equipment.dorm_name = ${dorm_name} and equipment.r_number = ${room_num} and equipment.e_ID = ${equipment_ID};`);
-        return new Promise(resolve => {
-            resolve('維修完畢!');
-        });
+        const query = `update equipment set e_condition = 1 from equipment ` + 
+                        `where equipment.dorm_name = ${dorm_name} and equipment.r_number = ${room_num} and equipment.e_ID = ${equipment_ID};`;
+        try {
+			db.query(query);
+		} catch (err) {
+			console.error(err);
+		}
     }
 }
 

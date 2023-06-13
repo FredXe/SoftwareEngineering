@@ -15,11 +15,13 @@ const public = {
     },
 
     delete: async function (student_ID) {
-        await db.query(`delete from resident_student where resident_student.user_ID = ${student_ID};`);
+        const query = db.query(`delete from resident_student where resident_student.user_ID = ${student_ID};`);
 
-        return new Promise(resolve => {
-            resolve("刪除住宿生成功!");
-            });
+        try {
+			db.query(query);
+		} catch (err) {
+			console.error(err);
+		}
     }
 }
 

@@ -13,7 +13,11 @@ const ROLES = {
 const public = {
 
 	auth: function (role) {
+		return (req, res, next) => {
+			console.log(req.session);
 
+			next();
+		}
 	}
 }
 

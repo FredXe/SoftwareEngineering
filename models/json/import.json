@@ -4,10 +4,15 @@
 			"user_ID": "a1095500",
 			"user_name": "node_test",
 			"sex": 0,
-			"password": "123456789012345678901234567890123456789012345678901234567890",
+			"password": "$2b$10$ZCg1dqVxXkGigavQ8Qs1G.vRp4Nw8L/FLDaWht3CSbJtp87vt1ha6",
 			"email": "test@node.js",
 			"eroll_year": 2023,
 			"phnumber": "0911222333"
+		}
+	],
+	"admin": [
+		{
+			"user_ID": "a1095500"
 		}
 	]
 }

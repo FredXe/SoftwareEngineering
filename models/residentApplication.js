@@ -1,15 +1,15 @@
 const db = require('./db');
-const fs = require('fs/promises');
 const utils = require('./utils');
-const { log } = require('console');
 
 /**
  * Table operations
  */
 const public = {
 
-	insertRA: async function (file) {
-		const query = `...`;
+	insertRA: async function (rA_ID, rA_semester, dorm_name, rA_approve, rA_fee, student_ID) {
+		const query = `INSERT INTO residentApplication 
+						(rA_ID, rA_semester, dorm_name, rA_approve, rA_fee, student_ID) 
+						VALUES(${rA_ID},${rA_semester},${dorm_name},${rA_approve},${rA_fee},${student_ID});`;
 
 		try {
 			await db.query(query);
@@ -26,7 +26,7 @@ const public = {
 			console.error(err);
 		}
 
-		console.log('已刪除');
+		console.log('deleteRA()');
 	},
 
 	modifyRA: async function (rA_ID, rA_semester, dorm_name, rA_approve, rA_fee, student_ID) {
@@ -40,7 +40,7 @@ const public = {
 		}
 
 		return new Promise(resolve => {
-			resolve('已更新');
+			resolve('modifyRA()');
 		});
 	},
 
@@ -81,16 +81,18 @@ const public = {
 		});
 	},
 
-	approveRA: async function (rA_ID) {
+	approveRA: async function (rA_ID, dorm_name) {
 		let approve = 1;
 		try {
-			await db.query(`UPDATE residentApplication SET rA_approve=${approve} WHERE rA_ID=${rA_ID};`);
+			await db.query(`UPDATE residentApplication 
+							SET rA_approve=${approve}, dorm_name=${dorm_name} 
+							WHERE rA_ID=${rA_ID};`);
 		} catch (err) {
 			console.error(err);
 		}
 
 		return new Promise(resolve => {
-			resolve('已核准');
+			resolve('approveRA()');
 		});
 	}
 

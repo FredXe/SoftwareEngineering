@@ -79,9 +79,9 @@ const public = {
 	},
 
 	/* 新增舍監留言 */
-	insertHousemasterChat: async function (bbID, housemasterID, mestext) {
-		const query = `insert housemaster_chat (mes_text , bb_ID , housemaster_ID)` +
-			`values ('${mestext}', ${bbID}, '${housemasterID}');`;
+	insertHousemasterChat: async function (bb_ID, housemasterID, mestext) {
+		const query = `insert housemaster_chat (bb_ID, housemaster_ID, mes_text)` +
+			`values (${bb_ID}, '${housemasterID}', '${mestext}');`;
 
 		try {
 			await db.query(query);

@@ -60,7 +60,7 @@ const public = {
 						`values ( ${housemasterID} , ${bbtitle} , ${bbtext});`;
 
 		try {
-			db.query(query);
+			await db.query(query);
 		} catch (err) {
 			console.error(err);
 		}
@@ -72,7 +72,7 @@ const public = {
 						`values (${mestext} , ${bbID} , ${residentID});`;
 
 		try {
-			db.query(query);
+			await db.query(query);
 		} catch (err) {
 			console.error(err);
 		}
@@ -84,7 +84,7 @@ const public = {
 					`values (${mestext} , ${bbID} , ${housemasterID});`;
 
 		try {
-			db.query(query);
+			await db.query(query);
 		} catch (err) {
 			console.error(err);
 		}

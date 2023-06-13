@@ -21,7 +21,7 @@ const public = {
             const query = `update dormitory set dorm_name = ${update_value} from dormitory where dorm_name = ${dorm_name};`;
         
             try {
-			    db.query(query);
+			    await db.query(query);
             } catch (err) {
                 console.error(err);
             }
@@ -30,7 +30,7 @@ const public = {
             const query = `update dormitory set dorm_volume = ${update_value} from dormitory where dorm_name = ${dorm_name};`;
 
             try {
-			    db.query(query);
+			    await db.query(query);
             } catch (err) {
                 console.error(err);
             }
@@ -40,7 +40,7 @@ const public = {
             const query = `update dormitory set housemaster_ID = ${update_value} from dormitory where dorm_name = ${dorm_name};`;
             
             try {
-			    db.query(query);
+			    await db.query(query);
 		    } catch (err) {
 			    console.error(err);
 		    }
@@ -53,7 +53,7 @@ const public = {
         const query = `insert dormitory values ( ${dormName} , ${dormVolume} , ${housemasterID});`;
 
 		try {
-			db.query(query);
+			await db.query(query);
 		} catch (err) {
 			console.error(err);
 		}
@@ -64,7 +64,7 @@ const public = {
                         `where equipment.dorm_name = ${dorm_name} and equipment.r_number = ${room_num} and equipment.e_ID = ${equipment_ID};`;
         
         try {
-			db.query(query);
+			await db.query(query);
 		} catch (err) {
 			console.error(err);
 		}
@@ -83,7 +83,7 @@ const public = {
         const query = `update equipment set e_condition = 1 from equipment ` + 
                         `where equipment.dorm_name = ${dorm_name} and equipment.r_number = ${room_num} and equipment.e_ID = ${equipment_ID};`;
         try {
-			db.query(query);
+			await db.query(query);
 		} catch (err) {
 			console.error(err);
 		}

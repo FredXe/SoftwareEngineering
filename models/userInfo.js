@@ -18,7 +18,7 @@ const public = {
         const query = db.query(`delete from resident_student where resident_student.user_ID = ${student_ID};`);
 
         try {
-			db.query(query);
+			await db.query(query);
 		} catch (err) {
 			console.error(err);
 		}

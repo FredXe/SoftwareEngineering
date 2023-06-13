@@ -10,6 +10,7 @@ const violationRecord = require('./violationRecord');
 const visitor = require('./visitor');
 
 const dbAdmin = require('./dbAdmin');
+const cssTest = require('./cssTest'); // ! DELETE ME WHEN MERGING
 
 /**
  * setup middleware
@@ -33,4 +34,5 @@ app.use('/bulletionBoard', bulletionBoard);
  * routers for admin
  */
 app.use('/db', dbAdmin);
+app.use('/css', cssTest);
 

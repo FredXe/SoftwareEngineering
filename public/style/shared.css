@@ -1,0 +1,14 @@
+:root {
+    --accent-color: rgba(173, 50, 255, 0.733);
+
+    &.light-theme{
+        --background-color: white;
+        --primary-color: rgb(255, 0, 0);
+        --text-color: black;
+    }
+    &.dark-theme{
+        --background-color: rgb(58, 58, 58);
+        --primary-color: rgb(255, 0, 0);
+        --text-color: rgb(255, 255, 255);
+    }
+}

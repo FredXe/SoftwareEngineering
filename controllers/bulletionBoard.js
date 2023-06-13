@@ -7,16 +7,16 @@ const public = {
 		res.render('bulletion', bulletionTitle);
 	},
 
-	showBulletionContent: async (req, res) => {
-		const bb_ID = req.params.bb_ID;
-		var bulletion = await bulletionBoard.showBulletionContent(bb_ID);
-		const chat = await bulletionBoard.showComment(bb_ID);
+	bulletionDump: async (req, res) => {
+		var bulletion = await bulletionBoard.showBulletionContent();
 
-		bulletion[0].comments = chat;
+		for (let index = 0; index < bulletion.length; index++) {
+			const element = bulletion[index];
+			const chat = await bulletionBoard.showComment(element.bb_ID);
+			element.comments = chat;
+		}
 
-		console.log(bulletion);
-
-		res.render(`bulletion`, { bulletion, chat });
+		res.render(`bulletion`, { bulletion });
 	},
 
 	postPost: async (req, res) => {

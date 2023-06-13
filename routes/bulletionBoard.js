@@ -3,8 +3,8 @@ const router = express.Router();
 
 const bulletionBoardCtrl = require('../controllers/bulletionBoard');
 
-router.get('/', bulletionBoardCtrl.showBulletionTitles);
-router.get('/:bb_ID', bulletionBoardCtrl.showBulletionContent);
+router.get('/', bulletionBoardCtrl.bulletionDump);
+// router.get('/:bb_ID', bulletionBoardCtrl.showBulletionContent);
 router.post('/post', bulletionBoardCtrl.postPost);
 router.post('/:bb_ID/comment', bulletionBoardCtrl.comment);
 router.post('/:bb_ID/comment/delete', bulletionBoardCtrl.delComment);

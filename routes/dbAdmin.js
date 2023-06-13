@@ -1,7 +1,11 @@
 const express = require('express');
 const router = express.Router();
 
+const auth = require('../middlewares/auth');
+
 const dbAdminCtrl = require('../controllers/dbAdmin');
+
+router.use(auth.auth('admin'));
 
 router.get('/', dbAdminCtrl.getDbAdmin);
 router.post('/drop', dbAdminCtrl.postDrop);

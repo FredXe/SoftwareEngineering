@@ -12,6 +12,10 @@ const visitor = require('./visitor');
 const dbAdmin = require('./dbAdmin');
 
 /**
+ * setup middleware
+ */
+app.use(express.urlencoded({ extended: false }));
+/**
  * setup static routers
  */
 app.use(express.static('public'));

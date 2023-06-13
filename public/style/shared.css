@@ -1,14 +1,39 @@
 :root {
+    font-size: 16px;
+    font-family: 'Noto Sans TC';
+
     --accent-color: rgba(173, 50, 255, 0.733);
 
     &.light-theme{
-        --background-color: white;
-        --primary-color: rgb(255, 0, 0);
+        --background-color: rgb(255, 255, 255);
+        --primary-color: rgb(238, 232, 243);
+        --primary-color-darker: rgb(216, 209, 222);
         --text-color: black;
     }
+    
     &.dark-theme{
-        --background-color: rgb(58, 58, 58);
-        --primary-color: rgb(255, 0, 0);
-        --text-color: rgb(255, 255, 255);
+        --background-color: rgb(34, 30, 35);
+        --primary-color: rgb(40, 31, 44);
+        --primary-color-darker: rgb(31, 24, 33);
+        --text-color: rgb(195, 195, 195);
     }
+}
+
+.noTransition {
+    transition: none !important;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: 100ms ease;
+}
+
+body, p {
+    margin: 0;
+}
+
+main {
+    padding: 2rem;
+    margin-left: 5rem;
 }

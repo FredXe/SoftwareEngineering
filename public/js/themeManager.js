@@ -1,11 +1,24 @@
-(() => {
-    
-    const lightThemeClassName = 'light-theme';
-    const darkThemeClassName = 'dark-theme';
+function updateTheme(){
 
     let rootElement = document.querySelector(':root');
-    if(!rootElement.classList.contains(lightThemeClassName) && !rootElement.classList.contains(darkThemeClassName)){
-        rootElement.classList.add(lightThemeClassName);
+
+    // prevent the transition on all child elements 
+    rootElement.classList.add('noTransition');
+
+    if(localStorage.theme == 'light'){
+        rootElement.classList.remove('dark-theme');
+        rootElement.classList.add('light-theme');
+    }else{
+        rootElement.classList.remove('light-theme');
+        rootElement.classList.add('dark-theme');
     }
 
-})();
+    // stop preventing the transition on all child elements 
+    rootElement.classList.remove('noTransition');
+
+}
+
+if(!localStorage.theme){
+    localStorage.theme = 'dark';
+}
+updateTheme();

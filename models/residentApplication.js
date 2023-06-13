@@ -87,6 +87,13 @@ const public = {
 			await db.query(`UPDATE residentApplication 
 							SET rA_approve=${approve}, dorm_name=${dorm_name} 
 							WHERE rA_ID=${rA_ID};`);
+
+			const user_ID = await db.query(`SELECT student_ID FROM residentApplication WHERE rA_ID=${rA_ID};`);
+			const r_number = await db.query(`SELECT r_number FROM room WHERE dorm_name=${dorm_name};`);
+			await db.query(`DELETE FROM non_resident_student WHERE student_ID=${student_ID};`);
+			await db.query(`INSERT INTO resident_student
+							(user_ID, r_number, dorm_name) 
+							VALUES(${user_ID},${r_number},${dorm_name});`);
 		} catch (err) {
 			console.error(err);
 		}

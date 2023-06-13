@@ -4,7 +4,7 @@ const violationRecordCtrl = require('../controllers/violationRecord');
 
 router.post('/insert', violationRecordCtrl.postViolationInsert);
 router.get('/list', violationRecordCtrl.getViolationList);
-router.get('/Info', violationRecordCtrl.getViolationInfo);
+router.get('/info', violationRecordCtrl.getViolationInfo);
 router.post('/delete', violationRecordCtrl.postViolationDelete);
 
 module.exports = router;

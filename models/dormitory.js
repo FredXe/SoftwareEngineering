@@ -17,35 +17,13 @@ const public = {
 
     
     modify: async function (dorm_name , want_update_attribute , update_value) {
-        if(want_update_attribute = "dorm_name"){
-            const query = `update dormitory set dorm_name = ${update_value} from dormitory where dorm_name = ${dorm_name};`;
+        const query = `update dormitory set ${want_update_attribute} = ${update_value} from dormitory where dorm_name = ${dorm_name};`;
         
-            try {
-			    await db.query(query);
-            } catch (err) {
-                console.error(err);
-            }
-
-        }else if(want_update_attribute = "dorm_volume"){
-            const query = `update dormitory set dorm_volume = ${update_value} from dormitory where dorm_name = ${dorm_name};`;
-
-            try {
-			    await db.query(query);
-            } catch (err) {
-                console.error(err);
-            }
-        
-        
-        }else if(want_update_attribute = "housemaster_ID"){
-            const query = `update dormitory set housemaster_ID = ${update_value} from dormitory where dorm_name = ${dorm_name};`;
-            
-            try {
-			    await db.query(query);
-		    } catch (err) {
-			    console.error(err);
-		    }
-        }
-
+        try {
+			await db.query(query);
+		} catch (err) {
+			console.error(err);
+		}
         
     },
 

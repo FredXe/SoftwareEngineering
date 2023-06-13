@@ -55,9 +55,9 @@ const public = {
 	},
 
 	/* 新增布告欄 */
-	insertBulletion: async function (housemasterID , bbtitle , bbtext) {
-		const query = `insert bulletion_board (bb_title , bb_text , housemaster_ID)` + 
-						`values ( ${housemasterID} , ${bbtitle} , ${bbtext});`;
+	insertBulletion: async function (housemasterID, bbtitle, bbtext) {
+		const query = `insert bulletion_board (bb_title , bb_text , housemaster_ID)` +
+			`values ( ${housemasterID} , ${bbtitle} , ${bbtext});`;
 
 		try {
 			await db.query(query);
@@ -67,9 +67,9 @@ const public = {
 	},
 
 	/* 新增學生留言 */
-	insertStudentChat: async function (bbID , residentID , mestext) {
-		const query = `insert student_chat (mes_text , bb_ID , resident_ID)` + 
-						`values (${mestext} , ${bbID} , ${residentID});`;
+	insertStudentChat: async function (bbID, residentID, mestext) {
+		const query = `insert student_chat (mes_text , bb_ID , resident_ID)` +
+			`values (${mestext} , ${bbID} , ${residentID});`;
 
 		try {
 			await db.query(query);
@@ -79,9 +79,9 @@ const public = {
 	},
 
 	/* 新增舍監留言 */
-	insertStudentChat: async function (bbID , housemasterID , mestext) {
-		const query = `insert student_chat (mes_text , bb_ID , housemaster_ID)` + 
-					`values (${mestext} , ${bbID} , ${housemasterID});`;
+	insertStudentChat: async function (bbID, housemasterID, mestext) {
+		const query = `insert student_chat (mes_text , bb_ID , housemaster_ID)` +
+			`values (${mestext} , ${bbID} , ${housemasterID});`;
 
 		try {
 			await db.query(query);

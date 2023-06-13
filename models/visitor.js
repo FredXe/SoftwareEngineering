@@ -10,10 +10,10 @@ const { query } = require('express');
  * Table operations
  */
 const public = {
-	insertVisitor: async function (guest_id, dorm_name, visit_date, visit_approve) {
+	insertVisitor: async function (guest_ID, dorm_name, visit_date, visit_approve) {
     
-		const query = `INSERT INTO apply_visit (guest_id, dorm_name, visit_date, visit_approve) 
-						VALUES(${guest_id},${dorm_name},${visit_date},${visit_approve});`;
+		const query = `INSERT INTO apply_visit (guest_ID, dorm_name, visit_date, visit_approve) 
+						VALUES(${guest_ID},${dorm_name},${visit_date},${visit_approve});`;
 
 		try {
 			await db.query(query);
@@ -22,9 +22,9 @@ const public = {
 		}
 	},
 
-	deleteVisitor: async function (guest_id) {
+	deleteVisitor: async function (guest_ID) {
 		try {
-			await db.query(`DELETE FROM apply_visit WHERE guest_id=${guest_id};`);
+			await db.query(`DELETE FROM apply_visit WHERE guest_ID=${guest_ID};`);
 		} catch (err) {
 			console.error(err);
 		}
@@ -32,11 +32,11 @@ const public = {
 		console.log('deleteVisitor()');
 	},
 
-	modifyVisitor: async function (guest_id, dorm_name, visit_date, visit_approve) {
+	modifyVisitor: async function (guest_ID, dorm_name, visit_date, visit_approve) {
 		try {
 			await db.query(`UPDATE apply_visit SET dorm_name=${dorm_name},` +
 				`visit_date=${visit_date}, visit_approve=${visit_approve} ` +
-				`WHERE guest_id=${guest_id};`);
+				`WHERE guest_ID=${guest_ID};`);
 		} catch (err) {
 			console.error(err);
 		}
@@ -46,8 +46,8 @@ const public = {
 		});
 	},
 
-	selectVisitor: async function (guest_id) {
-		const row = await db.query(`SELECT * FROM apply_visit WHERE guest_id=${guest_id};`);
+	selectVisitor: async function (guest_ID) {
+		const row = await db.query(`SELECT * FROM apply_visit WHERE guest_ID=${guest_ID};`);
 
 		return new Promise(resolve => {
 			resolve(utils.decodeRows(row));
@@ -62,20 +62,20 @@ const public = {
 		});
 	},
 
-	isApprove: async function (guest_id) {
+	isApprove: async function (guest_ID) {
 		const visitApprove = await db.query(`SELECT visit_approve FROM apply_visit 
-											WHERE guest_id=${guest_id};`);
+											WHERE guest_ID=${guest_ID};`);
 
 		return new Promise(resolve => {
 			resolve(utils.decodeRows(visitApprove));
 		});
 	},
 
-	approveVisit: async function (guest_id) {
+	approveVisit: async function (guest_ID) {
 		const approve = 1;
 		try {
 			await db.query(`UPDATE apply_visit SET visit_approve=${approve} 
-						WHERE guest_id=${guest_id};`);
+						WHERE guest_ID=${guest_ID};`);
 		} catch (err) {
 			console.error(err);
 		}

@@ -9,10 +9,10 @@ const { log } = require('console');
  */
 const public = {
 
-	insertRA: async function (rA_ID, rA_semester, dorm_name, rA_approve, rA_fee, student_ID) {
+	insertVR: async function (vr_ID, vr_date, vr_type, resident_ID, housemaster_ID) {
 		const query = `INSERT INTO residentApplication 
-					(rA_ID, rA_semester, dorm_name, rA_approve, rA_fee, student_ID) 
-					VALUES(${rA_ID},${rA_semester},${dorm_name},${rA_approve},${rA_fee},${student_ID});`;
+					(vr_ID, vr_date, vr_type, resident_ID, housemaster_ID) 
+					VALUES(${vr_ID},${vr_date},${vr_type},${resident_ID},${housemaster_ID});`;
 
 		try {
 			await db.query(query);

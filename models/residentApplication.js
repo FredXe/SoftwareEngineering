@@ -83,10 +83,12 @@ const public = {
 		});
 	},
 
-	approveRA: async function (rA_ID) {
+	approveRA: async function (rA_ID, dorm_name) {
 		let approve = 1;
 		try {
-			await db.query(`UPDATE residentApplication SET rA_approve=${approve} WHERE rA_ID=${rA_ID};`);
+			await db.query(`UPDATE residentApplication 
+							SET rA_approve=${approve}, dorm_name=${dorm_name} 
+							WHERE rA_ID=${rA_ID};`);
 		} catch (err) {
 			console.error(err);
 		}

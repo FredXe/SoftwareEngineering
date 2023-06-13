@@ -4,7 +4,8 @@ const public = {
 
     showDorm: async (req , res) => {
         const dormInfo = dormitory.showDorm();
-        res.render('dormitory' , dormInfo);
+        console.log(dormInfo);
+        // res.render('dormitory' , dormInfo);
     },
 
     modify: (req , res) => {
@@ -13,7 +14,7 @@ const public = {
     },
 
     insert: (req , res) => {
-        dormitory.insert(req.body.dormName , req.body.dormBolume , req.body.housemasterID);
+        dormitory.insert(req.body.dormName , req.body.dormVolume , req.body.housemasterID);
         res.redirect('/dormitory');
     }
 }

@@ -81,7 +81,7 @@ const public = {
 		const query = '...';
 
 		try {
-			db.query(query);
+			await db.query(query);
 		} catch (err) {
 			console.error(err);
 		}

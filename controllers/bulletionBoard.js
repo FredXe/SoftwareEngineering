@@ -9,12 +9,14 @@ const public = {
 
 	showBulletionContent: async (req, res) => {
 		const bb_ID = req.url.split('/')[1];
-		const bulletionText = await bulletionBoard.showBulletionContent(bb_ID);
+		var bulletion = await bulletionBoard.showBulletionContent(bb_ID);
 		const chat = await bulletionBoard.showComment(bb_ID);
 
-		console.log(bulletionText, chat);
+		bulletion[0].comments = chat;
 
-		res.render(`bulletion`, { bulletionText, chat });
+		console.log(bulletion);
+
+		res.render(`bulletion`, { bulletion, chat });
 	},
 
 	postPost: async (req, res) => {

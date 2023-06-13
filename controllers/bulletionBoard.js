@@ -1,30 +1,56 @@
+const bulletionBoard = require('../models/bulletionBoard');
+
 const public = {
-	getBulletionBoard: async (req, res) => {
-
+	showBulletionTitles: async (req, res) => {
+		const bulletionTitle = await bulletionBoard.showBulletion();
+		res.render('bulletionBoard', bulletionTitle);
 	},
 
-	postBulletionBoard: async (req, res) => {
-
+	showBulletionContent: async (req, res) => {
+		const bulletionTitle = req.url.split('/')[3];
+		const bulletionText = await bulletionBoard.showBulletionContent();
+		const chat = await bulletionBoard.showHousemasterChat();
+		res.render(`bulletionBoard`, { bulletionText, chat });
 	},
 
-	postDelBulletionBoard: async (req, res) => {
-
+	addBulletion: (req, res) => {
+		bulletionBoard.insertBulletion(req.body.housemasterID, req.doby.bbTitle, req.body.bbText);
+		res.redirect('/bulletionBoard');
 	},
 
-	postDelComment: async (req, res) => {
-		console.log('postDelComment');
+	addStuChat: (req, res) => {
+		const bulletionTitle = req.url.split('/')[3];
+		bulletionBoard.insertStudentChat(req.body.bbID, req.body.residentID, req.body.mestext);
+		res.redirect(`/bulletionBoard/${bulletionTitle}`);
 	},
 
-	getComment: async (req, res) => {
-
-
+	addHouseChat: (req, res) => {
+		const bulletionTitle = req.url.split('/')[3];
+		bulletionBoard.insertHousemasterChat(req.body.bbID, req.body.housemasterID, req.body.mestext);
+		res.redirect(`/bulletionBoard/${bulletionTitle}`);
 	},
 
-	postComment: (req, res) => {
-		console.log(req.body);
-
-		res.redirect('/db');
+	delBulletion: (req, res) => {
+		bulletionBoard.deleteBulletion(req.body.bbID, req.body.housemasterID);
+		res.redirect('/bulletionBoard');
 	},
+
+	delStuChat: (req, res) => {
+		const bulletionTitle = req.url.split('/')[3];
+		bulletionBoard.deleteStudentChat(req.body.bbID, req.body.mesID, req.body.residentID);
+		res.redirect(`/bulletionboard/${bulletionTitle}`);
+	},
+
+	delHouseChat: (req, res) => {
+		const bulletionTitle = req.url.split('/')[3];
+		bulletionBoard.deleteHousemasterChat(req.body.bbID, req.body.mesID, req.body.housemasterID);
+		res.redirect(`/bulletionboard/${bulletionTitle}`);
+	},
+
+	directList: (req, res) => {
+		// res.redirect('/bulletionBoard');
+		res.render('bulletionBoard');
+	}
 
 }
 

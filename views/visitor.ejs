@@ -9,6 +9,10 @@
 	<script src='main.js'></script>
 </head>
 <body>
+
+	<form method="get" action='/visitor/'>
+		<input type="submit" name="button" value="list" />
+	</form>
 	<form method="post" action='/visitor/apply'>
 		<input type="text" name="guest_ID" value="123" />
 		<input type="text" name="dorm_name" value="dorm1" />
@@ -16,10 +20,10 @@
         <input type="number" name="visit_approve" value="0" />
 		<input type="submit" name="button" value="hashPassword" />
 	</form>
-	<form method="post" action='/visitor/list'>
+	<form method="get" action='/visitor/list'>
 		<input type="submit" name="button" value="list" />
 	</form>
-	<form method="post" action='/visitor/info'>
+	<form method="get" action='/visitor/info'>
 		<input type="text" name="guest_ID" value="123" />
 		<input type="submit" name="button" value="info" />
 	</form>

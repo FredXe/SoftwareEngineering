@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Css Tesing Page👍</title>
-
     <link rel="stylesheet" href="style/sidebar.css">
     <link rel="stylesheet" href="style/shared.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC">
+    <link rel="stylesheet" href="style/table.css">
 
     <script src="js/themeManager.js"></script>
-
 </head>
 <body>
     <%- include('partials/sidebar') %>
@@ -21,8 +20,8 @@
             <button>no</button>
         </div>
     
-        <div>
-            <table>
+        <div class="center-container">
+            <table class="white-gray-table table--radius-border">
                 <tr>
                     <th>名字</th>
                     <th>年紀</th>
@@ -47,8 +46,27 @@
         </div>
     
         <div>
-            <input type="text" name="foo" id="">
-            <button>asd</button>
+            <input class="bottom-line-input" type="text" name="foo" id="">
+            <button class="apply-button">確認</button>
+        </div>
+
+        <div class="center-container">
+            <ul class="list-table table--radius-border">
+                <li>
+                    <div>
+                        <p>標題</p>
+                        <br>
+                        <p>內容</p>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <p>標題</p>
+                        <br>
+                        <p>內容</p>
+                    </div>
+                </li>
+            </ul>
         </div>
     </main>
 

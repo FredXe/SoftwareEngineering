@@ -45,6 +45,7 @@
     
     & svg {
         min-width: 1.5rem;
+        width: 1.5rem;
         margin: 0 1.75rem;
         fill: rgb(92, 80, 99);
         

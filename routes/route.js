@@ -32,7 +32,7 @@ app.use(session({
 		maxAge: 30 * 60 * 1000 // 30 min
 	}
 }));
-// app.use(logger);
+app.use(logger);
 /**
  * setup static routers
  */
@@ -42,7 +42,7 @@ app.use(express.static('public'));
  */
 app.use('/', root);
 app.use('/users', users);
-app.use('/bulletionBoard', bulletionBoard);
+app.use('/bulletion', bulletionBoard);
 app.use('/dormitory', dormitory);
 app.use('/myInfo', myInfo);
 app.use('/applyRepair', applyRepair);

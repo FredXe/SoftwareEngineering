@@ -10,9 +10,8 @@ async function sendSqlFromFile(sqlPath) {
 		return new Promise(resolve => {
 			resolve('query done ' + sqlPath);
 		});
-	} catch {
-		console.error('error while sendSqlFromFile');
-		console.trace();
+	} catch (err) {
+		console.error(err);
 	}
 }
 

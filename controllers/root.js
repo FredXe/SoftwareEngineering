@@ -22,8 +22,6 @@ const public = {
 				res.redirect('/db');
 			});
 
-
-
 		} else
 			res.send('wrong');
 	},

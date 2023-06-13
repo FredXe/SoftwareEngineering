@@ -13,6 +13,6 @@ router.post('/housemaster/insert', usersCtrl.postHousemasterInsert);
 router.get('/nonResidentStudent/show', usersCtrl.getNonResidentStudentShow);
 router.post('/nonResidentStudent/insert', usersCtrl.postNonResidentStudentInsert);
 router.get('/maintainer/show', usersCtrl.getMaintainerShow);
-router.post('/maintainer/insert', usersCtrl.postMaintainer);
+router.post('/maintainer/insert', usersCtrl.postMaintainerInsert);
 
 module.exports = router;

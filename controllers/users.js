@@ -1,4 +1,5 @@
 const users = require('../models/users');
+const hash = require('./hash');
 
 
 const public = {
@@ -27,7 +28,7 @@ const public = {
 		const user_ID = req.body.user_ID;
 		const user_name = req.body.user_name;
 		const sex = req.body.sex;
-		const password = req.body.password;
+		const password = await hash.hash(req.body.password);
 		const email = req.body.email;
 		const eroll_year = req.body.eroll_year;
 		const phnumber = req.body.phnumber;
@@ -49,7 +50,7 @@ const public = {
 		const user_ID = req.body.user_ID;
 		const user_name = req.body.user_name;
 		const sex = req.body.sex;
-		const password = req.body.password;
+		const password = await hash.hash(req.body.password);
 		const email = req.body.email;
 		const eroll_year = req.body.eroll_year;
 		const phnumber = req.body.phnumber;
@@ -71,7 +72,7 @@ const public = {
 		const user_ID = req.body.user_ID;
 		const user_name = req.body.user_name;
 		const sex = req.body.sex;
-		const password = req.body.password;
+		const password = await hash.hash(req.body.password);
 		const email = req.body.email;
 		const eroll_year = req.body.eroll_year;
 		const phnumber = req.body.phnumber;
@@ -89,11 +90,11 @@ const public = {
 		res.redirect('/users');
 	},
 
-	postMaintainer: async (req, res) => {
+	postMaintainerInsert: async (req, res) => {
 		const user_ID = req.body.user_ID;
 		const user_name = req.body.user_name;
 		const sex = req.body.sex;
-		const password = req.body.password;
+		const password = await hash.hash(req.body.password);
 		const email = req.body.email;
 		const eroll_year = req.body.eroll_year;
 		const phnumber = req.body.phnumber;

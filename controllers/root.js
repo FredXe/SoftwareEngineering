@@ -1,4 +1,4 @@
-const hash = require('../models/hash');
+const hash = require('./hash');
 const root = require('../models/root');
 
 const public = {

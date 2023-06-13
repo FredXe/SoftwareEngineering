@@ -7,7 +7,7 @@ const public = {
 	},
 
 	getUserShow: async (req, res) => {
-		// users.
+		res.send(await users.showUsers());
 	},
 
 	postAdminInsert: async (req, res) => {

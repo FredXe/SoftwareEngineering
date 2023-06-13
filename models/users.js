@@ -1,8 +1,16 @@
 const db = require('./db');
-const fs = require('fs/promises')
 const utils = require('./utils');
 
 const public = {
+	showUsers: async function () {
+		const query = ``;
+
+		const rows = await db.query(query);
+
+		return new Promise(resolve => {
+			resolve(utils.decodeRows(rows));
+		});
+	},
 
 	insertAdmin: async function (user_ID, user_name, sex, password, email, eroll_year, phnumber) {
 		const insertUsers = `insert users value ('${user_ID}' , '${user_name}' , ${sex} , '${password}' , '${email}' , '${eroll_year}' , '${phnumber}');`

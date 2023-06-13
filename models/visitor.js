@@ -11,7 +11,7 @@ const { query } = require('express');
  */
 const public = {
 	insertVisitor: async function (guest_ID, dorm_name, visit_date, visit_approve) {
-    
+
 		const query = `INSERT INTO apply_visit (guest_ID, dorm_name, visit_date, visit_approve) 
 						VALUES(${guest_ID},${dorm_name},${visit_date},${visit_approve});`;
 

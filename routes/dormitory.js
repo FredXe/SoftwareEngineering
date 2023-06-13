@@ -5,7 +5,7 @@ const dormitoryCtrl = require('../controllers/dormitory');
 
 router.use(express.urlencoded({ extended: false }));
 
-router.get('/' , dormitoryCtrl.showDorm);
-router.post('/modify' , dormitoryCtrl.modify);
-router.post('/insert' , dormitoryCtrl.insert);
+router.get('/', dormitoryCtrl.showDorm);
+router.post('/modify', dormitoryCtrl.modify);
+router.post('/insert', dormitoryCtrl.insert);
 module.exports = router;

@@ -8,6 +8,7 @@ const residentApplication = require('./residentApplication');
 const userInfo = require('./userInfo');
 const violationRecord = require('./violationRecord');
 const visitor = require('./visitor');
+const applyRepair = reuiqre('./apply_repair');
 
 const dbAdmin = require('./dbAdmin');
 
@@ -19,10 +20,11 @@ app.use(express.static('public'));
  * setup routers
  */
 app.use('/bulletionBoard', bulletionBoard);
-// app.use('/dormitory', dormitory);
-// app.use('/myInfo', myInfo);
+app.use('/dormitory', dormitory);
+app.use('/myInfo', myInfo);
+app.use('/applyRepair' , applyRepair);
 // app.use('/residentApplication', residentApplication);
-// app.use('/userInfo', userInfo);
+app.use('/userInfo', userInfo);
 // app.use('/violationRecord', violationRecord);
 // app.use('/visitor', visitor);
 /**

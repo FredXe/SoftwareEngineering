@@ -2,7 +2,8 @@
     font-size: 16px;
     font-family: 'Noto Sans TC';
 
-    --accent-color: rgb(173, 50, 255);
+    --accent-color: rgba(173, 50, 255);
+
     &.light-theme{
         --background-color: rgb(255, 255, 255);
         --primary-color: rgb(238, 232, 243);

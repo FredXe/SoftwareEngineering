@@ -5,6 +5,7 @@
     <title>Css Tesing Page👍</title>
     <link rel="stylesheet" href="style/sidebar.css">
     <link rel="stylesheet" href="style/shared.css">
+    <link rel="stylesheet" href="style/inputs.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC">
     <link rel="stylesheet" href="style/table.css">
 
@@ -67,6 +68,17 @@
                     </div>
                 </li>
             </ul>
+            <!-- The following is an example structure of the text input -->
+            <!-- Notice that the input MUST has a placeholder with a space in it for the css to work properly-->
+            <div class="input-text">
+                <input type="text" name="foo" id="uName" placeholder=" ">
+                <label for="uName">帳號</label>
+            </div>
+            <div class="input-text">
+                <input type="password" name="bar" id="uPass" placeholder=" ">
+                <label for="uPass">密碼</label>
+            </div>
+            <button>送出</button>
         </div>
     </main>
 

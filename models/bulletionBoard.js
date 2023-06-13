@@ -1,9 +1,6 @@
 const db = require('./db');
-const fs = require('fs/promises');
 
 const utils = require('./utils');
-const { error } = require('console');
-const { comment } = require('../controllers/bulletionBoard');
 
 const public = {
 

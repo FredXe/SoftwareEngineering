@@ -10,4 +10,4 @@ router.post('/approve', residentApplicationCtrl.postResidentApprove);
 router.post('/modify', residentApplicationCtrl.postResidentApplyModify);
 router.post('/delete', residentApplicationCtrl.postResidentApplyDelete);
 
-module.exports = routers;
+module.exports = router;

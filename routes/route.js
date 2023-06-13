@@ -12,7 +12,7 @@ const residentApplication = require('./residentApplication');
 const userInfo = require('./userInfo');
 const violationRecord = require('./violationRecord');
 const visitor = require('./visitor');
-const applyRepair = reuiqre('./apply_repair');
+const applyRepair = require('./applyRepair');
 
 const dbAdmin = require('./dbAdmin');
 

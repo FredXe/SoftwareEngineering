@@ -9,4 +9,4 @@ router.post('/approve', visitorCtrl.postVisitApprove);
 router.post('/modify', visitorCtrl.postVisitModify);
 router.post('/delete', visitorCtrl.postVisitDelete);
 
-module.exports = routers;
+module.exports = router;

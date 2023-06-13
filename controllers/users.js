@@ -6,7 +6,19 @@ const public = {
 		res.render('users');
 	},
 
-	getUserShow: async (req, res) => {
+	getAdminShow: async (req, res) => {
+		res.send(await users.showUsers());
+	},
+
+	getHousemasterShow: async (req, res) => {
+		res.send(await users.showUsers());
+	},
+
+	getNonResidentStudentShow: async (req, res) => {
+		res.send(await users.showUsers());
+	},
+
+	getMaintainerShow: async (req, res) => {
 		res.send(await users.showUsers());
 	},
 

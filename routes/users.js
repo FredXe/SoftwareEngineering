@@ -6,11 +6,13 @@ const usersCtrl = require('../controllers/users');
 
 router.get('/', usersCtrl.getRoot);
 router.get('/show', usersCtrl.getUserShow);
+router.get('/admin/show', usersCtrl.getAdminShow);
 router.post('/admin/insert', usersCtrl.postAdminInsert);
+router.get('/housemaster/show', usersCtrl.getHouseMasterShow);
 router.post('/housemaster/insert', usersCtrl.postHousemasterInsert);
-// router.post('/resident_student');
-router.post('/non_resident_student/insert', usersCtrl.postNonResidentStudentInsert);
+router.get('/nonResidentStudent/show', usersCtrl.getNonResidentStudentShow);
+router.post('/nonResidentStudent/insert', usersCtrl.postNonResidentStudentInsert);
+router.get('/maintainer/show', usersCtrl.getMaintainerShow);
 router.post('/maintainer/insert', usersCtrl.postMaintainer);
-// router.post('/visitor');
 
 module.exports = router;

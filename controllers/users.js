@@ -1,4 +1,5 @@
 const users = require('../models/users');
+const hash = require('./hash');
 
 
 const public = {
@@ -27,7 +28,7 @@ const public = {
 		const user_ID = req.body.user_ID;
 		const user_name = req.body.user_name;
 		const sex = req.body.sex;
-		const password = req.body.password;
+		const password = (req.body.password);
 		const email = req.body.email;
 		const eroll_year = req.body.eroll_year;
 		const phnumber = req.body.phnumber;

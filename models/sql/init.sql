@@ -1,3 +1,5 @@
+use softwareEngineering;
+
 CREATE TABLE IF NOT EXISTS users
 (
   user_ID char(8) NOT NULL,
@@ -14,21 +16,21 @@ CREATE TABLE IF NOT EXISTS admin
 (
   user_ID char(8) NOT NULL,
   PRIMARY KEY (user_ID),
-  FOREIGN KEY (user_ID) REFERENCES users(user_ID)
+  FOREIGN KEY (user_ID) REFERENCES users(user_ID) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS housemaster
 (
   user_ID char(8) NOT NULL,
   PRIMARY KEY (user_ID),
-  FOREIGN KEY (user_ID) REFERENCES users(user_ID)
+  FOREIGN KEY (user_ID) REFERENCES users(user_ID) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS maintainer
 (
   user_ID char(8) NOT NULL,
   PRIMARY KEY (user_ID),
-  FOREIGN KEY (user_ID) REFERENCES users(user_ID)
+  FOREIGN KEY (user_ID) REFERENCES users(user_ID) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS dormitory
@@ -37,7 +39,7 @@ CREATE TABLE IF NOT EXISTS dormitory
   dorm_volume INT UNSIGNED NOT NULL,
   housemaster_ID char(8) NOT NULL,
   PRIMARY KEY (dorm_name),
-  FOREIGN KEY (housemaster_ID) REFERENCES housemaster(user_ID)
+  FOREIGN KEY (housemaster_ID) REFERENCES housemaster(user_ID) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS room
@@ -47,7 +49,7 @@ CREATE TABLE IF NOT EXISTS room
   r_cost INT NOT NULL,
   dorm_name CHAR(30) NOT NULL,
   PRIMARY KEY (r_number, dorm_name),
-  FOREIGN KEY (dorm_name) REFERENCES dormitory(dorm_name)
+  FOREIGN KEY (dorm_name) REFERENCES dormitory(dorm_name) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS student
@@ -78,11 +80,13 @@ CREATE TABLE IF NOT EXISTS residentApplication
 (
   rA_ID INT NOT NULL AUTO_INCREMENT,
   rA_semester DATE NOT NULL,
+  dorm_name CHAR(30) NOT NULL,
   rA_approve INT NOT NULL,
   rA_fee INT NOT NULL,
   student_ID CHAR(8) NOT NULL,
   PRIMARY KEY (rA_ID),
-  FOREIGN KEY (student_ID) REFERENCES student(user_ID)
+  FOREIGN KEY (dorm_name) REFERENCES dormitory(dorm_name) ON DELETE CASCADE,
+  FOREIGN KEY (student_ID) REFERENCES student(user_ID) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS bulletion_board
@@ -106,26 +110,36 @@ CREATE TABLE IF NOT EXISTS guest
 CREATE TABLE IF NOT EXISTS equipment
 (
   e_ID INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  e_type CHAR NOT NULL,
+  e_type CHAR(30) NOT NULL,
   e_condition INT NOT NULL, /* value if == 1 : 設備狀態良好 , 0 : 設備狀態需要維修*/
   r_number INT UNSIGNED NOT NULL,
   dorm_name CHAR(30) NOT NULL,
   PRIMARY KEY (e_ID),
-  FOREIGN KEY (r_number, dorm_name) REFERENCES room(r_number, dorm_name)
+  FOREIGN KEY (r_number, dorm_name) REFERENCES room(r_number, dorm_name) ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS chat
+CREATE TABLE IF NOT EXISTS student_chat
 (
   mes_ID INT UNSIGNED NOT NULL AUTO_INCREMENT,
   mes_text VARCHAR(256) NOT NULL,
   mes_time DATETIME NOT NULL,
   bb_ID INT UNSIGNED NOT NULL,
   resident_ID char(8) NOT NULL,
-  housemaster_ID char(8) NOT NULL,
   PRIMARY KEY (mes_ID, bb_ID),
-  FOREIGN KEY (bb_ID) REFERENCES bulletion_board(bb_ID),
-  FOREIGN KEY (resident_ID) REFERENCES resident_student(user_ID),
-  FOREIGN KEY (housemaster_ID) REFERENCES housemaster(user_ID)
+  FOREIGN KEY (bb_ID) REFERENCES bulletion_board(bb_ID) ON DELETE CASCADE,
+  FOREIGN KEY (resident_ID) REFERENCES resident_student(user_ID) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS housemaster_chat
+(
+    mes_ID INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    mes_text VARCHAR(256) NOT NULL,
+    mes_time DATETIME NOT NULL,
+    bb_ID INT UNSIGNED NOT NULL,
+    housemaster_ID char(8) NOT NULL,
+    PRIMARY KEY (mes_ID, bb_ID),
+    FOREIGN KEY (bb_ID) REFERENCES bulletion_board(bb_ID) ON DELETE CASCADE,
+    FOREIGN KEY (housemaster_ID) REFERENCES housemaster(user_ID) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS violation_record
@@ -136,15 +150,17 @@ CREATE TABLE IF NOT EXISTS violation_record
   resident_ID CHAR(8) NOT NULL,
   housemaster_ID CHAR(8) NOT NULL,
   PRIMARY KEY (vr_ID, resident_ID),
-  FOREIGN KEY (resident_ID) REFERENCES resident_student(user_ID),
-  FOREIGN KEY (housemaster_ID) REFERENCES housemaster(user_ID)
+  FOREIGN KEY (resident_ID) REFERENCES resident_student(user_ID) ON DELETE CASCADE,
+  FOREIGN KEY (housemaster_ID) REFERENCES housemaster(user_ID) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS apply_visit
 (
   guest_ID char(8) NOT NULL,
   dorm_name CHAR(30) NOT NULL,
+  visit_date DATE NOT NULL,
+  visit_approve INT NOT NULL DEFAULT (0),
   PRIMARY KEY (guest_ID, dorm_name),
-  FOREIGN KEY (guest_ID) REFERENCES guest(guest_ID),
-  FOREIGN KEY (dorm_name) REFERENCES dormitory(dorm_name)
+  FOREIGN KEY (guest_ID) REFERENCES guest(guest_ID) ON DELETE CASCADE,
+  FOREIGN KEY (dorm_name) REFERENCES dormitory(dorm_name) ON DELETE CASCADE
 );

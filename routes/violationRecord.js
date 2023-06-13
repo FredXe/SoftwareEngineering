@@ -7,4 +7,4 @@ router.get('/list', violationRecordCtrl.getViolationList);
 router.get('/Info', violationRecordCtrl.getViolationInfo);
 router.post('/delete', violationRecordCtrl.postViolationDelete);
 
-module.exports = routers;
+module.exports = router;

@@ -1,0 +1,11 @@
+{
+	"housemaster_chat": [
+		{
+			"mes_ID" : 1,
+            "mes_text" : "this is a chat for ID 1",
+            "mess_time" : "2023-06-13 12:10:11",
+            "bb_ID" : 1,
+            "housemaster_ID" : "a1095599"
+		}
+	]
+}

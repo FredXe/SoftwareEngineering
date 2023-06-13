@@ -1,37 +1,13 @@
 const express = require('express');
 const router = express.Router();
 
-const tables = require('../models/tables');
+const dbAdminCtrl = require('../controllers/dbAdmin');
 
-router.get('/', function (req, res) {
-	res.render('foo');
-});
-
-router.post('/drop', function (req, res) {
-	tables.drop();
-	res.redirect('/db');
-});
-
-router.post('/init', function (req, res) {
-	tables.init();
-	res.redirect('/db');
-});
-
-router.post('/reset', function (req, res) {
-	tables.reset();
-	res.redirect('/db');
-});
-
-router.post('/import', function (req, res) {
-	tables.import();
-	res.redirect('/db');
-});
-
-router.post('/selectUser', function (req, res) {
-	tables.selectUser();
-	res.redirect('/db');
-});
-
-
+router.get('/', dbAdminCtrl.getDbAdmin);
+router.post('/drop', dbAdminCtrl.postDrop);
+router.post('/init', dbAdminCtrl.postInit);
+router.post('/reset', dbAdminCtrl.postReset);
+router.post('/import', dbAdminCtrl.postImport);
+router.post('/selectUser', dbAdminCtrl.postSelectUser);
 
 module.exports = router;

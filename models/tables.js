@@ -34,39 +34,21 @@ const public = {
 	},
 
 	import: async function () {
-		const content = (await fs.readFile('./models/json/import.json')).toString();
-		const data = JSON.parse(content);
+		const query = await utils.json2InsertQuery('./models/json/import.json');
 
-		for (let [table, rows] of utils.itObject(data)) {
-			for (let index = 0; index < rows.length; index++) {
-				const row = rows[index];
-
-				var column = '';
-				var value = '';
-
-				for (let [attribute, val] of utils.itObject(row)) {
-					column = `${column} ${attribute}, `;
-					value = (typeof val == 'string') ? `${value} '${val}', ` :
-						`${value} ${val}, `;
-				}
-
-				column = column.slice(0, column.length - 2);
-				value = value.slice(0, value.length - 2);
-
-				const query = `INSERT INTO ${table} (${column}) VALUE (${value});`;
-				db.query(query);
-			}
+		// insert
+		try {
+			await db.query(query);
+		} catch (err) {
+			console.error(err);
 		}
-
 	},
 
 	selectUser: async function () {
-		const rows = await db.query('SELECT * FROM users;');
-		const content = JSON.parse(JSON.stringify(rows));
+		const rows = await db.query('SELECT * FROM users WHERE user_ID=\'a1095500\';');
+		const content = utils.decodeRows(rows);
 		console.log(content);
 	}
 }
-
-// public.import();
 
 module.exports = public;

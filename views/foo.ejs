@@ -9,20 +9,28 @@
 	<script src='main.js'></script>
 </head>
 <body>
-	<form action='/db/drop' method="post">
-		<input id="board" type="submit" name="button" value="drop" />
+	<form method="post" action='/db/drop'>
+		<input type="submit" name="button" value="drop" />
 	</form>
-	<form action='/db/init' method="post">
-		<input id="board" type="submit" name="button" value="init" />
+	<form method="post" action='/db/init'>
+		<input type="submit" name="button" value="init" />
 	</form>
-	<form action='/db/reset' method="post">
-		<input id="board" type="submit" name="button" value="reset" />
+	<form method="post" action='/db/reset'>
+		<input type="submit" name="button" value="reset" />
 	</form>
-	<form action='/db/import' method="post">
-		<input id="board" type="submit" name="button" value="import" />
+	<form method="post" action='/db/import'>
+		<input type="submit" name="button" value="import" />
 	</form>
-	<form action='/db/selectUser' method="post">
-		<input id="board" type="submit" name="button" value="selectUser" />
+	<form method="post" action='/db/selectUser'>
+		<input type="submit" name="button" value="selectUser" />
 	</form>
+	<form method="post" action='/bulletionBoard/comment/delete'>
+		<input type="submit" name="button" value="delComment" />
+	</form>
+	<form method="post" action='/bulletionBoard/comment'>
+		<input type="text" name="comment" value="testComment:D:D" />
+		<input type="submit" name="button" value="submitComment" />
+	</form>
+
 </body>
 </html>

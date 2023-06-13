@@ -1,0 +1,11 @@
+{
+	"bulletion_board": [
+		{
+			"bb_ID" : 3,
+            "bb_title" : "bb_3",
+            "bb_text" : "bb_3 this is a content",
+            "release_time" : "2023-06-13 12:07:11",
+            "housemaster_ID" : "a1095599"
+		}
+	]
+}

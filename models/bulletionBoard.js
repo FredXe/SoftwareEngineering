@@ -79,8 +79,8 @@ const public = {
 	},
 
 	/* 新增舍監留言 */
-	insertStudentChat: async function (bbID , housemasterID , mestext) {
-		const query = `insert student_chat (mes_text , bb_ID , housemaster_ID)` + 
+	insertHousemasterChat: async function (bbID , housemasterID , mestext) {
+		const query = `insert housemaster_chat (mes_text , bb_ID , housemaster_ID)` + 
 					`values (${mestext} , ${bbID} , ${housemasterID});`;
 
 		try {
@@ -107,11 +107,12 @@ const public = {
 		console.log('deleteBulletion()');
 	},
 
-	deleteStudentChat: async function (mes_ID, resident_ID) {
+	deleteStudentChat: async function (bb_ID , mes_ID, resident_ID) {
 		//還沒寫驗權限
 		try {
 			await db.query(`delete from student_chat where student_chat.mes_ID ` +
-			`= ${mes_ID} and student_chat.resident_ID = ${resident_ID}`);
+			`= ${mes_ID} and student_chat.resident_ID = ${resident_ID} and ` + 
+			`student_chat.bb_ID = ${bb_ID}`);
 		} catch (err) {
 			console.error(err);
 		}
@@ -119,11 +120,12 @@ const public = {
 		console.log('deleteStudentChat()');
 	},
 
-	deleteHousemasterChat: async function (want_delete_ID, owner_ID) {
+	deleteHousemasterChat: async function (bb_ID , mes_ID, housemaster_ID) {
 		//還沒寫驗權限
 		try {
 			await db.query(`delete from housemaster_chat where housemaster_chat.mes_ID ` +
-			`= ${want_delete_ID} and housemaster_chat.resident_ID = ${owner_ID}`);
+			`= ${mes_ID} and housemaster_chat.resident_ID = ${housemaster_ID}` + 
+			`and housemaster_caht.bb_ID = ${bb_ID}`);
 		} catch (err) {
 			console.error(err);
 		}

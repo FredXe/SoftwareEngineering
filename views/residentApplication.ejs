@@ -10,7 +10,13 @@
 </head>
 <body>
 	<form method="post" action='/residentApplication/apply'>
-		<input type="submit" name="button" value="apply" />
+		<input type="number" name="rA_ID" value="123" />
+		<input type="date" name="rA_semester" value="2023-06-13" />
+        <input type="text" name="dorm_name" value="123" />
+        <input type="number" name="rA_approve" value="0" />
+        <input type="number" name="rA_fee" value="10000" />
+        <input type="text" name="student_ID" value="a1095500" />
+		<input type="submit" name="button" value="hashPassword" />
 	</form>
 	<form method="post" action='/residentApplication/list'>
 		<input type="submit" name="button" value="list" />
@@ -19,16 +25,26 @@
 		<input type="submit" name="button" value="list_fee" />
 	</form>
 	<form method="post" action='/residentApplication/info'>
+        <input type="number" name="rA_ID" value="123" />
 		<input type="submit" name="button" value="info" />
 	</form>
 	<form method="post" action='/residentApplication/approve'>
+        <input type="number" name="rA_ID" value="123" />
+        <input type="text" name="dorm_name" value="123" />
 		<input type="submit" name="button" value="approve" />
 	</form>
 	<form method="post" action='/residentApplication/modify'>
-		<input type="submit" name="button" value="modify" />
+		<input type="number" name="rA_ID" value="123" />
+		<input type="date" name="rA_semester" value="2023-06-13" />
+        <input type="text" name="dorm_name" value="123" />
+        <input type="number" name="rA_approve" value="0" />
+        <input type="number" name="rA_fee" value="10000" />
+        <input type="text" name="student_ID" value="a1095500" />
+		<input type="submit" name="button" value="hashPassword" />
 	</form>
 
 	<form method="post" action='/residentApplication/delete'>
+        <input type="number" name="rA_ID" value="123" />
 		<input type="submit" name="button" value="delete">
 	</form>
 

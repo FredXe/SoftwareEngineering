@@ -48,7 +48,7 @@
         min-width: 1.5rem;
         width: 1.5rem;
         margin: 0 1.75rem;
-        fill: rgb(92, 80, 99);
+        fill: var(--icon-color);
         
         transition: var(--_transition-time);
     }
@@ -61,14 +61,43 @@
         }
     }
 
+    & > .sidebar-bottons__text {
+        overflow-x: hidden;
+        white-space: nowrap;
+        color: var(--text-color);
+        display: none;
+    }
 }
 
-.sidebar-bottons__text {
-    overflow-x: hidden;
-    white-space: nowrap;
-    color: var(--text-color);
-    display: none;
+.sidebar-botton-logo {
+    display: flex;
+    align-items: center;
+    height: 5rem;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.4rem;
+
+    --_transition-time: 200ms;
+    transition: var(--_transition-time);
+
+    & svg {
+        min-width: 1.5rem;
+        width: 1.5rem;
+        margin: 0 1.75rem;
+        fill: var(--accent-color);
+        
+        transition: var(--_transition-time);
+    }
+
+    & > .sidebar-bottons__text {
+        overflow-x: hidden;
+        white-space: nowrap;
+        color: var(--text-color);
+        display: none;
+    }
 }
+
+
 
 :root {
     &.light-theme {

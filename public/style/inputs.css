@@ -8,7 +8,7 @@
         position: absolute;
         padding: 0.5rem 0.8rem;
         border-radius: 8px;
-        transition: all 100ms, background-color 10ms;
+        transition: all 100ms, background-color 50ms ease-out;
     }
 
     & > input {

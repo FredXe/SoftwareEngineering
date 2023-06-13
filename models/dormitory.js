@@ -17,7 +17,8 @@ const public = {
 
 
     modify: async function (dorm_name, want_update_attribute, update_value) {
-        const query = `update dormitory set ${want_update_attribute} = ${update_value} from dormitory where dorm_name = ${dorm_name};`;
+        const quote = (want_update_attribute != "dorm_volume") ? "\'" :"";
+        const query = `update dormitory set ${want_update_attribute} = ${quote + update_value + quote} where dorm_name = '${dorm_name}';`;
 
         try {
             await db.query(query);
@@ -28,7 +29,8 @@ const public = {
     },
 
     insert: async function (dormName, dormVolume, housemasterID) {
-        const query = `insert dormitory values ( ${dormName} , ${dormVolume} , ${housemasterID});`;
+        const query = `insert into dormitory (dorm_name , dorm_volume , housemaster_ID) ` + 
+                        `values ( '${dormName}' , ${dormVolume} , '${housemasterID}');`;
 
         try {
             await db.query(query);

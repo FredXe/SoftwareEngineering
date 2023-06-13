@@ -3,9 +3,9 @@ const dormitory = require('../models/dormitory');
 const public = {
 
     showDorm: async (req , res) => {
-        const dormInfo = dormitory.showDorm();
+        const dormInfo = await dormitory.show();
         console.log(dormInfo);
-        // res.render('dormitory' , dormInfo);
+        res.render('dormitory' , dormInfo);
     },
 
     modify: (req , res) => {
@@ -15,6 +15,7 @@ const public = {
 
     insert: (req , res) => {
         dormitory.insert(req.body.dormName , req.body.dormVolume , req.body.housemasterID);
+        // console.log(req.body);
         res.redirect('/dormitory');
     }
 }

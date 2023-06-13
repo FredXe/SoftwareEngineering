@@ -35,29 +35,16 @@ const public = {
 	},
 
 	delBulletion: async (req, res) => {
-		await bulletionBoard.deleteBulletion(req.body.bb_ID, req.body.housemasterID);
+		await bulletionBoard.deleteBulletion(req.body.bb_ID, req.body.housemaster_ID);
 		res.redirect('/bulletion');
 	},
 
 	delComment: async (req, res) => {
-		const bulletionTitle = req.url.split('/')[1];
-		bulletionBoard.deleteStudentChat(req.body.bbID, req.body.mesID, req.body.residentID);
-		res.redirect(`/bulletion/${bulletionTitle}`);
+		const bb_ID = req.url.split('/')[1];
+		bulletionBoard.deleteComment(req.body.bb_ID, req.body.comment_ID);
 
 		res.redirect('/bulletion/' + bb_ID);
 	},
-
-	delStuChat: (req, res) => {
-		const bulletionTitle = req.url.split('/')[3];
-		bulletionBoard.deleteStudentChat(req.body.bbID, req.body.mesID, req.body.residentID);
-		res.redirect(`/bulletion/${bulletionTitle}`);
-	},
-
-	delHouseChat: (req, res) => {
-		const bulletionTitle = req.url.split('/')[3];
-		bulletionBoard.deleteHousemasterChat(req.body.bbID, req.body.mesID, req.body.housemasterID);
-		res.redirect(`/bulletion/${bulletionTitle}`);
-	}
 
 }
 

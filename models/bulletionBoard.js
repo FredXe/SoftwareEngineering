@@ -2,6 +2,8 @@ const db = require('./db');
 const fs = require('fs/promises');
 
 const utils = require('./utils');
+const { error } = require('console');
+const { comment } = require('../controllers/bulletionBoard');
 
 const public = {
 
@@ -65,10 +67,10 @@ const public = {
 		}
 	},
 
-	deleteBulletion: async function (bb_ID, user_ID) {
+	deleteBulletion: async function (bb_ID, housemaster_ID) {
 		//還沒寫驗權限
 		try {
-			await db.query(`delete from bulletion_board where '${user_ID}' ` +
+			await db.query(`delete from bulletion_board where '${housemaster_ID}' ` +
 				`= bulletion_board.housemaster_ID and bb_ID = ${bb_ID}`);
 
 			await db.query(`delete from comment where bb_ID = ${bb_ID}`);
@@ -77,6 +79,14 @@ const public = {
 			console.error(err);
 		}
 	},
+
+	deleteComment: async function (bb_ID, comment_ID) {
+		try {
+			await db.query(`delete from comment where bb_ID = ${bb_ID} and comment_ID = ${comment_ID}`);
+		} catch (err) {
+			console.error(err);
+		}
+	}
 }
 
 module.exports = public;

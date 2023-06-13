@@ -16,12 +16,12 @@ const public = {
 		});
 	},
 
-	showBulletionContent: async function (bb_ID) {
+	showBulletionContent: async function () {
 		// 先挑出公告內容
 		const bulletionRows = await db.query(
-			`select user_name as housemaster_name, bb_title, bb_text, ` +
+			`select bb_ID, user_name as housemaster_name, bb_title, bb_text, ` +
 			`release_time  from bulletion_board , users where bulletion_board.housemaster_ID` +
-			` = users.user_ID and bulletion_board.bb_ID = ${bb_ID};`);
+			` = users.user_ID;`);
 
 		return new Promise(resolve => {
 			resolve(utils.decodeRows(bulletionRows));
@@ -32,7 +32,7 @@ const public = {
 	showComment: async function (bb_ID) { // 因為是點擊某個公告
 		// 再挑出此公告的學生留言
 		const comment = await db.query(
-			`select comment_ID, user_name, comment.user_ID, content, ` +
+			`select bb_ID, comment_ID, user_name, comment.user_ID, content, ` +
 			`mes_time from comment, users where comment.user_ID ` +
 			`= users.user_ID and comment.bb_ID = ${bb_ID}`);
 

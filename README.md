@@ -8,7 +8,7 @@ npm install
 
 - put up the server
 ```bash
-npm run start
+npm start
 ```
 
 - test the server

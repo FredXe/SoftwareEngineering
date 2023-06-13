@@ -55,30 +55,33 @@ const public = {
 	},
 
 	/* 新增布告欄 */
-	insertBulletion: async function () {
-		const query = '...';
+	insertBulletion: async function (housemasterID, bbtitle, bbtext) {
+		const query = `insert bulletion_board (bb_title , bb_text , housemaster_ID)` +
+			`values ( ${housemasterID} , ${bbtitle} , ${bbtext});`;
 
 		try {
-			db.query(query);
+			await db.query(query);
 		} catch (err) {
 			console.error(err);
 		}
 	},
 
 	/* 新增學生留言 */
-	insertStudentChat: async function () {
-		const query = '...';
+	insertStudentChat: async function (bbID, residentID, mestext) {
+		const query = `insert student_chat (mes_text , bb_ID , resident_ID)` +
+			`values (${mestext} , ${bbID} , ${residentID});`;
 
 		try {
-			db.query(query);
+			await db.query(query);
 		} catch (err) {
 			console.error(err);
 		}
 	},
 
 	/* 新增舍監留言 */
-	insertStudentChat: async function () {
-		const query = '...';
+	insertStudentChat: async function (bbID, housemasterID, mestext) {
+		const query = `insert student_chat (mes_text , bb_ID , housemaster_ID)` +
+			`values (${mestext} , ${bbID} , ${housemasterID});`;
 
 		try {
 			await db.query(query);
@@ -89,27 +92,42 @@ const public = {
 
 	deleteBulletion: async function (bb_ID, housemaster_ID) {
 		//還沒寫驗權限
-		await db.query(`delete from bulletion_board where ${housemaster_ID} ` +
-			`= bulletion_board.housemaster_ID and ${bb_ID} = bulletion_board.bb_ID`);
-		await db.query(`delete from student_chat where ${bb_ID} = student_chat.bb_ID`);
-		await db.query(`delete from housemaster_chat where ${bb_ID} = student_chat.bb_ID`);
+
+		try {
+			await db.query(`delete from bulletion_board where ${housemaster_ID} ` +
+							`= bulletion_board.housemaster_ID and ${bb_ID} = bulletion_board.bb_ID`);
+			
+			await db.query(`delete from student_chat where ${bb_ID} = student_chat.bb_ID`);
+
+			await db.query(`delete from housemaster_chat where ${bb_ID} = student_chat.bb_ID`);
+		} catch (err) {
+			console.error(err);
+		}
 
 		console.log('deleteBulletion()');
 	},
 
 	deleteStudentChat: async function (mes_ID, resident_ID) {
 		//還沒寫驗權限
-		await db.query(`delete from student_chat where student_chat.mes_ID ` +
+		try {
+			await db.query(`delete from student_chat where student_chat.mes_ID ` +
 			`= ${mes_ID} and student_chat.resident_ID = ${resident_ID}`);
+		} catch (err) {
+			console.error(err);
+		}
 
 		console.log('deleteStudentChat()');
 	},
 
 	deleteHousemasterChat: async function (want_delete_ID, owner_ID) {
 		//還沒寫驗權限
-		await db.query(`delete from housemaster_chat where housemaster_chat.mes_ID ` +
+		try {
+			await db.query(`delete from housemaster_chat where housemaster_chat.mes_ID ` +
 			`= ${want_delete_ID} and housemaster_chat.resident_ID = ${owner_ID}`);
-
+		} catch (err) {
+			console.error(err);
+		}
+		
 		console.log('deleteHousemasterChat()');
 	},
 }

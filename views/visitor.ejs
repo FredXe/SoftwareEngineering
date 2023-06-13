@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+	<title>:D</title>
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+	<link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+	<script src='main.js'></script>
+</head>
+<body>
+	<form method="post" action='/visitor/apply'>
+		<input type="text" name="guest_ID" value="123" />
+		<input type="text" name="dorm_name" value="dorm1" />
+        <input type="date" name="visit_date" value="2023-06-13" />
+        <input type="number" name="visit_approve" value="0" />
+		<input type="submit" name="button" value="hashPassword" />
+	</form>
+	<form method="post" action='/visitor/list'>
+		<input type="submit" name="button" value="list" />
+	</form>
+	<form method="post" action='/visitor/info'>
+		<input type="text" name="guest_ID" value="123" />
+		<input type="submit" name="button" value="info" />
+	</form>
+	<form method="post" action='/visitor/approve'>
+		<input type="text" name="guest_ID" value="123" />
+		<input type="submit" name="button" value="approve" />
+	</form>
+	<form method="post" action='/visitor/modify'>
+		<input type="text" name="guest_ID" value="123" />
+		<input type="text" name="dorm_name" value="dorm1" />
+        <input type="date" name="visit_date" value="2023-06-13" />
+        <input type="number" name="visit_approve" value="0" />
+		<input type="submit" name="button" value="hashPassword" />
+	</form>
+
+	<form method="post" action='/visitor/delete'>
+		<input type="text" name="guest_ID" value="123" />
+		<input type="submit" name="button" value="delete" />
+	</form>
+
+</body>
+</html>

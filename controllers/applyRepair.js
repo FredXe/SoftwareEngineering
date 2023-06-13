@@ -17,7 +17,7 @@ const public = {
 	},
 
 	getApplyRepair: (req, res) => {
-		res.render('applyRepair');
+		res.redirect('/applyRepair/list');
 	}
 }
 

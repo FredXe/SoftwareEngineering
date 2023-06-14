@@ -4,7 +4,6 @@ const root = require('../models/root');
 const public = {
 	getLogin: async (req, res) => {
 		res.render('login');
-		console.log('login page');
 	},
 
 	postLogin: async (req, res) => {

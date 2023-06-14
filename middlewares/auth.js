@@ -4,21 +4,25 @@ const ROLE2NUM = {
 	'housemaster': 1,
 	'resident_student': 2,
 	'non_resident_student': 3,
-	'GUEST': 4
+	'guest': 4
 }
 
 const public = {
 
-	auth: function (requiredRole) {
+	auth: function (requiredRole, only) {
 		return (req, res, next) => {
 			const role = req.session.role;
-			console.log(role);
-			if (requiredRole == role) {
+
+			const pass = only ? requiredRole == role : ROLE2NUM[requiredRole] >= ROLE2NUM[role];
+
+			console.log('required=' + requiredRole + ' role=' + role + ' pass=' + pass);
+
+			if (pass) {
 				next();
 				return;
 			}
 
-			res.render('login');
+			res.redirect('/login');
 		};
 	}
 }

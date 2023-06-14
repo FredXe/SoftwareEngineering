@@ -2,6 +2,10 @@ const hash = require('./hash');
 const root = require('../models/root');
 
 const public = {
+	getLogin: async (req, res) => {
+		res.render('login');
+	},
+
 	postLogin: async (req, res) => {
 		const user_ID = req.body.user_ID;
 		const password = req.body.password;

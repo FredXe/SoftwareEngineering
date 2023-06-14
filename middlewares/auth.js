@@ -1,23 +1,29 @@
-// const HOUSEMASTER = 1;
-// const RESIDENT_STUDENT = 3;
-// const NONRESIDENT_STUDENT = 4;
-// const GUEST = 5;
-const ROLES = {
-	'ADMIN': 0,
-	'HOUSEMASTER': 1,
-	'RESIDENT_STUDENT': 2,
-	'NONRESIDENT_STUDENT': 3,
-	'GUEST': 4
+
+const ROLE2NUM = {
+	'admin': 0,
+	'housemaster': 1,
+	'resident_student': 2,
+	'non_resident_student': 3,
+	'guest': 4
 }
 
 const public = {
 
-	auth: function (role) {
+	auth: function (requiredRole, only) {
 		return (req, res, next) => {
-			console.log(req.session);
+			const role = req.session.role;
 
-			next();
-		}
+			const pass = only ? requiredRole == role : ROLE2NUM[requiredRole] >= ROLE2NUM[role];
+
+			console.log('required=' + requiredRole + ' role=' + role + ' pass=' + pass);
+
+			if (pass) {
+				next();
+				return;
+			}
+
+			res.redirect('/login');
+		};
 	}
 }
 

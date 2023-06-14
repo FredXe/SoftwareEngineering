@@ -5,32 +5,40 @@
 	<meta http-equiv='X-UA-Compatible' content='IE=edge'>
 	<title>:D</title>
 	<meta name='viewport' content='width=device-width, initial-scale=1'>
-	<link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-	<script src='main.js'></script>
+	<link rel="stylesheet" href="/style/sidebar.css">
+	<link rel="stylesheet" href="/style/shared.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC">
+
+    <script src="/js/themeManager.js"></script>
+    <script src="/js/bulletion.js" defer></script>
+    <script src="/js/sidebar.js" defer></script>
 </head>
 <body>
 
+	<%- include('partials/sidebar') %>
 
-	<form method="post" action='/dormitory/insert'>
-		<input type="text" name="dormName" value="學二" />
-		<input type="number" name="dormVolume" value="1000" />
-		<input type="text" name="housemasterID" value="a1095599" />
-		<input type="submit" name="button" value="submitComment" />
-	</form>
-
-	<form method="post" action="/dormitory/modify">
-		<input type="text" name="dormName" value="學二" />
-		<input type="text" name="updateAttribute" value="dorm_volume" />
-		<input type="text" name="updateValue" value="99" />
-		<input type="submit" name="button" value="submitComment" />
-	</form>
-
-	<form method="post" action="/dormitory/modify">
-		<input type="text" name="dormName" value="學二" />
-		<input type="text" name="updateAttribute" value="dorm_volume" />
-		<input type="text" name="updateValue" value="99" />
-		<input type="submit" name="button" value="submitComment" />
-	</form>
+	<main>
+		<form method="post" action='/dormitory/insert'>
+			<input type="text" name="dormName" value="學二" />
+			<input type="number" name="dormVolume" value="1000" />
+			<input type="text" name="housemasterID" value="a1095599" />
+			<input type="submit" name="button" value="submitComment" />
+		</form>
+	
+		<form method="post" action="/dormitory/modify">
+			<input type="text" name="dormName" value="學二" />
+			<input type="text" name="updateAttribute" value="dorm_volume" />
+			<input type="text" name="updateValue" value="99" />
+			<input type="submit" name="button" value="submitComment" />
+		</form>
+	
+		<form method="post" action="/dormitory/modify">
+			<input type="text" name="dormName" value="學二" />
+			<input type="text" name="updateAttribute" value="dorm_volume" />
+			<input type="text" name="updateValue" value="99" />
+			<input type="submit" name="button" value="submitComment" />
+		</form>
+	</main>
 
 
 </body>

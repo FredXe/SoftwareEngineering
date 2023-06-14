@@ -5,33 +5,43 @@
 	<meta http-equiv='X-UA-Compatible' content='IE=edge'>
 	<title>:D</title>
 	<meta name='viewport' content='width=device-width, initial-scale=1'>
-	<link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-	<script src='main.js'></script>
+	<link rel="stylesheet" href="/style/sidebar.css">
+	<link rel="stylesheet" href="/style/shared.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC">
+
+    <script src="/js/themeManager.js"></script>
+    <script src="/js/bulletion.js" defer></script>
+    <script src="/js/sidebar.js" defer></script>
 </head>
 <body>
-	<form method="post" action='/violationRecord/'>
-		<input type="submit" name="button" value="list" />
-	</form>
-	<form method="post" action='/violationRecord/insert'>
-		<input type="number" name="vr_ID" value="1" />
-		<input type="date" name="vr_date" value="2023-06-13" />
-        <input type="text" name="vr_type" value="violate1" />
-        <input type="text" name="resident_ID" value="000" />
-        <input type="text" name="housemaster_ID" value="aaa" />
-		<input type="submit" name="button" value="hashPassword" />
-	</form>
-	<form method="post" action='/violationRecord/list'>
-		<input type="submit" name="button" value="list" />
-	</form>
-	<form method="post" action='/violationRecord/info'>
-        <input type="number" name="vr_ID" value="1" />
-		<input type="submit" name="button" value="info" />
-	</form>
-	<form method="post" action='/violationRecord/delete'>
-        <input type="number" name="vr_ID" value="1" />
-		<input type="submit" name="button" value="delete" />
-	</form>
-	</form>
+
+	<%- include('partials/sidebar') %>
+
+	<main>
+		<form method="post" action='/violationRecord/'>
+			<input type="submit" name="button" value="list" />
+		</form>
+		<form method="post" action='/violationRecord/insert'>
+			<input type="number" name="vr_ID" value="1" />
+			<input type="date" name="vr_date" value="2023-06-13" />
+			<input type="text" name="vr_type" value="violate1" />
+			<input type="text" name="resident_ID" value="000" />
+			<input type="text" name="housemaster_ID" value="aaa" />
+			<input type="submit" name="button" value="hashPassword" />
+		</form>
+		<form method="post" action='/violationRecord/list'>
+			<input type="submit" name="button" value="list" />
+		</form>
+		<form method="post" action='/violationRecord/info'>
+			<input type="number" name="vr_ID" value="1" />
+			<input type="submit" name="button" value="info" />
+		</form>
+		<form method="post" action='/violationRecord/delete'>
+			<input type="number" name="vr_ID" value="1" />
+			<input type="submit" name="button" value="delete" />
+		</form>
+		</form>
+	</main>
 
 </body>
 </html>

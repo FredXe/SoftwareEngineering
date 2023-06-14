@@ -27,6 +27,9 @@
 }
 
 .sidebar-botton {
+    display: flex;
+    flex-direction: column;
+
     width: 100%;
 
     &:nth-last-child(2){
@@ -67,6 +70,21 @@
         color: var(--text-color);
         display: none;
     }
+}
+
+.sidebar-botton-info {
+    display: none;
+    margin-bottom: 1rem;
+
+    & span {
+        margin-inline: 2rem;
+    }
+}
+
+.sidebar-botton:hover .sidebar-botton-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .sidebar-botton-logo {

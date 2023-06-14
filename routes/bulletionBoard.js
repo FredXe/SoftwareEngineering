@@ -7,7 +7,7 @@ const bulletionBoardCtrl = require('../controllers/bulletionBoard');
 
 router.use(auth.auth('non_resident_student'));
 
-router.get('/', bulletionBoardCtrl.bulletionDump);
+router.get('/:bb_ID?', bulletionBoardCtrl.bulletionDump);
 // router.get('/:bb_ID', bulletionBoardCtrl.showBulletionContent);
 router.post('/post', bulletionBoardCtrl.postPost);
 router.post('/:bb_ID/comment', bulletionBoardCtrl.comment);

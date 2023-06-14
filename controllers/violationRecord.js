@@ -10,12 +10,12 @@ const public = {
 
     getViolationList: async (req, res) => {
         const violationInfos = await violation.selectAllVR();
-        res.render('violationRecord', {violationInfos});
+        res.renderInjected('violationRecord', {violationInfos});
     },
 
     getViolationInfo: async (req, res) => {
         const violationInfo = await violation.selectVR(req.body.vr_ID);
-        res.render('violationRecord', {violationInfo});
+        res.renderInjected('violationRecord', {violationInfo});
     },
 
     postViolationDelete: async (req, res) => {

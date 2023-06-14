@@ -4,7 +4,7 @@ const tables = require('../models/tables');
 const public = {
 
 	getDbAdmin: (req, res) => {
-		res.render('foo');
+		res.renderInjected('foo');
 	},
 
 	postDrop: (req, res) => {

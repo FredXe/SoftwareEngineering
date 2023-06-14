@@ -9,12 +9,12 @@ const public = {
 
     getVisitList: async (req, res) => {
         const visitorInfos = await visitor.selectAllVisitor();
-        res.render('visitor', {visitorInfos});
+        res.renderInjected('visitor', {visitorInfos});
     },
 
     getVisitInfo: async (req, res) => {
         const visitorInfo = await visitor.selectVisitor(req.body.guest_ID);
-        res.render('visitor', {visitorInfo});
+        res.renderInjected('visitor', {visitorInfo});
 
     },
 

@@ -4,32 +4,96 @@
 	<meta charset='utf-8'>
 	<meta http-equiv='X-UA-Compatible' content='IE=edge'>
 	<title>:D</title>
+
+	<link rel="stylesheet" href="/style/sidebar.css">
+	<link rel="stylesheet" href="/style/shared.css">
+	<link rel="stylesheet" href="/style/bulletion.css">
+	<link rel="stylesheet" href="/style/inputs.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC">
+
+    <script src="/js/themeManager.js"></script>
+    <script src="/js/bulletion.js" defer></script>
+    <script src="/js/sidebar.js" defer></script>
+	
 	<meta name='viewport' content='width=device-width, initial-scale=1'>
 </head>
 <body>
 
+	<%- include('partials/sidebar') %>
 
-	<form method="post" action='/bulletion/post'>
-		<input type="text" name="housemasterID" value="a1095599" />
-		<input type="text" name="title" value="test title" />
-		<input type="text" name="text" value="some content" />
-		<input type="submit" name="button" value="post" />
-	</form>
+    <main>
+        <div class="bulletion">
+            <div class="bulletion-side">
+                <div class="bulletion-side-container" id="title-container">
+                    
+                </div>
+				<% if( ['housemaster'].includes(userData.role) ){ %>
+					<div class="bulletion-side-bottom">
+						<form method="post" action='/bulletion/post'>
+							<input type="hidden" name="housemasterID" value="<%- userData.user_ID %>" />
+							<div class="input-text input-text--prim-bg-dark">
+								<input type="text" name="title" value="" placeholder=" ">
+								<label for="uName">標題</label>
+							</div>
+							<div class="input-text input-text--prim-bg-dark">
+								<input type="text" name="text" value="" placeholder=" ">
+								<label for="uName">內容</label>
+							</div>
+							<input class="apply-button" type="submit" name="button" value="post" />
+						</form>
+					</div>
+				<% } %>
+            </div>
+            <div class="bulletion-mid" id="content-container">
+                
+            </div>
+            <div class="bulletion-side">
+                <div class="bulletion-side-container" id="comment-container">
+					
+                </div>
+				<% if( ['resident_student', 'housemaster'].includes(userData.role) ){ %>
+					<div class="bulletion-side-bottom" hidden>
+						<form id="postComment" method="post" action='/bulletion/6/comment'>
+							<input type="hidden" name="user_ID" value="<%- userData.user_ID %>" />
+							<div class="input-text input-text--prim-bg-dark">
+								<input type="text" name="content" value="" placeholder=" ">
+								<label for="uName">留言</label>
+							</div>
+							<input class="apply-button" type="submit" name="button" value="comment" />
+						</form>
+					</div>
+				<% } %>
+            </div>
+        </div>
 
+		<form method="post" action='/bulletion/post' hidden>
+			<input type="text" name="housemasterID" value="a1095599" />
+			<input type="text" name="title" value="test title" />
+			<input type="text" name="text" value="some content" />
+			<input type="submit" name="button" value="post" />
+		</form>
+	
+	
+		<form method="post" action='/bulletion/6/comment' hidden>
+			<input type="text" name="user_ID" value="a1095599" />
+			<input type="text" name="content" value="some content :D:D test comment" />
+			<input type="submit" name="button" value="comment" />
+		</form>
+	
+	
+	
+		<form method="post" action='/bulletion/delete' hidden>
+			<input type="text" name="bb_ID" value="1" />
+			<input type="text" name="housemaster_ID" value="a1095599" />
+			<input type="submit" name="button" value="delete bulletion" />
+		</form>
+    </main>
 
-	<form method="post" action='/bulletion/6/comment'>
-		<input type="text" name="user_ID" value="a1095599" />
-		<input type="text" name="content" value="some content :D:D test comment" />
-		<input type="submit" name="button" value="comment" />
-	</form>
-
-
-
-	<form method="post" action='/bulletion/delete'>
-		<input type="text" name="bb_ID" value="1" />
-		<input type="text" name="housemaster_ID" value="a1095599" />
-		<input type="submit" name="button" value="delete bulletion" />
-	</form>
+<script>
+	let bulletionData = <%- JSON.stringify(bulletion) %>;
+	
+	let currentBulletionInd = <%- viewInd %>;
+</script>
 
 </body>
 </html>

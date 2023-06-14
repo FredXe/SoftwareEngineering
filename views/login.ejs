@@ -5,13 +5,28 @@
 	<meta http-equiv='X-UA-Compatible' content='IE=edge'>
 	<title>:D</title>
 	<meta name='viewport' content='width=device-width, initial-scale=1'>
-</head>
-<body>
 
-	<form method="post" action='/login'>
-		<input type="text" name="user_ID" value="a1095500" />
-		<input type="text" name="password" value="password" />
-		<input type="submit" name="button" value="login" />
-	</form>
+	<link rel="stylesheet" href="/style/shared.css">
+	<link rel="stylesheet" href="/style/inputs.css">
+
+    <script src="/js/themeManager.js"></script>
+</head>
+<body style="margin: 0; padding: 0;">
+
+	<div style="margin: 0; padding: 0; height: 100vh; display: flex; align-items: center; justify-content: center;">
+		<form style="display: flex; flex-direction: column; align-items: center;" method="post" action='/login'>
+			<div class="input-text">
+                <input type="text" name="user_ID" value="a1095500" placeholder=" ">
+                <label for="uName">帳號</label>
+            </div>
+			<div class="input-text">
+                <input type="password" name="password" value="password" placeholder=" ">
+                <label for="uName">密碼</label>
+            </div>
+			<!-- <input type="text" name="user_ID" value="a1095500" />
+			<input type="text" name="password" value="password" /> -->
+			<input class="apply-button" type="submit" name="button" value="login" />
+		</form>
+	</div>
 </body>
 </html>

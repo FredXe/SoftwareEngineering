@@ -3,7 +3,7 @@ const root = require('../models/root');
 
 const public = {
 	getLogin: async (req, res) => {
-		res.render('login');
+		res.renderInjected('login');
 	},
 
 	postLogin: async (req, res) => {
@@ -28,7 +28,7 @@ const public = {
 				req.session.eroll_year = data.eroll_year;
 				req.session.phnumber = data.phnumber;
 
-				res.redirect('/db');
+				res.redirect('/bulletion');
 			});
 
 		} else

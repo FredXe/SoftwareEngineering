@@ -5,7 +5,7 @@ const public = {
     // show resident student info (房號 , 住宿生)
     show: async (req , res) => {
         const userContent = await userInfo.show();
-        res.render('userInfo' , {userContent}); // userInfo.ejs
+        res.renderInjected('userInfo' , {userContent}); // userInfo.ejs
     },
 
     // delete resident student(退宿)

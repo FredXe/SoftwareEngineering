@@ -2,6 +2,7 @@ const express = require('express');
 const app = require('../app');
 
 const session = require('express-session');
+const dataInjector = require('../middlewares/dataInjector');
 const logger = require('../middlewares/logger');
 
 const bulletionBoard = require('./bulletionBoard');
@@ -32,6 +33,7 @@ app.use(session({
 		maxAge: 30 * 60 * 1000 // 30 min
 	}
 }));
+app.use(dataInjector);
 app.use(logger);
 /**
  * setup static routers

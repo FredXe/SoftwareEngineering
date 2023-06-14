@@ -1,5 +1,4 @@
 const db = require('./db');
-const fs = require('fs/promises');
 const utils = require('./utils');
 
 const public = {

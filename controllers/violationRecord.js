@@ -9,13 +9,13 @@ const public = {
     },
 
     getViolationList: async (req, res) => {
-        const visitorInfo = await violation.selectAllVR();
-        res.render('visitorInfo', {visitorInfo});
+        const violationInfos = await violation.selectAllVR();
+        res.render('violationRecord', {violationInfos});
     },
 
     getViolationInfo: async (req, res) => {
         const violationInfo = await violation.selectVR(req.body.vr_ID);
-        res.render('violationInfo', {violationInfo});
+        res.render('violationRecord', {violationInfo});
     },
 
     postViolationDelete: async (req, res) => {

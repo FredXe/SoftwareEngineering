@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const violationRecordCtrl = require('../controllers/violationRecord');
 
+router.get('/', violationRecordCtrl.getViolationList);
 router.post('/insert', violationRecordCtrl.postViolationInsert);
 router.get('/list', violationRecordCtrl.getViolationList);
 router.get('/info', violationRecordCtrl.getViolationInfo);

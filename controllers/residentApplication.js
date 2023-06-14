@@ -10,18 +10,18 @@ const public = {
     },
 
     getResidentApplyList: async (req, res) => {
-        const residentApplicationInfo = await residentApplication.selectAllRA();
-        res.render('residentApplicationInfo', {residentApplicationInfo});
+        const residentApplicationInfos = await residentApplication.selectAllRA();
+        res.render('residentApplication', {residentApplicationInfos});
     },
 
     getApproveResidentFee: async (req, res) => {
         const residentFee = await residentApplication.selectALLRAFee();
-        res.render('residentFee', {residentFee});
+        res.render('residentApplication', {residentFee});
     },
 
     getResidentApplyInfo: async (req, res) => {
         const residentApplicationInfo = await residentApplication.selectRA(req.body.rA_ID);
-        res.render('residentApplicationInfo', {residentApplicationInfo});
+        res.render('residentApplication', {residentApplicationInfo});
     },
 
     postResidentApprove: async (req, res) => {

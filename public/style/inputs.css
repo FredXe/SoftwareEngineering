@@ -41,3 +41,37 @@
         }
     }
 }
+
+.input-text--prim-bg-dark {
+
+
+    & > input {
+        padding: 0.5rem 1rem;
+        background-color: var(--primary-color-darker);
+        color: var(--text-color);
+        border: 1px solid var(--text-color);
+        border-radius: 8px;
+        font-size: 1.2rem;
+        caret-color: var(--text-color);
+
+        &:focus {
+            outline: none;
+            border-color: var(--accent-color);
+
+            & + label {
+                padding: 0;
+                transform: translate(0.5rem, -1rem);
+                padding-inline: 0.5rem;
+                scale: 0.8;
+                background-color: var(--primary-color-darker);
+            }
+        }
+        &:not(:placeholder-shown) + label {
+            padding: 0;
+            transform: translate(0.5rem, -1rem);
+            padding-inline: 0.5rem;
+            scale: 0.8;
+            background-color: var(--primary-color-darker);
+        }
+    }
+}

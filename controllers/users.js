@@ -4,7 +4,7 @@ const hash = require('./hash');
 
 const public = {
 	getRoot: async (req, res) => {
-		res.render('users');
+		res.renderInjected('users');
 	},
 
 	getAdminShow: async (req, res) => {

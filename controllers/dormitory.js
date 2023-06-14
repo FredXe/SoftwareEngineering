@@ -5,19 +5,19 @@ const public = {
     showDorm: async (req , res) => {
         const dormInfo = await dormitory.show();
         console.log(dormInfo);
-        res.render('dormitory' , dormInfo);
+        res.renderInjected('dormitory' , dormInfo);
     },
 
     showRoom: async (req , res) => {
         const roomInfo = await dormitory.showRoom(req.body.dormName);
         console.log(roomInfo);
-        res.render('dormitory' , roomInfo);
+        res.renderInjected('dormitory' , roomInfo);
     },
 
     showEquip: async (req , res) => {
         const equipInfo = await dormitory.showEquip(req.body.dormName , req.body.roomNum);
         console.log(roomInfo);
-        res.render('dormitory' , equipInfo);
+        res.renderInjected('dormitory' , equipInfo);
     },
 
     modify: async (req , res) => {

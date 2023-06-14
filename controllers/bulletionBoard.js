@@ -4,7 +4,7 @@ const public = {
 	showBulletionTitles: async (req, res) => {
 		const bulletionTitle = await bulletionBoard.showBulletion();
 		console.log(bulletionTitle);
-		res.render('bulletion', bulletionTitle);
+		res.renderInjected('bulletion', bulletionTitle);
 	},
 
 	bulletionDump: async (req, res) => {
@@ -16,7 +16,12 @@ const public = {
 			element.comments = chat;
 		}
 
-		res.render(`bulletion`, { bulletion });
+		let viewInd = req.params.bb_ID || -1;
+
+		res.renderInjected(`bulletion`, {
+			bulletion,
+			viewInd,
+		});
 	},
 
 	postPost: async (req, res) => {

@@ -8,7 +8,7 @@
     &.light-theme{
         --background-color: rgb(255, 255, 255);
         --primary-color: rgb(238, 232, 243);
-        --primary-color-darker: rgb(216, 209, 222);
+        --primary-color-darker: rgb(223, 217, 229);
         --text-color: black;
     }
     
@@ -35,7 +35,8 @@ body, p {
 }
 
 main {
-    padding: 2rem;
+    /* padding: 2rem; */
+    padding: 0;
     margin-left: 5rem;
 }
 

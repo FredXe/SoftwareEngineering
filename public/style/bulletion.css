@@ -1,0 +1,116 @@
+.bulletion {
+    display: flex;
+    padding: 0;
+    height: calc(100vh - 4rem);
+    padding: 2rem;
+
+    gap: 1rem;
+
+    & > div {
+        height: auto;
+    }
+    
+}
+
+.bulletion-side {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 25%;
+    background-color: var(--primary-color-darker);
+    padding: 1rem;
+    border-radius: 15px;
+}
+
+.bulletion-side-container {
+    border-radius: 10px;
+    flex-grow: 9;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    gap: 1rem;
+}
+
+.bulletion-mid {
+    flex-basis: 50%;
+    background-color: var(--primary-color-darker);
+    padding: 1rem;
+    border-radius: 15px;
+}
+
+.bulletion-card {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    height: 5rem;
+    width: auto;
+    padding: 1rem 2rem;
+
+    justify-content: center;
+
+    & > h3 {
+        margin: 0;
+        margin-bottom: 0.5rem;
+    }
+    & > p {
+        color: var(--icon-color);
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.bulletion-comment-card {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    height: fit-content;
+    width: auto;
+    padding: 1rem 2rem;
+
+    justify-content: center;
+
+    & > p {
+        color: var(--icon-color);
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+    & > :last-child {
+        font-size: 0.5rem;
+        margin-left: auto;
+        color: var(--icon-color);
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+}
+
+.bulletion-content {
+    padding: 0.5rem 2rem;
+    overflow-y: scroll;
+    height: 100%;
+    white-space: pre-line;
+
+    & > :last-child {
+        margin-top: 1rem;
+    }
+}
+
+.bulletion-content::-webkit-scrollbar,
+.bulletion-side-container::-webkit-scrollbar {
+    display: flex;
+    flex-direction: column;
+    width: 0;
+}
+
+.bulletion-side-bottom {
+    flex-grow: 0;
+
+    & > form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}

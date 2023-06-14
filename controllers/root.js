@@ -18,10 +18,15 @@ const public = {
 				if (err)
 					next(err);
 
-				const role = await root.showRole(user_ID);
+				const data = await root.showUserData(user_ID);
 
-				req.session.user_ID = user_ID;
-				req.session.role = role;
+				req.session.user_ID = data.user_ID;
+				req.session.user_name = data.user_name;
+				req.session.role = data.role;
+				req.session.sex = data.sex;
+				req.session.email = data.email;
+				req.session.eroll_year = data.eroll_year;
+				req.session.phnumber = data.phnumber;
 
 				res.redirect('/db');
 			});

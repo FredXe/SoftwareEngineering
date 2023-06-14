@@ -9,12 +9,12 @@ const public = {
 
     getVisitList: async (req, res) => {
         const visitorInfo = await visitor.selectAllVisitor();
-        res.render('visitorInfo', {visitorInfo});
+        res.render('visitor', {visitorInfo});
     },
 
     getVisitInfo: async (req, res) => {
         const visitorInfo = await visitor.selectVisitor(req.body.guest_ID);
-        res.render('visitorInfo', {visitorInfo});
+        res.render('visitor', {visitorInfo});
     },
 
     postVisitApprove: async (req, res) => {

@@ -52,7 +52,9 @@ const public = {
 	selectAllVisitor: async function () {
 		const rows = await db.query('SELECT * FROM apply_visit;');
 
+		//console.log(rows);
 		return new Promise(resolve => {
+			
 			resolve(utils.decodeRows(rows));
 		});
 	},

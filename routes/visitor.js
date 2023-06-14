@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const visitorCtrl = require('../controllers/visitor.js');
 
+router.get('/', visitorCtrl.getVisitList);
 router.post('/apply', visitorCtrl.postVisitApply);
 router.get('/list', visitorCtrl.getVisitList);
 router.get('/info', visitorCtrl.getVisitInfo);

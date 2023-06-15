@@ -4,6 +4,7 @@ const app = require('../app');
 const session = require('express-session');
 const dataInjector = require('../middlewares/dataInjector');
 const logger = require('../middlewares/logger');
+const auth = require('../middlewares/auth');
 
 const bulletionBoard = require('./bulletionBoard');
 const dormitory = require('./dormitory');
@@ -20,6 +21,10 @@ const dbAdmin = require('./dbAdmin');
 const cssTest = require('./cssTest'); // ! DELETE ME WHEN MERGING
 
 /**
+ * setup static routers
+*/
+app.use(express.static('public'));
+/**
  * setup middleware
  */
 app.use(express.urlencoded({ extended: false }));
@@ -33,16 +38,13 @@ app.use(session({
 		maxAge: 30 * 60 * 1000 // 30 min
 	}
 }));
-app.use(dataInjector);
 app.use(logger);
-/**
- * setup static routers
- */
-app.use(express.static('public'));
+app.use(dataInjector);
+app.use('/', root);
+app.use(auth.auth('guest'));
 /**
  * setup routers
- */
-app.use('/', root);
+*/
 app.use('/users', users);
 app.use('/bulletion', bulletionBoard);
 app.use('/dormitory', dormitory);

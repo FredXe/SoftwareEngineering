@@ -25,34 +25,41 @@ const public = {
 	},
 
 	showRoom: async (req, res) => {
-		const roomInfo = await dormitory.showRoom(req.body.dormName);
-		console.log(roomInfo);
-		res.renderInjected('dormitory', roomInfo);
+		const dormName = req.parm.dormName;
+		const roomInfo = await dormitory.showRoom(dormName);
+		res.renderInjected('dormitoryRooms', roomInfo);
 	},
 
 	insertRoom: async (req, res) => {
-		await dormitory.insertRoom(req.body.dormName, req.body.roomVolume, req.body.roomCost);
+		const dormName = req.parm.dormName;
+		await dormitory.insertRoom(dormName, req.body.roomVolume, req.body.roomCost);
 		res.redirect('/dormitory/room');
 	},
 
 	delRoom: async (req, res) => {
-		await dormitory.delRoom(req.body.dormName, req.body.roomNum);
+		const dormName = req.parm.dormName;
+		await dormitory.delRoom(dormName, req.body.roomNum);
 		res.redirect('/dormitory/room');
 	},
 
 	showEquip: async (req, res) => {
-		const equipInfo = await dormitory.showEquip(req.body.dormName, req.body.roomNum);
-		console.log(roomInfo);
-		res.renderInjected('dormitory', equipInfo);
+		const dormName = req.parm.dormName;
+		const rNumber = req.parm.rNumber;
+		const equipInfo = await dormitory.showEquip(dormName, rNumber);
+		res.renderInjected('dormitoryRoomsEquips', equipInfo);
 	},
 
 	insertEquip: async (req, res) => {
-		await dormitory.insertEquipment(req.body.eType, req.body.eCondition, req.body.roomNum, req.body.dormName);
+		const dormName = req.parm.dormName;
+		const rNumber = req.parm.rNumber;
+		await dormitory.insertEquipment(req.body.eType, req.body.eCondition, rNumber, dormName);
 		res.redirect('/dormitory/room/equip');
 	},
 
 	delEquip: async (req, res) => {
-		await dormitory.delEquip(req.body.eID, req.body.dormName, req.body.roomNum);
+		const dormName = req.parm.dormName;
+		const rNumber = req.parm.rNumber;
+		await dormitory.delEquip(req.body.eID, dormName, rNumber);
 		res.redirect('/dormitory/room/equip');
 	},
 

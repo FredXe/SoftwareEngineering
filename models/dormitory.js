@@ -23,7 +23,7 @@ const public = {
 		});
 	},
 
-	shwoEquip: async function (dormName, roomNum) {
+	showEquip: async function (dormName, roomNum) {
 		const rows = await db.query(`select * ` +
 			`from equipment where dorm_name = '${dormName} and r_number = ${roomNum}';`)
 		const content = utils.decodeRows(rows);

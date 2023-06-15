@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+	<title>:D</title>
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+	<link rel="stylesheet" href="/style/sidebar.css">
+	<link rel="stylesheet" href="/style/shared.css">
+	<link rel="stylesheet" href="/style/table.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC">
+
+    <script src="/js/themeManager.js"></script>
+    <script src="/js/sidebar.js" defer></script>
+</head>
+<body>
+
+	<%- include('partials/sidebar') %>
+
+	<main>
+		<div class="center-container" style="padding:2rem;">
+			<h2><%= dormName %></h2>
+			<br>
+			<table class="white-gray-table table--radius-border" style="width: 50%">
+				<head>
+					<tr style="background-color: var(--primary-color-darker);">
+						<th style="width: 10%;">房間編號</th>
+						<th style="width: 15%;">最大人數</th>
+						<th style="width: 15%;">租金</th>
+						<th style="width: 10%;">操作</th>
+					</tr>
+				</head>
+				<tbody>
+					<% if(roomInfo.length == 0){ %>
+						<tr>
+							<td>N/A</td>
+							<td>N/A</td>
+							<td>N/A</td>
+							<td>N/A</td>
+						</tr>
+					<% }else{ %>
+						<% for( let index = 0; index < roomInfo.length; index++ ) { %>
+							<tr>
+								<form action="/dormitory/<%= dormName %>/del" method="post">
+									<td>
+										<a href="/dormitory/<%= dormName %>/<%= roomInfo[index].r_number %>">
+											<%= roomInfo[index].r_number %>
+										</a>
+									</td>
+									<td tableText="<%= index %>">
+										<%= roomInfo[index].r_volume %>
+									</td>
+									<td tableText="<%= index %>">
+										<%= roomInfo[index].r_cost %>
+									</td>
+									<input name="roomNum" type="hidden" value="<%= roomInfo[index].r_number %>">
+									<td class="center-container">
+										<input class="apply-button" type="submit" name="delete" value="刪除" tableDeleteButton="<%= index %>">
+									</td>
+								</form>
+							</tr>
+						<% } %>
+					<% } %>
+					<tr>
+						<form action="/dormitory/<%= dormName %>/insertRoom" method="post">
+							<td>
+								
+							</td>
+							<td>
+								<input class="bottom-line-input" name="roomVolume" type="number" value="4">
+							</td>
+							<td>
+								<input class="bottom-line-input" name="roomCost" type="number" value="9200">
+							</td>
+							<td class="center-container">
+								<input class="apply-button" type="submit" name="insert" value="新增">
+							</td>
+						</form>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</main>
+
+</body>
+</html>

@@ -4,7 +4,7 @@ const router = express.Router();
 const usersCtrl = require('../controllers/root');
 
 router.get('/', (req, res) => {
-	res.redirect('/db');
+	res.redirect('/login');
 });
 
 router.get('/login', usersCtrl.getLogin);

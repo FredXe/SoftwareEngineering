@@ -42,7 +42,6 @@ main {
 
 .apply-button{
     border:none;
-    display:inline-block;
     padding:6px 12px;
     vertical-align:middle;
     overflow:hidden;
@@ -55,6 +54,7 @@ main {
     color:var(--primary-color);
     background-color:var(--text-color);
     box-shadow:0 8px 8px 0 rgba(0,0,0,0.2);
+    cursor: pointer;
 }
 .center-container{
     display:flex;
@@ -65,7 +65,23 @@ main {
 }
 .bottom-line-input{
     background-color: var(--background-color);
+    color:var(--text-color);
+    height: 8px;
     padding:8px;
     border:none;
     border-bottom:1px solid var(--accent-color);
+}
+.flex-container{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+.flex-container--space-between{
+    justify-content: space-between;
+}
+.flex-container--space-evenly{
+    justify-content: space-evenly;
+}
+.flex-container--vertical-center{
+    align-items: center;
 }

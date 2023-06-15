@@ -15,8 +15,6 @@ module.exports = (req, res, next) => {
 		req.userData = null;
 	}
 
-	console.log(req.userData);
-
 	res.renderInjected = (view, data, callback) => {
 		res.render(view, {
 			userData: req.userData,

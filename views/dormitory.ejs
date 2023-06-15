@@ -24,6 +24,7 @@
 				<tr>
 					<th>宿舍名稱</th>
 					<th>房間數量</th>
+					<th>舍監編號</th>
 					<th>舍監名稱</th>
 					<th>操作</th>
 				</tr>
@@ -35,22 +36,30 @@
 						<td>N/A</td>
 						<td>N/A</td>
 						<td>N/A</td>
+						<td>N/A</td>
 					</tr>
 				<% }else{ %>
 					<% for( let index = 0; index < dormInfo.length; index++ ) { %>
 						<tr>
 							<form action="/dormitory/modify" method="post">
-								<td tableText="<%= index %>"><%= dormInfo[index].dorm_name %></td>
-								<td tableText="<%= index %>"><%= dormInfo[index].dorm_volume %></td>
-								<td tableText="<%= index %>"><%= dormInfo[index].housemaster_name %></td>
+								<td>
+									<%= dormInfo[index].dorm_name %>
+								</td>
+								<td tableText="<%= index %>">
+									<%= dormInfo[index].dorm_volume %>
+								</td>
+								<td tableText="<%= index %>">
+									<%= dormInfo[index].housemaster_ID %>
+								</td>
+								<input name="dormName" type="hidden" value="<%= dormInfo[index].dorm_name %>">
 								<td tableInput="<%= index %>" hidden>
-									<input name="dormName" type="text" value="<%= dormInfo[index].dorm_name %>" defaultText="<%= dormInfo[index].dorm_name %>">
+									<input name="dormVolume" type="text" value="<%= dormInfo[index].dorm_volume %>" defaultText="<%= dormInfo[index].dorm_volume %>">
 								</td>
 								<td tableInput="<%= index %>" hidden>
-									<input name="dormVolum" type="text" value="<%= dormInfo[index].dorm_volume %>" defaultText="<%= dormInfo[index].dorm_volume %>">
+									<input name="housemasterID" type="text" value="<%= dormInfo[index].housemaster_ID %>" defaultText="<%= dormInfo[index].housemaster_ID %>">
 								</td>
-								<td tableInput="<%= index %>" hidden>
-									<input name="housemasterName" type="text" value="<%= dormInfo[index].housemaster_name %>" defaultText="<%= dormInfo[index].housemaster_name %>">
+								<td>
+									<%= dormInfo[index].housemaster_name %>
 								</td>
 								<td>
 									<button tableEditButton="<%= index %>" id="tableEdit">修改/取消</button>
@@ -61,6 +70,22 @@
 						</tr>
 					<% } %>
 				<% } %>
+				<tr>
+					<form action="/dormitory/insert" method="post">
+						<td>
+							<input name="dormName" type="text" value="">
+						</td>
+						<td>
+							<input name="dormVolume" type="text" value="">
+						</td>
+						<td>
+							<input name="housemasterID" type="text" value="">
+						</td>
+						<td>
+							<input type="submit" name="insert" value="新增">
+						</td>
+					</form>
+				</tr>
 			</tbody>
 		</table>
 	</main>

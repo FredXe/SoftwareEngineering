@@ -21,7 +21,7 @@ const public = {
 			console.log('dormitory deleted');
 		} else {
 			await dormitory.modify(req.body.dormName, 'dorm_volume', req.body.dormVolum);
-			await dormitory.modify(req.body.dormName, 'housemaster_ID', req.body.housemasterName);
+			await dormitory.modify(req.body.dormName, 'housemaster_ID', req.body.housemasterID);
 		}
 		res.redirect('/dormitory');
 	},

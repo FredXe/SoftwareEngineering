@@ -4,8 +4,8 @@ const utils = require('./utils');
 const public = {
 	// 顯示大樓資訊
 	show: async function () {
-		const rows = await db.query('select dorm_name , dorm_volume , user_name as housemaster_name ' +
-			'from dormitory , users where dormitory.housemaster_ID = users.user_ID;')
+		const rows = await db.query('select dorm_name, dorm_volume, housemaster_ID, user_name as housemaster_name ' +
+			'from dormitory, users where dormitory.housemaster_ID = users.user_ID;');
 		const content = utils.decodeRows(rows);
 
 		return new Promise(resolve => {

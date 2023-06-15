@@ -46,12 +46,12 @@ CREATE TABLE IF NOT EXISTS dormitory
 CREATE TABLE IF NOT EXISTS room
 (
   r_number INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  r_volumn INT NOT NULL,
+  r_volume INT NOT NULL,
   r_cost INT NOT NULL,
   dorm_name CHAR(30) NOT NULL,
   PRIMARY KEY (r_number, dorm_name),
   FOREIGN KEY (dorm_name) REFERENCES dormitory(dorm_name) ON DELETE CASCADE
-) ENGINE = 'MyISAM';
+) ENGINE = MyISAM;
 
 CREATE TABLE IF NOT EXISTS student
 (

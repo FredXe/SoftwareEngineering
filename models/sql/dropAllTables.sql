@@ -9,6 +9,7 @@ DROP TABLE if EXISTS
 admin,
 apply_visit,
 bulletion_board,
+comment,
 dormitory,
 equipment,
 guest,

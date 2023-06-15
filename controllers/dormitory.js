@@ -52,14 +52,14 @@ const public = {
 	insertEquip: async (req, res) => {
 		const dormName = req.parm.dormName;
 		const rNumber = req.parm.rNumber;
-		await dormitory.insertEquipment(req.body.eType, req.body.eCondition, rNumber, dormName);
+		await dormitory.insertEquipment(dormName, rNumber, req.body.eType, req.body.eCondition);
 		res.redirect('/dormitory/room/equip');
 	},
 
 	delEquip: async (req, res) => {
 		const dormName = req.parm.dormName;
 		const rNumber = req.parm.rNumber;
-		await dormitory.delEquip(req.body.eID, dormName, rNumber);
+		await dormitory.delEquip(rNumber, dormName, req.body.eID);
 		res.redirect('/dormitory/room/equip');
 	},
 

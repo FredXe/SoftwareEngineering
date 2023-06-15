@@ -20,7 +20,6 @@ const public = {
 		if (req.body.delete) {
 			console.log('dormitory deleted');
 		} else {
-			console.log(':D', req.body.dormName, req.body.dormVolum);
 			await dormitory.modify(req.body.dormName, 'dorm_volume', req.body.dormVolum);
 			await dormitory.modify(req.body.dormName, 'housemaster_ID', req.body.housemasterName);
 		}

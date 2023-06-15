@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS room
   dorm_name CHAR(30) NOT NULL,
   PRIMARY KEY (r_number, dorm_name),
   FOREIGN KEY (dorm_name) REFERENCES dormitory(dorm_name) ON DELETE CASCADE
-);
+) ENGINE = 'MyISAM';
 
 CREATE TABLE IF NOT EXISTS student
 (

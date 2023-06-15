@@ -7,6 +7,7 @@
 	<meta name='viewport' content='width=device-width, initial-scale=1'>
 	<link rel="stylesheet" href="/style/sidebar.css">
 	<link rel="stylesheet" href="/style/shared.css">
+	<link rel="stylesheet" href="/style/table.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC">
 
     <script src="/js/themeManager.js"></script>
@@ -17,65 +18,68 @@
 	<%- include('partials/sidebar') %>
 
 	<main>
-
-		<table>
-			<head>
-				<tr>
-					<th>編號</th>
-					<th>類型</th>
-					<th>狀態</th>
-					<th>操作</th>
-				</tr>
-			</head>
-			<tbody>
-				<% if(equipInfo.length == 0){ %>
+		<div class="center-container" style="padding:2rem;">
+			<h2><%= dormName %> 房號: <%= roomNum %></h2>
+			<br>
+			<table class="white-gray-table table--radius-border" style="width: 50%">
+				<head>
 					<tr>
-						<td>N/A</td>
-						<td>N/A</td>
-						<td>N/A</td>
-						<td>N/A</td>
+						<th style="width: 15%;">編號</th>
+						<th style="width: 15%;">類型</th>
+						<th style="width: 10%;">狀態</th>
+						<th style="width: 10%;">操作</th>
 					</tr>
-				<% }else{ %>
-					<% for( let index = 0; index < equipInfo.length; index++ ) { %>
+				</head>
+				<tbody>
+					<% if(equipInfo.length == 0){ %>
 						<tr>
-							<form action="/dormitory/<%= dormName %>/<%= roomNum %>/del" method="post">
-								<td>
-									<%= equipInfo[index].e_ID %>
-								</td>
-								<td tableText="<%= index %>">
-									<%= equipInfo[index].e_type %>
-								</td>
-								<td tableText="<%= index %>">
-									<%= equipInfo[index].e_condition %>
-								</td>
-								<input name="dormName" type="hidden" value="<%= dormName %>">
-								<input name="roomNum" type="hidden" value="<%= roomNum %>">
-								<input name="eID" type="hidden" value="<%= equipInfo[index].e_ID %>">
-								<td>
-									<input type="submit" name="delete" value="刪除">
-								</td>
-							</form>
+							<td>N/A</td>
+							<td>N/A</td>
+							<td>N/A</td>
+							<td>N/A</td>
 						</tr>
+					<% }else{ %>
+						<% for( let index = 0; index < equipInfo.length; index++ ) { %>
+							<tr>
+								<form action="/dormitory/<%= dormName %>/<%= roomNum %>/del" method="post">
+									<td>
+										<%= equipInfo[index].e_ID %>
+									</td>
+									<td tableText="<%= index %>">
+										<%= equipInfo[index].e_type %>
+									</td>
+									<td tableText="<%= index %>">
+										<%= equipInfo[index].e_condition %>
+									</td>
+									<input name="dormName" type="hidden" value="<%= dormName %>">
+									<input name="roomNum" type="hidden" value="<%= roomNum %>">
+									<input name="eID" type="hidden" value="<%= equipInfo[index].e_ID %>">
+									<td class="center-container">
+										<input class="apply-button" type="submit" name="delete" value="刪除">
+									</td>
+								</form>
+							</tr>
+						<% } %>
 					<% } %>
-				<% } %>
-				<tr>
-					<form action="/dormitory/<%= dormName %>/<%= roomNum %>/insertEquip" method="post">
-						<td>
+					<tr>
+						<form action="/dormitory/<%= dormName %>/<%= roomNum %>/insertEquip" method="post">
+							<td>
 
-						</td>
-						<td>
-							<input name="eType" type="text" value="">
-						</td>
-						<td>
-							<input name="eCondition" type="text" value="">
-						</td>
-						<td>
-							<input type="submit" name="insert" value="新增">
-						</td>
-					</form>
-				</tr>
-			</tbody>
-		</table>
+							</td>
+							<td>
+								<input class="bottom-line-input" style="width: 50%;" name="eType" type="text" value="">
+							</td>
+							<td>
+								<input class="bottom-line-input" style="width: 50%;" name="eCondition" type="text" value="">
+							</td>
+							<td class="center-container">
+								<input class="apply-button" type="submit" name="insert" value="新增">
+							</td>
+						</form>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</main>
 
 </body>

@@ -18,29 +18,38 @@
 	<%- include('partials/sidebar') %>
 
 	<main>
-		<form method="post" action='/violationRecord/'>
+		<form method="get" action='/violationRecord/'>
 			<input type="submit" name="button" value="list" />
 		</form>
 		<form method="post" action='/violationRecord/insert'>
-			<input type="number" name="vr_ID" value="1" />
 			<input type="date" name="vr_date" value="2023-06-13" />
 			<input type="text" name="vr_type" value="violate1" />
 			<input type="text" name="resident_ID" value="000" />
 			<input type="text" name="housemaster_ID" value="aaa" />
-			<input type="submit" name="button" value="hashPassword" />
-		</form>
-		<form method="post" action='/violationRecord/list'>
-			<input type="submit" name="button" value="list" />
-		</form>
-		<form method="post" action='/violationRecord/info'>
-			<input type="number" name="vr_ID" value="1" />
-			<input type="submit" name="button" value="info" />
+			<input type="submit" name="button" value="insert" />
 		</form>
 		<form method="post" action='/violationRecord/delete'>
 			<input type="number" name="vr_ID" value="1" />
 			<input type="submit" name="button" value="delete" />
 		</form>
+		<form method="post" action='/violationRecord/modify'>
+			<input type="number" name="vr_ID" value="1" />
+			<input type="date" name="vr_date" value="2023-06-13" />
+			<input type="text" name="vr_type" value="violate1" />
+			<input type="submit" name="button" value="modify" />
 		</form>
+		<form method="get" action='/violationRecord/list'>
+			<input type="submit" name="button" value="list" />
+		</form>
+		<form method="get" action='/violationRecord/info'>
+			<input type="number" name="vr_ID" value="1" />
+			<input type="submit" name="button" value="info" />
+		</form>
+		<form method="get" action='/violationRecord/residentInfo'>
+			<input type="text" name="resident_ID" value="aaa" />
+			<input type="submit" name="button" value="residentinfo" />
+		</form>
+		
 	</main>
 
 </body>

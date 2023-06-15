@@ -4,11 +4,15 @@ const residentApplicationCtrl = require('../controllers/residentApplication.js')
 
 router.get('/', residentApplicationCtrl.getResidentApplyList);
 router.post('/apply', residentApplicationCtrl.postResidentApply);
-router.get('/list', residentApplicationCtrl.getResidentApplyList);
-router.get('/list_fee', residentApplicationCtrl.getApproveResidentFee);
-router.get('/info', residentApplicationCtrl.getResidentApplyInfo);
-router.post('/approve', residentApplicationCtrl.postResidentApprove);
-router.post('/modify', residentApplicationCtrl.postResidentApplyModify);
 router.post('/delete', residentApplicationCtrl.postResidentApplyDelete);
+router.post('/studentDelete', residentApplicationCtrl.postResidentApplyStudentDelete);
+router.post('/modify', residentApplicationCtrl.postResidentApplyModify);
+router.get('/list', residentApplicationCtrl.getResidentApplyList);
+router.get('/listFee', residentApplicationCtrl.getApproveResidentFee);
+router.get('/info', residentApplicationCtrl.getResidentApplyInfo);
+router.get('/studentInfo', residentApplicationCtrl.getResidentApplyStudent);
+router.post('/approve', residentApplicationCtrl.postResidentApprove);
+
+
 
 module.exports = router;

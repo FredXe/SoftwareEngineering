@@ -36,7 +36,7 @@ const public = {
 	},
 
 	showRoom: async function (dormName) {
-		const rows = await db.query(`select dorm_name , r_volume , r_cost ` +
+		const rows = await db.query(`select r_number, r_volume, r_cost ` +
 			`from room where dorm_name = '${dormName}';`)
 		const content = utils.decodeRows(rows);
 
@@ -68,7 +68,7 @@ const public = {
 
 	showEquip: async function (dormName, roomNum) {
 		const rows = await db.query(`select * ` +
-			`from equipment where dorm_name = '${dormName} and r_number = ${roomNum}';`)
+			`from equipment where dorm_name = '${dormName}' and r_number = '${roomNum}';`)
 		const content = utils.decodeRows(rows);
 
 		return new Promise(resolve => {
@@ -85,6 +85,17 @@ const public = {
 			console.error(err);
 		}
 	},
+	
+	delRoom: async function (dormName, roomNum) {
+        const query = `delete from room where dorm_name = '${dormName}' and r_number = ${roomNum};`;
+        const queryEquip = `delete from equipment where dorm_name = '${dormName}' and r_number = ${roomNum};`;
+        try {
+            await db.query(query);
+            await db.query(queryEquip);
+        } catch (err) {
+            console.error(err);
+        }
+    },
 
 	delEquip: async function (dormName, roomNum, eID) {
 		const query = `delete from equipment where e_ID = ${eID} and dorm_name = '${dormName}' and r_number = ${roomNum};`;

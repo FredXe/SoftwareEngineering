@@ -25,42 +25,50 @@ const public = {
 	},
 
 	showRoom: async (req, res) => {
-		const dormName = req.parm.dormName;
+		const dormName = req.params.dormName;
 		const roomInfo = await dormitory.showRoom(dormName);
-		res.renderInjected('dormitoryRooms', roomInfo);
+		res.renderInjected('dormitoryRooms',{
+			roomInfo,
+			dormName,
+		});
 	},
 
 	insertRoom: async (req, res) => {
-		const dormName = req.parm.dormName;
+		const dormName = req.params.dormName;
 		await dormitory.insertRoom(dormName, req.body.roomVolume, req.body.roomCost);
-		res.redirect('/dormitory/room');
+		res.redirect(`/dormitory/${req.params.dormName}`);
 	},
 
 	delRoom: async (req, res) => {
-		const dormName = req.parm.dormName;
+		const dormName = req.params.dormName;
+		console.log(req.params.dormName, req.body.roomNum);
 		await dormitory.delRoom(dormName, req.body.roomNum);
-		res.redirect('/dormitory/room');
+		res.redirect(`/dormitory/${dormName}`);
 	},
 
 	showEquip: async (req, res) => {
-		const dormName = req.parm.dormName;
-		const rNumber = req.parm.rNumber;
-		const equipInfo = await dormitory.showEquip(dormName, rNumber);
-		res.renderInjected('dormitoryRoomsEquips', equipInfo);
+		const dormName = req.params.dormName;
+		const roomNum = req.params.rNumber;
+		const equipInfo = await dormitory.showEquip(dormName, roomNum);
+		res.renderInjected('dormitoryRoomsEquips',{
+			dormName,
+			roomNum,
+			equipInfo,
+		});
 	},
 
 	insertEquip: async (req, res) => {
-		const dormName = req.parm.dormName;
-		const rNumber = req.parm.rNumber;
+		const dormName = req.params.dormName;
+		const rNumber = req.params.rNumber;
 		await dormitory.insertEquipment(dormName, rNumber, req.body.eType, req.body.eCondition);
-		res.redirect('/dormitory/room/equip');
+		res.redirect(`/dormitory/${dormName}/${rNumber}`);
 	},
 
 	delEquip: async (req, res) => {
-		const dormName = req.parm.dormName;
-		const rNumber = req.parm.rNumber;
-		await dormitory.delEquip(rNumber, dormName, req.body.eID);
-		res.redirect('/dormitory/room/equip');
+		const dormName = req.params.dormName;
+		const rNumber = req.params.rNumber;
+		await dormitory.delEquip(dormName, rNumber, req.body.eID);
+		res.redirect(`/dormitory/${dormName}/${rNumber}`);
 	},
 
 

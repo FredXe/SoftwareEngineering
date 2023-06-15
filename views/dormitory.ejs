@@ -43,7 +43,9 @@
 						<tr>
 							<form action="/dormitory/modify" method="post">
 								<td>
-									<%= dormInfo[index].dorm_name %>
+									<a href="/dormitory/<%= dormInfo[index].dorm_name %>">
+										<%= dormInfo[index].dorm_name %>
+									</a>
 								</td>
 								<td tableText="<%= index %>">
 									<%= dormInfo[index].dorm_volume %>
@@ -53,7 +55,7 @@
 								</td>
 								<input name="dormName" type="hidden" value="<%= dormInfo[index].dorm_name %>">
 								<td tableInput="<%= index %>" hidden>
-									<input name="dormVolume" type="text" value="<%= dormInfo[index].dorm_volume %>" defaultText="<%= dormInfo[index].dorm_volume %>">
+									<input name="dormVolume" type="number" value="<%= dormInfo[index].dorm_volume %>" defaultText="<%= dormInfo[index].dorm_volume %>">
 								</td>
 								<td tableInput="<%= index %>" hidden>
 									<input name="housemasterID" type="text" value="<%= dormInfo[index].housemaster_ID %>" defaultText="<%= dormInfo[index].housemaster_ID %>">
@@ -76,7 +78,7 @@
 							<input name="dormName" type="text" value="">
 						</td>
 						<td>
-							<input name="dormVolume" type="text" value="">
+							<input name="dormVolume" type="number" value="">
 						</td>
 						<td>
 							<input name="housemasterID" type="text" value="">

@@ -15,9 +15,11 @@ const public = {
 	},
 
 	modify: async (req, res) => {
+		
 		console.log(req.body);
 
 		if (req.body.delete) {
+			dormitory.delDorm(req.body.dromName);
 			console.log('dormitory deleted');
 		} else {
 			await dormitory.modify(req.body.dormName, 'dorm_volume', req.body.dormVolum);

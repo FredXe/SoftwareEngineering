@@ -77,6 +77,21 @@ const public = {
 		}
 	},
 
+	delDorm: async function (dormName) {
+		const delDorm = `delete from dormitory where dorm_name = '${dormName}';`;
+		const delRoom = `delete from room where dorm_name = '${dormName}';`;
+		const delEquip = `delete from equipment where dorm_name = '${dormName};'`;
+
+		try {
+			await db.query(delDorm);
+			await db.query(delRoom);
+			await db.query(delEquip);
+			
+		} catch {err} {
+			console.error(err);
+		}
+	},
+
 	delRoom: async function (dormName, roomNum) {
 		const query = `delete from room where dorm_name = '${dormName}' and r_number = ${roomNum};`;
 		const queryEquip = `delete from equipment where dorm_name = '${dormName}' and r_number = ${roomNum};`;

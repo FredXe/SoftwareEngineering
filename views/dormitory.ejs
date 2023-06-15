@@ -10,36 +10,60 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC">
 
     <script src="/js/themeManager.js"></script>
-    <script src="/js/bulletion.js" defer></script>
     <script src="/js/sidebar.js" defer></script>
+    <script src="/js/dormitory.js" defer></script>
 </head>
 <body>
 
 	<%- include('partials/sidebar') %>
 
 	<main>
-		<form method="post" action='/dormitory/insert'>
-			<input type="text" name="dormName" value="學二" />
-			<input type="number" name="dormVolume" value="1000" />
-			<input type="text" name="housemasterID" value="a1095599" />
-			<input type="submit" name="button" value="submitComment" />
-		</form>
-	
-		<form method="post" action="/dormitory/modify">
-			<input type="text" name="dormName" value="學二" />
-			<input type="text" name="updateAttribute" value="dorm_volume" />
-			<input type="text" name="updateValue" value="99" />
-			<input type="submit" name="button" value="submitComment" />
-		</form>
-	
-		<form method="post" action="/dormitory/modify">
-			<input type="text" name="dormName" value="學二" />
-			<input type="text" name="updateAttribute" value="dorm_volume" />
-			<input type="text" name="updateValue" value="99" />
-			<input type="submit" name="button" value="submitComment" />
-		</form>
-	</main>
 
+		<table>
+			<head>
+				<tr>
+					<th>宿舍名稱</th>
+					<th>房間數量</th>
+					<th>舍監名稱</th>
+					<th>操作</th>
+				</tr>
+			</head>
+			<tbody>
+				<% if(dormInfo.length == 0){ %>
+					<tr>
+						<td>N/A</td>
+						<td>N/A</td>
+						<td>N/A</td>
+						<td>N/A</td>
+					</tr>
+				<% }else{ %>
+					<% for( let index = 0; index < dormInfo.length; index++ ) { %>
+						<tr>
+							<form action="/dormitory/modify" method="post">
+								<td tableText="<%= index %>"><%= dormInfo[index].dorm_name %></td>
+								<td tableText="<%= index %>"><%= dormInfo[index].dorm_volume %></td>
+								<td tableText="<%= index %>"><%= dormInfo[index].housemaster_name %></td>
+								<td tableInput="<%= index %>" hidden>
+									<input name="dormName" type="text" value="<%= dormInfo[index].dorm_name %>" defaultText="<%= dormInfo[index].dorm_name %>">
+								</td>
+								<td tableInput="<%= index %>" hidden>
+									<input name="dormVolum" type="text" value="<%= dormInfo[index].dorm_volume %>" defaultText="<%= dormInfo[index].dorm_volume %>">
+								</td>
+								<td tableInput="<%= index %>" hidden>
+									<input name="housemasterName" type="text" value="<%= dormInfo[index].housemaster_name %>" defaultText="<%= dormInfo[index].housemaster_name %>">
+								</td>
+								<td>
+									<button tableEditButton="<%= index %>" id="tableEdit">修改/取消</button>
+									<input type="submit" name="submit" value="update" tableSubmitButton="<%= index %>" hidden>確認</input>
+									<input type="submit" name="submit" value="delete" tableDeleteButton="<%= index %>">刪除</input>
+								</td>
+							</form>
+						</tr>
+					<% } %>
+				<% } %>
+			</tbody>
+		</table>
+	</main>
 
 </body>
 </html>

@@ -5,7 +5,9 @@ const public = {
 	showDorm: async (req, res) => {
 		const dormInfo = await dormitory.show();
 		console.log(dormInfo);
-		res.renderInjected('dormitory', dormInfo);
+		res.renderInjected('dormitory', {
+			dormInfo,
+		});
 	},
 
 	showRoom: async (req, res) => {

@@ -127,6 +127,18 @@ const public = {
 		});
 	},
 
+	showResidentEqui: async function (userID) {
+		const equipRows = await db.query(`select e_ID, e_type, e_condition from equipment nature join resident_student where user_ID = '${userID}';`);
+		const dormRows = await db.query(`select dorm_name, r_number from resident_student where user_ID = '${userID}';`);
+
+		const equipContent = utils.decodeRows(equipRows);
+		const dormContent = utils.decodeRows(dormRows)[0];
+
+		return new Promise(resolve => {
+			resolve({...dormContent, equipContent});
+		});
+	},
+
 	finishRepair: async function (dormName, roomNum, eID) {
 		const query = `update equipment set e_condition = 1 ` +
 			`where equipment.dorm_name = '${dormName}' and equipment.r_number = '${roomNum}' and equipment.e_ID = '${eID}';`;

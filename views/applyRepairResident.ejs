@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+	<title>:D</title>
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+	<link rel="stylesheet" href="/style/sidebar.css">
+	<link rel="stylesheet" href="/style/shared.css">
+	<link rel="stylesheet" href="/style/table.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC">
+
+    <script src="/js/themeManager.js"></script>
+    <script src="/js/sidebar.js" defer></script>
+</head>
+<body>
+
+	<%- include('partials/sidebar') %>
+
+	<main>
+		<div class="center-container" style="padding:2rem;">
+			<h2><%= dormName %> 房號: <%= roomNum %></h2>
+			<br>
+			<table class="white-gray-table table--radius-border" style="width: 50%">
+				<head>
+					<tr style="background-color: var(--primary-color-darker);">
+						<th style="width: 15%;">編號</th>
+						<th style="width: 15%;">類型</th>
+						<th style="width: 10%;">狀態</th>
+						<% if( ['resident_student'].includes(userData.role) ) { %>
+							<th style="width: 10%;">操作</th>
+						<% } %>
+					</tr>
+				</head>
+				<tbody>
+					<% if(equips.length == 0){ %>
+						<tr>
+							<td>N/A</td>
+							<td>N/A</td>
+							<td>N/A</td>
+							<% if( ['resident_student'].includes(userData.role) ) { %>
+								<td>N/A</td>
+							<% } %>
+						</tr>
+					<% }else{ %>
+						<% for( let index = 0; index < equips.length; index++ ) { %>
+							<tr>
+								<form action="/applyRepair/apply" method="post">
+									<td>
+										<%= equips[index].e_ID %>
+									</td>
+									<td tableText="<%= index %>">
+										<%= equips[index].e_type %>
+									</td>
+									<td tableText="<%= index %>">
+										<%= equips[index].e_condition %><%= (equips[index].e_condition == 1)? '(正常)' : '(已報修)' %>
+									</td>
+									<input name="dormName" type="hidden" value="<%= dormName %>">
+									<input name="roomNum" type="hidden" value="<%= roomNum %>">
+									<input name="equipmentID" type="hidden" value="<%= equips[index].e_ID %>">
+									<td class="center-container">
+										<% if( equips[index].e_condition == 1 ) { %>
+											<input class="apply-button" type="submit" name="repair" value="報修">
+										<% } %>
+									</td>
+								</form>
+							</tr>
+						<% } %>
+					<% } %>
+				</tbody>
+			</table>
+		</div>
+	</main>
+
+</body>
+</html>

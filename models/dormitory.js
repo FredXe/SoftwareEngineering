@@ -129,13 +129,13 @@ const public = {
 
 	showResidentEqui: async function (userID) {
 		const equipRows = await db.query(`select e_ID, e_type, e_condition from equipment nature join resident_student where user_ID = '${userID}';`);
-		const dormRows = await db.query(`select dorm_name, r_number from resident_student where user_ID = 'a1095501';`);
+		const dormRows = await db.query(`select dorm_name, r_number from resident_student where user_ID = '${userID}';`);
 
 		const equipContent = utils.decodeRows(equipRows);
-		const dormContent = utils.decodeRows(dormRows);
+		const dormContent = utils.decodeRows(dormRows)[0];
 
 		return new Promise(resolve => {
-			resolve({equipContent , dormContent});
+			resolve({...dormContent, equipContent});
 		});
 	},
 

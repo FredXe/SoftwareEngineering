@@ -3,15 +3,17 @@ const dormitory = require('../models/dormitory');
 const public = {
 	showApplyRepair: async (req, res) => {
 		const repairContent = await dormitory.showApplyRepair();
-		res.renderInjected('applyRepair', {
+		res.renderInjected('applyRepairMaintainer', {
 			repairContent
 		});
 	},
 
 	showResidentEquip: async (req , res) => {
-		const residentEquip = dormitory.showResidentEqui(req.body.userID);
-		res.renderInjected('residentEquip' , {
-			residentEquip
+		const residentEquip = await dormitory.showResidentEqui(req.session.user_ID);
+		res.renderInjected('applyRepairResident' , {
+			dormName: residentEquip.dorm_name,
+			roomNum: residentEquip.r_number,
+			equips: residentEquip.equipContent,
 		});
 	},
 
@@ -26,7 +28,11 @@ const public = {
 	},
 
 	getApplyRepair: (req, res) => {
-		res.redirect('/applyRepair/maintainerList');
+		if(req.session.role == 'resident_student'){
+			res.redirect('/applyRepair/residentList');
+		}else{
+			res.redirect('/applyRepair/maintainerList');
+		}
 	}
 }
 

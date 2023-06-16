@@ -54,7 +54,7 @@ const public = {
 
 	insertAdmin: async function (user_ID, user_name, sex, password, email, eroll_year, phnumber) {
 		const insertUsers = `insert users value ('${user_ID}' , '${user_name}' , 'admin' , ${sex} , '${password}' , '${email}' , '${eroll_year}' , '${phnumber}');`
-		const insertAdmin = `insert admin value ('${user_ID}')`;
+		const insertAdmin = `insert admin value ('${user_ID}');`;
 
 		try {
 			await db.query(insertUsers);
@@ -66,7 +66,7 @@ const public = {
 
 	insertHousemaster: async function (user_ID, user_name, sex, password, email, eroll_year, phnumber) {
 		const insertUsers = `insert users value ('${user_ID}' , '${user_name}' , 'housemaster' , ${sex} , '${password}' , '${email}' , '${eroll_year}' , '${phnumber}');`
-		const insertHousemaster = `insert housemaster value ('${user_ID}')`;
+		const insertHousemaster = `insert housemaster value ('${user_ID}');`;
 
 		try {
 			await db.query(insertUsers);

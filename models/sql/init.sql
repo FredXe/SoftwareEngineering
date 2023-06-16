@@ -153,3 +153,6 @@ CREATE TABLE IF NOT EXISTS apply_visit
   FOREIGN KEY (guest_ID) REFERENCES guest(guest_ID) ON DELETE CASCADE,
   FOREIGN KEY (dorm_name) REFERENCES dormitory(dorm_name) ON DELETE CASCADE
 );
+
+insert users value ('a1095500' , 'NODE' , 'admin' , 0 , '$2b$10$0MbBVG3lhVkNKXWs3cUwGuws/9zUrRVJ9iAvGtI0zHQ.BxWcBmE72' , 'test@node.js' , '2023' , '0911222333'); 
+insert admin value ('a1095500');

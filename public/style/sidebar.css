@@ -98,6 +98,9 @@
         display: block;
         margin-inline: 2rem;
     }
+    &:hover {
+        cursor: default;
+    }
 }
 
 .sidebar-botton:hover .sidebar-botton-info {

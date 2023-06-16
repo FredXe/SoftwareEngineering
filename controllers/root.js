@@ -3,7 +3,9 @@ const root = require('../models/root');
 
 const public = {
 	getLogin: async (req, res) => {
-		res.renderInjected('login');
+		res.renderInjected('login', {
+			redirect: req.query.redirect || '',
+		});
 	},
 
 	postLogin: async (req, res) => {
@@ -27,8 +29,12 @@ const public = {
 				req.session.email = data.email;
 				req.session.eroll_year = data.eroll_year;
 				req.session.phnumber = data.phnumber;
-
-				res.redirect('/bulletion');
+				
+				if(req.body.redirect == ''){
+					res.redirect('/bulletion');
+				}else{
+					res.redirect(req.body.redirect);
+				}
 			});
 
 		} else
@@ -39,7 +45,7 @@ const public = {
 		req.session.destroy((err) => {
 			if (err) next(err);
 
-			res.redirect('/db');
+			res.redirect('/');
 		});
 	}
 }

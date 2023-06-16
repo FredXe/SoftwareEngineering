@@ -1,3 +1,5 @@
+const { log } = require('console');
+const querystring = require('querystring');
 
 const ROLE2NUM = {
 	'admin': 0,
@@ -22,7 +24,11 @@ const public = {
 				return;
 			}
 
-			res.redirect('/login');
+			const query = querystring.stringify({
+				'redirect': req.url,
+			});
+
+			res.redirect('/login?' + query);
 		};
 	}
 }

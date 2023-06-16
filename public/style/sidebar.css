@@ -35,6 +35,17 @@
     &:nth-last-child(2){
         margin-top: auto;
     }
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.sidebar-botton--no-pointer {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
 }
 
 .sidebar-botton-link {

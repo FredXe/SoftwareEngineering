@@ -53,7 +53,7 @@
 										<%= equipInfo[index].e_type %>
 									</td>
 									<td tableText="<%= index %>">
-										<%= equipInfo[index].e_condition %>
+										<%= equipInfo[index].e_condition %><%= (equipInfo[index].e_condition == 1)? '(正常)' : '(損壞)' %>
 									</td>
 									<input name="dormName" type="hidden" value="<%= dormName %>">
 									<input name="roomNum" type="hidden" value="<%= roomNum %>">

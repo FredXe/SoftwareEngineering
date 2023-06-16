@@ -3,7 +3,9 @@ const dormitory = require('../models/dormitory');
 const public = {
 	showApplyRepair: async (req, res) => {
 		const repairContent = await dormitory.showApplyRepair();
-		res.reder('applyRepair', repairContent);
+		res.renderInjected('applyRepair', {
+			repairContent
+		});
 	},
 
 	applyRepair: (req, res) => {

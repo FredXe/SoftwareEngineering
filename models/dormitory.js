@@ -108,8 +108,8 @@ const public = {
 	},
 
 	applyRepair: async function (dormName, roomNum, eID) {
-		const query = `update equipment set e_condition = 0 from equipment ` +
-			`where equipment.dorm_name = ${dormName} and equipment.r_number = ${roomNum} and equipment.e_ID = ${eID};`;
+		const query = `update equipment set e_condition = 0 ` +
+			`where equipment.dorm_name = '${dormName}' and equipment.r_number = '${roomNum}' and equipment.e_ID = '${eID}';`;
 
 		try {
 			await db.query(query);
@@ -128,8 +128,8 @@ const public = {
 	},
 
 	finishRepair: async function (dormName, roomNum, eID) {
-		const query = `update equipment set e_condition = 1 from equipment ` +
-			`where equipment.dorm_name = ${dormName} and equipment.r_number = ${roomNum} and equipment.e_ID = ${eID};`;
+		const query = `update equipment set e_condition = 1 ` +
+			`where equipment.dorm_name = '${dormName}' and equipment.r_number = '${roomNum}' and equipment.e_ID = '${eID}';`;
 		try {
 			await db.query(query);
 		} catch (err) {

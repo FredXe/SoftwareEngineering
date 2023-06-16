@@ -18,7 +18,7 @@ const public = {
 		if (req.body.delete) {
 			dormitory.delDorm(req.body.dormName);
 		} else {
-			await dormitory.modify(req.body.dormName, 'dorm_volume', req.body.dormVolum);
+			await dormitory.modify(req.body.dormName, 'dorm_volume', req.body.dormVolume);
 			await dormitory.modify(req.body.dormName, 'housemaster_ID', req.body.housemasterID);
 		}
 		res.redirect('/dormitory');

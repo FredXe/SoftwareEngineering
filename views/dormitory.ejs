@@ -27,7 +27,9 @@
 						<th style="width: 10%;">房間數量</th>
 						<th style="width: 15%;">舍監編號</th>
 						<th style="width: 15%;">舍監名稱</th>
+						<% if( ['admin'].includes(userData.role) ) { %>
 						<th style="width: 15%;">操作</th>
+						<% } %>
 					</tr>
 				</head>
 				<tbody>
@@ -37,13 +39,15 @@
 							<td>N/A</td>
 							<td>N/A</td>
 							<td>N/A</td>
+							<% if( ['admin'].includes(userData.role) ) { %>
 							<td>N/A</td>
+							<% } %>
 						</tr>
 					<% }else{ %>
 						<% for( let index = 0; index < dormInfo.length; index++ ) { %>
 							<tr>
 								<form action="/dormitory/modify" method="post">
-									<td class="center-container">
+									<td>
 										<a href="/dormitory/<%= dormInfo[index].dorm_name %>">
 											<%= dormInfo[index].dorm_name %>
 										</a>
@@ -55,15 +59,18 @@
 										<%= dormInfo[index].housemaster_ID %>
 									</td>
 									<input name="dormName" type="hidden" value="<%= dormInfo[index].dorm_name %>">
+									<% if( ['admin'].includes(userData.role) ) { %>
 									<td tableInput="<%= index %>" hidden>
 										<input class="bottom-line-input" style="width: 70%;" name="dormVolume" type="number" value="<%= dormInfo[index].dorm_volume %>" defaultText="<%= dormInfo[index].dorm_volume %>">
 									</td>
 									<td tableInput="<%= index %>" hidden>
 										<input class="bottom-line-input" style="width: 70%;" name="housemasterID" type="text" value="<%= dormInfo[index].housemaster_ID %>" defaultText="<%= dormInfo[index].housemaster_ID %>">
 									</td>
+									<% } %>
 									<td>
 										<%= dormInfo[index].housemaster_name %>
 									</td>
+									<% if( ['admin'].includes(userData.role) ) { %>
 									<td class="flex-container flex-container--space-evenly">
 										<div>
 											<button class="apply-button" tableEditButton="<%= index %>" id="tableEdit">修改/取消</button>
@@ -73,10 +80,12 @@
 											<input class="apply-button" type="submit" name="delete" value="刪除" tableDeleteButton="<%= index %>">
 										</div>
 									</td>
+									<% } %>
 								</form>
 							</tr>
 						<% } %>
 					<% } %>
+					<% if( ['admin'].includes(userData.role) ) { %>
 					<tr>
 						<form action="/dormitory/insert" method="post">
 							<td>
@@ -96,6 +105,7 @@
 							</td>
 						</form>
 					</tr>
+					<% } %>
 				</tbody>
 			</table>
 		</div>

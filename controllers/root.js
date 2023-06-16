@@ -9,30 +9,36 @@ const public = {
 	postLogin: async (req, res) => {
 		const user_ID = req.body.user_ID;
 		const password = req.body.password;
-		const hashpasswd = await root.showPassword(user_ID);
+		try{
+			const hashpasswd = await root.showPassword(user_ID);
 
-		const success = await hash.compare(password, hashpasswd);
+			const success = await hash.compare(password, hashpasswd);
 
-		if (success) {
-			req.session.regenerate(async (err) => {
-				if (err)
-					next(err);
+			if (success) {
+				req.session.regenerate(async (err) => {
+					if (err)
+						next(err);
 
-				const data = await root.showUserData(user_ID);
+					const data = await root.showUserData(user_ID);
 
-				req.session.user_ID = data.user_ID;
-				req.session.user_name = data.user_name;
-				req.session.role = data.role;
-				req.session.sex = data.sex;
-				req.session.email = data.email;
-				req.session.eroll_year = data.eroll_year;
-				req.session.phnumber = data.phnumber;
+					req.session.user_ID = data.user_ID;
+					req.session.user_name = data.user_name;
+					req.session.role = data.role;
+					req.session.sex = data.sex;
+					req.session.email = data.email;
+					req.session.eroll_year = data.eroll_year;
+					req.session.phnumber = data.phnumber;
 
-				res.redirect('/bulletion');
-			});
+					res.redirect('/bulletion');
+				});
 
-		} else
-			res.send('wrong');
+			}else{
+				res.redirect('/');
+			}
+		}catch(err){
+			console.log(err);
+			res.redirect('/');
+		}
 	},
 
 	postLogout: async (req, res) => {

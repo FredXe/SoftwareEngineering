@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+	<title>:D</title>
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+	<link rel="stylesheet" href="/style/sidebar.css">
+	<link rel="stylesheet" href="/style/shared.css">
+	<link rel="stylesheet" href="/style/table.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC">
+
+    <script src="/js/themeManager.js"></script>
+    <script src="/js/sidebar.js" defer></script>
+</head>
+<body>
+
+	<%- include('partials/sidebar') %>
+
+	<main>
+		<div class="center-container" style="padding:2rem;">
+			<table class="white-gray-table table--radius-border" style="width: 50%">
+				<head>
+					<tr style="background-color: var(--primary-color-darker);">
+						<th style="width: 15%;">宿舍</th>
+						<th style="width: 15%;">房號</th>
+						<th style="width: 10%;">名字</th>
+						<th style="width: 10%;">編號</th>
+						<th style="width: 10%;">操作</th>
+					</tr>
+				</head>
+				<tbody>
+					<% if(userContent.length == 0){ %>
+						<tr>
+							<td>N/A</td>
+							<td>N/A</td>
+							<td>N/A</td>
+							<td>N/A</td>
+							<td>N/A</td>
+						</tr>
+					<% }else{ %>
+						<% for( let index = 0; index < userContent.length; index++ ) { %>
+							<tr>
+								<form action="/userInfo/delResiStu" method="post">
+									<td>
+										<%= userContent[index].dorm_name %>
+									</td>
+									<td tableText="<%= index %>">
+										<%= userContent[index].r_number %>
+									</td>
+									<td tableText="<%= index %>">
+										<%= userContent[index].user_name %>
+									</td>
+									<td tableText="<%= index %>">
+										<%= userContent[index].user_ID %>
+									</td>
+									<input name="studentID" type="hidden" value="<%= userContent[index].user_ID %>">
+									<td class="center-container">
+										<% if( ['admin'].includes(userData.role) ){ %>
+											<input class="apply-button" type="submit" name="repaired" value="退宿">
+										<% } %>
+									</td>
+								</form>
+							</tr>
+						<% } %>
+					<% } %>
+				</tbody>
+			</table>
+		</div>
+	</main>
+
+</body>
+</html>

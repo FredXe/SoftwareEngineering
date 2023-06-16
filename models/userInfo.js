@@ -14,7 +14,7 @@ const public = {
 	},
 
 	delete: async function (student_ID) {
-		const delResidentStudent = db.query(`delete from resident_student where resident_student.user_ID = ${student_ID};`);
+		const delResidentStudent = db.query(`delete from resident_student where resident_student.user_ID = '${student_ID}';`);
 		const addnonResidentStudent = db.query(`insert non_resident_student values('${student_ID}')`);
 		try {
 			await db.query(delResidentStudent);

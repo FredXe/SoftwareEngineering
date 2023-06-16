@@ -8,6 +8,13 @@ const public = {
 		});
 	},
 
+	showResidentEquip: async (req , res) => {
+		const residentEquip = dormitory.showResidentEqui(req.body.userID);
+		res.renderInjected('residentEquip' , {
+			residentEquip
+		});
+	},
+
 	applyRepair: (req, res) => {
 		dormitory.applyRepair(req.body.dormName, req.body.roomNum, req.body.equipmentID);
 		res.redirect('/applyRepair');
@@ -19,7 +26,7 @@ const public = {
 	},
 
 	getApplyRepair: (req, res) => {
-		res.redirect('/applyRepair/list');
+		res.redirect('/applyRepair/maintainerList');
 	}
 }
 

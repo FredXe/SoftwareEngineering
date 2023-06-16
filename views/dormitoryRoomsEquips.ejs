@@ -23,11 +23,13 @@
 			<br>
 			<table class="white-gray-table table--radius-border" style="width: 50%">
 				<head>
-					<tr>
+					<tr style="background-color: var(--primary-color-darker);">
 						<th style="width: 15%;">編號</th>
 						<th style="width: 15%;">類型</th>
 						<th style="width: 10%;">狀態</th>
+						<% if( ['admin'].includes(userData.role) ) { %>
 						<th style="width: 10%;">操作</th>
+						<% } %>
 					</tr>
 				</head>
 				<tbody>
@@ -36,7 +38,9 @@
 							<td>N/A</td>
 							<td>N/A</td>
 							<td>N/A</td>
+							<% if( ['admin'].includes(userData.role) ) { %>
 							<td>N/A</td>
+							<% } %>
 						</tr>
 					<% }else{ %>
 						<% for( let index = 0; index < equipInfo.length; index++ ) { %>
@@ -54,13 +58,16 @@
 									<input name="dormName" type="hidden" value="<%= dormName %>">
 									<input name="roomNum" type="hidden" value="<%= roomNum %>">
 									<input name="eID" type="hidden" value="<%= equipInfo[index].e_ID %>">
+									<% if( ['admin'].includes(userData.role) ) { %>
 									<td class="center-container">
 										<input class="apply-button" type="submit" name="delete" value="刪除">
 									</td>
+									<% } %>
 								</form>
 							</tr>
 						<% } %>
 					<% } %>
+					<% if( ['admin'].includes(userData.role) ) { %>
 					<tr>
 						<form action="/dormitory/<%= dormName %>/<%= roomNum %>/insertEquip" method="post">
 							<td>
@@ -77,6 +84,7 @@
 							</td>
 						</form>
 					</tr>
+					<% } %>
 				</tbody>
 			</table>
 		</div>

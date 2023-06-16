@@ -101,6 +101,21 @@ const public = {
 		}
 	},
 
+	insertResidentStudent: async function (user_ID, user_name, sex, password, email, eroll_year, phnumber, dorm_name, r_number) {
+		const insertUsers = `insert users value ('${user_ID}' , '${user_name}' , 'resident_student' , ${sex} , '${password}' , '${email}' , '${eroll_year}' , '${phnumber}');`
+		const insertStudent = `insert student value ('${user_ID}')`;
+		const insertnonResidentStudent = `\
+		insert resident_student (dorm_name, r_number, user_ID) \
+		value ('${dorm_name}', '${r_number}', '${user_ID}')`;
+		try {
+			await db.query(insertUsers);
+			await db.query(insertStudent);
+			await db.query(insertnonResidentStudent);
+		} catch (err) {
+			console.error(err);
+		}
+	},
+
 	delAdmin: async function (user_ID) {
 		const delAdmin = `delete from admin where user_ID = '${user_ID}';`;
 		const deltUsers = `delete from users where user_ID = '${user_ID}';`;

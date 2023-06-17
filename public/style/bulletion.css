@@ -19,6 +19,9 @@
     background-color: var(--primary-color-darker);
     padding: 1rem;
     border-radius: 15px;
+    & > h2 {
+        color: var(--icon-color);
+    }
 }
 
 .bulletion-side-container {

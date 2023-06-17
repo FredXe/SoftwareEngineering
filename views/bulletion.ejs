@@ -24,6 +24,7 @@
     <main>
         <div class="bulletion">
             <div class="bulletion-side">
+				<h2 style="display: block; margin: 0.4rem; margin-bottom: 1rem;">公告們</h2>
                 <div class="bulletion-side-container" id="title-container">
                     
                 </div>
@@ -31,11 +32,11 @@
 					<div class="bulletion-side-bottom">
 						<form method="post" action='/bulletion/post'>
 							<input type="hidden" name="housemasterID" value="<%- userData.user_ID %>" />
-							<div style="width: 100%;" class="input-text input-text--prim-bg-dark">
+							<div style="width: 92%;" class="input-text input-text--prim-bg-dark">
 								<input type="text" name="title" value="" placeholder=" " autocomplete="off">
 								<label for="uName">標題</label>
 							</div>
-							<div style="width: 100%;" class="input-text input-text--prim-bg-dark">
+							<div style="width: 92%;" class="input-text input-text--prim-bg-dark">
 								<!-- <input type="text" name="text" value="" placeholder=" "> -->
 								<textarea name="text" cols="30" rows="10" placeholder=" " autocomplete="off"></textarea>
 								<label for="uName">內容</label>
@@ -46,9 +47,13 @@
 				<% } %>
             </div>
             <div class="bulletion-mid" id="content-container">
-                
+				<div class="center-container" style="height: 100%;">
+					<h2 style="margin-bottom: 0;">這裡暫時什麼都沒有</h2>
+					<h4 style="color: var(--icon-color);">點選左側公告開始閱讀</h4>
+				</div>
             </div>
             <div class="bulletion-side">
+				<h2 style="display: block; margin: 0.5rem; margin-bottom: 1rem;">留言們</h2>
                 <div class="bulletion-side-container" id="comment-container">
 					
                 </div>
@@ -56,7 +61,7 @@
 					<div class="bulletion-side-bottom" hidden>
 						<form id="postComment" method="post" action='/bulletion/6/comment'>
 							<input type="hidden" name="user_ID" value="<%- userData.user_ID %>" />
-							<div style="width: 100%;" class="input-text input-text--prim-bg-dark">
+							<div style="width: 92%;" class="input-text input-text--prim-bg-dark">
 								<textarea name="content" cols="30" rows="10" placeholder=" " autocomplete="off"></textarea>
 								<!-- <input type="text" name="content" value="" placeholder=" " autocomplete="off"> -->
 								<label for="uName">留言</label>

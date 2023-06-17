@@ -31,8 +31,12 @@ function updateViewingBulletion(){
         commentBox.appendChild(comment);
     });
 
-    commentInput.parentElement.toggleAttribute('hidden', false);
-    commentInput.setAttribute('action', `/bulletion/${bulletionData[currentBulletionInd].bb_ID}/comment`);
+    try{
+        commentInput.parentElement.toggleAttribute('hidden', false);
+        commentInput.setAttribute('action', `/bulletion/${bulletionData[currentBulletionInd].bb_ID}/comment`);
+    }catch(err){
+        
+    }
 
     setTimeout(() => {
         commentBox.scrollTo(0, commentBox.scrollHeight);

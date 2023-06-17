@@ -84,22 +84,22 @@
             </a>
             <a class="sidebar-botton-info">
                 <span>
-                    User ID : <%- userData.user_ID %>
+                    使用者 ID : <%- userData.user_ID %>
                 </span>
                 <span>
-                    Role : <%- userData.role %>
+                    身分 : <%- userData.role == 'non_resident_student'? 'non_resident_stud' : userData.role %>
                 </span>
                 <span>
-                    Sex : <%- (userData.sex == 0) ? 'male' : 'female' %>
+                    性別 : <%- (userData.sex == 0) ? '男' : '女' %>
                 </span>
                 <span>
                     Email : <%- userData.email %>
                 </span>
                 <span>
-                    Enroll year : <%- userData.eroll_year %>
+                    入學(住?)年份 : <%- userData.eroll_year %>
                 </span>
                 <span>
-                    Phone : <%- userData.phnumber %>
+                    手機 : <%- userData.phnumber %>
                 </span>
             </a>
         </li>

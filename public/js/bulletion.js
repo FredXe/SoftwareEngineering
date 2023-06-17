@@ -34,6 +34,10 @@ function updateViewingBulletion(){
     commentInput.parentElement.toggleAttribute('hidden', false);
     commentInput.setAttribute('action', `/bulletion/${bulletionData[currentBulletionInd].bb_ID}/comment`);
 
+    setTimeout(() => {
+        commentBox.scrollTo(0, commentBox.scrollHeight);
+    }, 300);
+
 }
 
 let titleBox = document.querySelector('#title-container');

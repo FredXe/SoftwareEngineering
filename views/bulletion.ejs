@@ -57,7 +57,8 @@
 						<form id="postComment" method="post" action='/bulletion/6/comment'>
 							<input type="hidden" name="user_ID" value="<%- userData.user_ID %>" />
 							<div style="width: 100%;" class="input-text input-text--prim-bg-dark">
-								<input type="text" name="content" value="" placeholder=" " autocomplete="off">
+								<textarea name="content" cols="30" rows="10" placeholder=" " autocomplete="off"></textarea>
+								<!-- <input type="text" name="content" value="" placeholder=" " autocomplete="off"> -->
 								<label for="uName">留言</label>
 							</div>
 							<input class="apply-button" type="submit" name="button" value="comment" />

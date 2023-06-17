@@ -3,10 +3,10 @@
     font-family: 'Noto Sans TC';
 
     --accent-color: rgba(173, 50, 255);
-    --icon-color: rgb(105, 92, 112);
+    --icon-color: rgb(115, 102, 122);
 
     &.light-theme{
-        --background-color: rgb(255, 255, 255);
+        --background-color: rgb(244, 241, 247);
         --primary-color: rgb(238, 232, 243);
         --primary-color-darker: rgb(223, 217, 229);
         --text-color: black;

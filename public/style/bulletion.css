@@ -19,6 +19,9 @@
     background-color: var(--primary-color-darker);
     padding: 1rem;
     border-radius: 15px;
+    & > h2 {
+        color: var(--icon-color);
+    }
 }
 
 .bulletion-side-container {
@@ -28,6 +31,7 @@
     flex-direction: column;
     overflow-y: scroll;
     gap: 1rem;
+    scroll-behavior: smooth;
 }
 
 .bulletion-mid {
@@ -100,8 +104,6 @@
 
 .bulletion-content::-webkit-scrollbar,
 .bulletion-side-container::-webkit-scrollbar {
-    display: flex;
-    flex-direction: column;
     width: 0;
 }
 

@@ -1,5 +1,6 @@
 let contentBox = document.querySelector('#content-container');
 let commentBox = document.querySelector('#comment-container');
+let titleBox = document.querySelector('#title-container');
 
 let commentInput = document.querySelector('#postComment');
 
@@ -31,17 +32,28 @@ function updateViewingBulletion(){
         commentBox.appendChild(comment);
     });
 
-    commentInput.parentElement.toggleAttribute('hidden', false);
-    commentInput.setAttribute('action', `/bulletion/${bulletionData[currentBulletionInd].bb_ID}/comment`);
+    try{
+        commentInput.parentElement.toggleAttribute('hidden', false);
+        commentInput.setAttribute('action', `/bulletion/${bulletionData[currentBulletionInd].bb_ID}/comment`);
+    }catch(err){
+
+    }
+    
+    commentBox.style.scrollBehavior = 'unset';
+    commentBox.scrollTo(0, 0);
+    commentBox.style.scrollBehavior = 'smooth';
+
+    setTimeout(() => {
+        commentBox.scrollTo(0, commentBox.scrollHeight);
+    }, 300);
 
 }
 
-let titleBox = document.querySelector('#title-container');
-for(let i = 0; i < bulletionData.length; ++i){
+for(let i = bulletionData.length - 1; i >= 0; --i){
     let titleStr = `\
         <div title-card="${i}" class="bulletion-card">\
-            <h3>${bulletionData[i].bb_title}</h3>\
-            <p>${bulletionData[i].bb_text.substring(0, 40)+'...'}</p>\
+            <h3>${bulletionData[i].bb_title.substring(0, 17) + ((bulletionData[i].bb_title.length > 17)? '...' : '')}</h3>\
+            <p>${bulletionData[i].bb_text.substring(0, 40)+ ((bulletionData[i].bb_text.length > 40)? '...' : '')}</p>\
         </div>\
     `;
     let title = new DOMParser().parseFromString(titleStr, 'text/html').body.firstElementChild;
@@ -64,6 +76,5 @@ if(currentBulletionInd != -1){
         }
     }
     currentBulletionInd = ind;
-    console.log(ind);
 }
 updateViewingBulletion();

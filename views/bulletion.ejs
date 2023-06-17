@@ -31,12 +31,13 @@
 					<div class="bulletion-side-bottom">
 						<form method="post" action='/bulletion/post'>
 							<input type="hidden" name="housemasterID" value="<%- userData.user_ID %>" />
-							<div class="input-text input-text--prim-bg-dark">
-								<input type="text" name="title" value="" placeholder=" ">
+							<div style="width: 100%;" class="input-text input-text--prim-bg-dark">
+								<input type="text" name="title" value="" placeholder=" " autocomplete="off">
 								<label for="uName">標題</label>
 							</div>
-							<div class="input-text input-text--prim-bg-dark">
-								<input type="text" name="text" value="" placeholder=" ">
+							<div style="width: 100%;" class="input-text input-text--prim-bg-dark">
+								<!-- <input type="text" name="text" value="" placeholder=" "> -->
+								<textarea name="text" cols="30" rows="10" placeholder=" " autocomplete="off"></textarea>
 								<label for="uName">內容</label>
 							</div>
 							<input class="apply-button" type="submit" name="button" value="post" />
@@ -55,8 +56,8 @@
 					<div class="bulletion-side-bottom" hidden>
 						<form id="postComment" method="post" action='/bulletion/6/comment'>
 							<input type="hidden" name="user_ID" value="<%- userData.user_ID %>" />
-							<div class="input-text input-text--prim-bg-dark">
-								<input type="text" name="content" value="" placeholder=" ">
+							<div style="width: 100%;" class="input-text input-text--prim-bg-dark">
+								<input type="text" name="content" value="" placeholder=" " autocomplete="off">
 								<label for="uName">留言</label>
 							</div>
 							<input class="apply-button" type="submit" name="button" value="comment" />
@@ -65,28 +66,6 @@
 				<% } %>
             </div>
         </div>
-
-		<form method="post" action='/bulletion/post' hidden>
-			<input type="text" name="housemasterID" value="a1095599" />
-			<input type="text" name="title" value="test title" />
-			<input type="text" name="text" value="some content" />
-			<input type="submit" name="button" value="post" />
-		</form>
-	
-	
-		<form method="post" action='/bulletion/6/comment' hidden>
-			<input type="text" name="user_ID" value="a1095599" />
-			<input type="text" name="content" value="some content :D:D test comment" />
-			<input type="submit" name="button" value="comment" />
-		</form>
-	
-	
-	
-		<form method="post" action='/bulletion/delete' hidden>
-			<input type="text" name="bb_ID" value="1" />
-			<input type="text" name="housemaster_ID" value="a1095599" />
-			<input type="submit" name="button" value="delete bulletion" />
-		</form>
     </main>
 
 <script>

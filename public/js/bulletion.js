@@ -40,8 +40,8 @@ let titleBox = document.querySelector('#title-container');
 for(let i = 0; i < bulletionData.length; ++i){
     let titleStr = `\
         <div title-card="${i}" class="bulletion-card">\
-            <h3>${bulletionData[i].bb_title}</h3>\
-            <p>${bulletionData[i].bb_text.substring(0, 40)+'...'}</p>\
+            <h3>${bulletionData[i].bb_title.substring(0, 17) + ((bulletionData[i].bb_title.length > 17)? '...' : '')}</h3>\
+            <p>${bulletionData[i].bb_text.substring(0, 40)+ ((bulletionData[i].bb_text.length > 40)? '...' : '')}</p>\
         </div>\
     `;
     let title = new DOMParser().parseFromString(titleStr, 'text/html').body.firstElementChild;

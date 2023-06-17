@@ -11,7 +11,8 @@
         transition: all 100ms, background-color 50ms ease-out;
     }
 
-    & > input {
+    & > input,
+    & > textarea {
         padding: 0.5rem 1rem;
         background-color: var(--background-color);
         color: var(--text-color);
@@ -40,12 +41,24 @@
             background-color: var(--background-color);
         }
     }
+    & > textarea {
+        height: 3rem;
+        resize: none;
+        transition: 100ms;
+        &:focus {
+            height: 10rem;
+        }
+        &::-webkit-scrollbar {
+            width: 0;
+        }
+    }
 }
 
 .input-text--prim-bg-dark {
 
 
-    & > input {
+    & > input,
+    & > textarea {
         padding: 0.5rem 1rem;
         background-color: var(--primary-color-darker);
         color: var(--text-color);
@@ -72,6 +85,22 @@
             padding-inline: 0.5rem;
             scale: 0.8;
             background-color: var(--primary-color-darker);
+        }
+    }
+    & > textarea {
+        height: 3rem;
+        resize: none;
+        transition: 100ms;
+        &:focus {
+            height: 10rem;
+        }
+        &::-webkit-scrollbar {
+            width: 0.4rem;
+        }
+        &::-webkit-scrollbar-thumb {
+            border: solid var(--primary-color-darker) 0.1rem;
+            background-color: var(--accent-color);
+            border-radius: 0.2rem;
         }
     }
 }

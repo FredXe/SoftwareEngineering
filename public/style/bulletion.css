@@ -100,8 +100,6 @@
 
 .bulletion-content::-webkit-scrollbar,
 .bulletion-side-container::-webkit-scrollbar {
-    display: flex;
-    flex-direction: column;
     width: 0;
 }
 

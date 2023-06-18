@@ -1,10 +1,21 @@
 const residentApplication = require('../models/residentApplication');
 
 const public = {
+	getRoot: async (req, res) => {
+		const role = req.session.role;
+
+		if (role == 'admin') {
+			res.redirect('residentApplication/list');
+		} else {
+			res.redirect('residentApplication/info');
+		}
+	},
+
+
 	//查詢所有資料
 	getResidentApplyList: async (req, res) => {
 		const residentApplicationInfos = await residentApplication.selectAllRA();
-		res.renderInjected('residentApplication', { residentApplicationInfos });
+		res.renderInjected('', { residentApplicationInfos });
 	},
 
 	//申請宿舍

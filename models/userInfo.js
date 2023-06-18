@@ -3,9 +3,11 @@ const utils = require('./utils');
 
 const public = {
 	show: async function () {
-		const rows = await db.query('select users.user_ID , users.user_name , resident_student.dorm_name , resident_student.r_number ' +
-			'from resident_student , users , room ' +
-			'where resident_student.user_ID = users.user_ID;');
+		const rows = await db.query('\
+		select users.user_ID, users.user_name, resident_student.dorm_name, resident_student.r_number \
+		from resident_student, users \
+		where resident_student.user_ID = users.user_ID;');
+		
 		const content = utils.decodeRows(rows);
 
 		return new Promise(resolve => {

@@ -87,3 +87,11 @@ main {
 .flex-container--vertical-center{
     align-items: center;
 }
+.non-decoration-hyperlink{
+    text-decoration: none;
+    color: var(--text-color);
+}
+.non-decoration-hyperlink:hover{
+    text-decoration: none;
+    color: var(--accent-color);
+}

@@ -15,7 +15,9 @@ const public = {
 	//查詢所有資料
 	getResidentApplyList: async (req, res) => {
 		const residentApplicationInfos = await residentApplication.selectAllRA();
-		res.renderInjected('', { residentApplicationInfos });
+		res.renderInjected('residentApplication/list', {
+			residentApplicationInfos
+		});
 	},
 
 	//申請宿舍

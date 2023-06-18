@@ -32,7 +32,7 @@ const public = {
 		try {
 			await transporter.sendMail({
 				to: userMail, // list of receivers
-				subject: "Reset your password in 5 minutes", // Subject line
+				subject: "請在五分鐘以內重新設定您的密碼", // Subject line
 				html: `點擊下方的超連結以重新設定您的密碼，如果您沒有進行嘗試重設您的密碼的動作，請再麻煩您忽略我們系統自動發送的這封電子郵件。 \
 					<br> <a href="http://localhost:8888/mail/changepassword?token=${token}">點擊我這邊以重新設定您的密碼</a> <br> \
 					請勿回覆這封電子郵件。`, // html body

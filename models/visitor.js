@@ -6,39 +6,57 @@ const utils = require('./utils');
  */
 const public = {
 	insertVisitor: async function (guest_ID, dorm_name, visit_date, visit_approve) {
-
-		const query = `INSERT INTO apply_visit (guest_ID, dorm_name, visit_date, visit_approve) 
+		const query1 = `SELECT * FROM guest WHERE guest_ID=${guest_ID};`;
+		if ((db.query(query1)) === null) {
+			const query2 = `INSERT INTO apply_visit (guest_ID, dorm_name, visit_date, visit_approve) 
 						VALUES(${guest_ID},${dorm_name},${visit_date},${visit_approve});`;
 
-		try {
-			await db.query(query);
-		} catch (err) {
-			console.error(err);
+			try {
+				await db.query(query2);
+				console.log('insertVisitor()')
+			} catch (err) {
+				console.error(err);
+			}
+		} else {
+			console.log('no this guest, fail insertVisitor().');
 		}
+		
 	},
 
 	deleteVisitor: async function (guest_ID) {
-		try {
-			await db.query(`DELETE FROM apply_visit WHERE guest_ID=${guest_ID};`);
-		} catch (err) {
-			console.error(err);
+		const query = `SELECT * FROM apply_visit WHERE guest_ID=${guest_ID};`;
+		if ((db.query(query)) === null) {
+			try {
+				await db.query(`DELETE FROM apply_visit WHERE guest_ID=${guest_ID};`);
+				console.log('deleteVisitor');
+			} catch (err) {
+				console.error(err);
+			}
+	
+			console.log('deleteVisitor()');
+		} else {
+			console.log('no this apply_visit, fail deleteVisitor().');
 		}
-
-		console.log('deleteVisitor()');
+		
 	},
 
 	modifyVisitor: async function (guest_ID, dorm_name, visit_date, visit_approve) {
-		try {
-			await db.query(`UPDATE apply_visit SET dorm_name=${dorm_name},` +
+		const query = `SELECT * FROM apply_visit WHERE guest_ID=${guest_ID};`;
+		if ((db.query(query)) === null) {
+			try {
+			await db.query(`UPDATE apply_visit SET` +
 				`visit_date=${visit_date}, visit_approve=${visit_approve} ` +
 				`WHERE guest_ID=${guest_ID};`);
-		} catch (err) {
-			console.error(err);
-		}
+				console.log('modifyVisitor()');
+			
+			} catch (err) {
+				console.error(err);
+			}
 
-		return new Promise(resolve => {
-			resolve('modifyVisitor()');
-		});
+		} else {
+			console.log('no this apply_visit, fail modifyVisitor().');
+		}
+		
 	},
 
 	selectVisitor: async function (guest_ID) {
@@ -69,17 +87,21 @@ const public = {
 	},
 
 	approveVisit: async function (guest_ID) {
-		const approve = 1;
-		try {
-			await db.query(`UPDATE apply_visit SET visit_approve=${approve} 
-						WHERE guest_ID=${guest_ID};`);
-		} catch (err) {
-			console.error(err);
+		let approve = 0;
+		const query = `SELECT * FROM apply_visit WHERE guest_ID=${guest_ID} AND rA_approve=${approve};`;
+		if((db.query(query)) === null) {
+			try {
+				approve = 1;
+				await db.query(`UPDATE apply_visit SET visit_approve=${approve} 
+							WHERE guest_ID=${guest_ID};`);
+				console.log('approveVisit()');
+			} catch (err) {
+				console.error(err);
+			}
+		} else {
+			console.log('no this apply_visit, fail approveVisit().');
 		}
-
-		return new Promise(resolve => {
-			resolve('approveVisit()');
-		});
+		
 	}
 
 }

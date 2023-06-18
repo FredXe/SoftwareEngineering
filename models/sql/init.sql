@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS residentApplication
   rA_ID INT NOT NULL AUTO_INCREMENT,
   rA_semester DATE NOT NULL,
   dorm_name CHAR(30) NOT NULL,
-  rA_approve INT NOT NULL,
+  rA_approve INT NOT NULL DEFAULT (0),
   rA_fee INT NOT NULL,
   student_ID CHAR(8) NOT NULL,
   PRIMARY KEY (rA_ID),

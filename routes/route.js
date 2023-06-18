@@ -10,6 +10,7 @@ const bulletionBoard = require('./bulletionBoard');
 const dormitory = require('./dormitory');
 const root = require('./root');
 const users = require('./users');
+const mail = require('./mail');
 const myInfo = require('./myInfo');
 const residentApplication = require('./residentApplication');
 const userInfo = require('./userInfo');
@@ -40,6 +41,7 @@ app.use(session({
 }));
 app.use(logger);
 app.use(dataInjector);
+app.use('/mail', mail);
 app.use('/', root);
 app.use(auth.auth('guest'));
 /**

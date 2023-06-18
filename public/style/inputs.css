@@ -100,7 +100,7 @@
         }
         &::-webkit-scrollbar-thumb {
             border: solid var(--primary-color-darker) 0.1rem;
-            background-color: var(--accent-color);
+            background-color: var(--icon-color);
             border-radius: 0.2rem;
         }
     }

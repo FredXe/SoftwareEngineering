@@ -3,8 +3,6 @@ const router = express.Router();
 
 const dormitoryCtrl = require('../controllers/dormitory');
 
-router.use(express.urlencoded({ extended: false }));
-
 router.get('/', dormitoryCtrl.showDorm);
 router.post('/insert', dormitoryCtrl.insert);
 router.post('/modify', dormitoryCtrl.modify);

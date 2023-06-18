@@ -49,8 +49,8 @@
     height: 5rem;
     width: auto;
     padding: 1rem 2rem;
-
     justify-content: center;
+    transition: 100ms;
 
     & > h3 {
         margin: 0;
@@ -62,6 +62,7 @@
         overflow: hidden;
     }
     &:hover {
+        filter: saturate(200%);
         cursor: pointer;
     }
 }

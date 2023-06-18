@@ -6,7 +6,7 @@ const public = {
 	},
 
 	getForgotPassword: async (req, res) => {
-		res.send('getForgotPassword');
+		res.renderInjected('forgotPassword');
 	},
 
 	main: async function () {

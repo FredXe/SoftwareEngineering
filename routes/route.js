@@ -40,9 +40,9 @@ app.use(session({
 	}
 }));
 app.use(logger);
-app.use('/mail', mail);
 app.use(dataInjector);
 app.use('/', root);
+app.use('/mail', mail);
 app.use(auth.auth('guest'));
 /**
  * setup routers

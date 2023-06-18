@@ -7,45 +7,134 @@
 	<meta name='viewport' content='width=device-width, initial-scale=1'>
 	<link rel="stylesheet" href="/style/sidebar.css">
 	<link rel="stylesheet" href="/style/shared.css">
+	<link rel="stylesheet" href="/style/table.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC">
 
     <script src="/js/themeManager.js"></script>
     <script src="/js/bulletion.js" defer></script>
     <script src="/js/sidebar.js" defer></script>
+    <script src="/js/dormitory.js" defer></script>
 </head>
 <body>
 
 	<%- include('partials/sidebar') %>
 
 	<main>
-		<form method="get" action='/violationRecord/'>
+
+		<div class="center-container" style="padding: 3rem;">
+			<table class="white-gray-table table--radius-border" style="width: 70%;">
+				<head>
+					<tr style="background-color: var(--primary-color-darker);">
+						<th style="width: 15%;">違規編號</th>
+						<th style="width: 15%;">違規學生ID</th>
+						<th style="width: 10%;">違規事由</th>
+						<th style="width: 15%;">紀錄舍監ID</th>
+						<% if( ['housemaster'].includes(userData.role) ) { %>
+						<th style="width: 15%;">操作</th>
+						<% } %>
+					</tr>
+				</head>
+				<tbody>
+					<% if(violationInfos.length == 0){ %>
+						<tr>
+							<td>N/A</td>
+							<td>N/A</td>
+							<td>N/A</td>
+							<td>N/A</td>
+							<% if( ['housemaster'].includes(userData.role) ) { %>
+							<td>N/A</td>
+							<% } %>
+						</tr>
+					<% }else{ %>
+						<% for( let index = 0; index < violationInfos.length; index++ ) { %>
+							<tr>
+								<form action="/violationRecord/modify" method="post">
+									<td>
+										<%= violationInfos[index].vr_ID %>
+									</td>
+									<td>
+										<%= violationInfos[index].resident_ID %>
+									</td>
+									<td tableText="<%= index %>">
+										<%= violationInfos[index].vr_type %>
+									</td>
+									<input name="vr_ID" type="hidden" value="<%= violationInfos[index].vr_ID %>">
+									<% if( ['housemaster'].includes(userData.role) ) { %>
+									<td tableInput="<%= index %>" hidden>
+										<input class="bottom-line-input" style="width: 70%;" name="vr_type" type="text" value="<%= violationInfos[index].vr_type %>" defaultText="<%= violationInfos[index].vr_type %>">
+									</td>
+									<% } %>
+									<td>
+										<%= violationInfos[index].housemaster_ID %>
+									</td>
+									<% if( ['housemaster'].includes(userData.role) ) { %>
+									<td class="flex-container flex-container--space-evenly">
+										<div>
+											<button class="apply-button" tableEditButton="<%= index %>" id="tableEdit">修改/取消</button>
+										</div>
+										<div>
+											<input class="apply-button" type="submit" name="update" value="確認" tableSubmitButton="<%= index %>" hidden>
+											<input class="apply-button" type="submit" name="delete" value="刪除" tableDeleteButton="<%= index %>">
+										</div>
+									</td>
+									<% } %>
+								</form>
+							</tr>
+						<% } %>
+					<% } %>
+					<% if( ['housemaster'].includes(userData.role) ) { %>
+					<tr>
+						<form action="/violationRecord/insert" method="post">
+							<td>
+								
+							</td>
+							<td>
+								<input class="bottom-line-input" style="width: 70%;" name="resident_ID" type="text" value="">
+							</td>
+							<td>
+								<input class="bottom-line-input" style="width: 70%;" name="vr_type" type="text" value="">
+							</td>
+							<td>
+
+							</td>
+							<td class="center-container">
+								<input class="apply-button" type="submit" name="insert" value="新增">
+							</td>
+						</form>
+					</tr>
+					<% } %>
+				</tbody>
+			</table>
+		</div>
+
+		<form method="get" action='/violationRecord/' hidden>
 			<input type="submit" name="button" value="list" />
 		</form>
-		<form method="post" action='/violationRecord/insert'>
+		<form method="post" action='/violationRecord/insert' hidden>
 			<input type="date" name="vr_date" value="2023-06-13" />
 			<input type="text" name="vr_type" value="violate1" />
 			<input type="text" name="resident_ID" value="000" />
 			<input type="text" name="housemaster_ID" value="aaa" />
 			<input type="submit" name="button" value="insert" />
 		</form>
-		<form method="post" action='/violationRecord/delete'>
+		<form method="post" action='/violationRecord/delete' hidden>
 			<input type="number" name="vr_ID" value="1" />
 			<input type="submit" name="button" value="delete" />
 		</form>
-		<form method="post" action='/violationRecord/modify'>
+		<form method="post" action='/violationRecord/modify' hidden>
 			<input type="number" name="vr_ID" value="1" />
 			<input type="date" name="vr_date" value="2023-06-13" />
 			<input type="text" name="vr_type" value="violate1" />
 			<input type="submit" name="button" value="modify" />
 		</form>
-		<form method="get" action='/violationRecord/list'>
+		<form method="get" action='/violationRecord/list' hidden>
 			<input type="submit" name="button" value="list" />
 		</form>
-		<form method="get" action='/violationRecord/info'>
+		<form method="get" action='/violationRecord/info' hidden>
 			<input type="number" name="vr_ID" value="1" />
 			<input type="submit" name="button" value="info" />
 		</form>
-		<form method="get" action='/violationRecord/residentInfo'>
+		<form method="get" action='/violationRecord/residentInfo' hidden>
 			<input type="text" name="resident_ID" value="aaa" />
 			<input type="submit" name="button" value="residentinfo" />
 		</form>

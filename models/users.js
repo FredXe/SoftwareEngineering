@@ -90,7 +90,7 @@ const public = {
 
 	insertNonResidentStudent: async function (user_ID, user_name, sex, password, email, eroll_year, phnumber) {
 		const insertUsers = `insert users value ('${user_ID}' , '${user_name}' , 'non_resident_student' , ${sex} , '${password}' , '${email}' , '${eroll_year}' , '${phnumber}');`
-		const insertStudent = `insert maintainer value ('${user_ID}')`;
+		const insertStudent = `insert student value ('${user_ID}')`;
 		const insertnonResidentStudent = `insert non_resident_student value ('${user_ID}')`;
 		try {
 			await db.query(insertUsers);
@@ -104,13 +104,13 @@ const public = {
 	insertResidentStudent: async function (user_ID, user_name, sex, password, email, eroll_year, phnumber, dorm_name, r_number) {
 		const insertUsers = `insert users value ('${user_ID}' , '${user_name}' , 'resident_student' , ${sex} , '${password}' , '${email}' , '${eroll_year}' , '${phnumber}');`
 		const insertStudent = `insert student value ('${user_ID}')`;
-		const insertnonResidentStudent = `\
+		const insertResidentStudent = `\
 		insert resident_student (dorm_name, r_number, user_ID) \
 		value ('${dorm_name}', '${r_number}', '${user_ID}')`;
 		try {
 			await db.query(insertUsers);
 			await db.query(insertStudent);
-			await db.query(insertnonResidentStudent);
+			await db.query(insertResidentStudent);
 		} catch (err) {
 			console.error(err);
 		}

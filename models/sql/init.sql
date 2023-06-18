@@ -80,7 +80,7 @@ CREATE TABLE IF NOT EXISTS resident_student
 CREATE TABLE IF NOT EXISTS residentApplication
 (
   rA_ID INT NOT NULL AUTO_INCREMENT,
-  rA_semester DATE NOT NULL,
+  rA_semester DATE NOT NULL DEFAULT CURRENT_DATE,
   dorm_name CHAR(30) NOT NULL,
   rA_approve INT NOT NULL DEFAULT (0),
   rA_fee INT NOT NULL,

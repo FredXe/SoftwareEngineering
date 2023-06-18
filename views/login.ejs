@@ -15,7 +15,7 @@
 
 	<div style="margin: 0; padding: 0; height: 100vh; display: flex; align-items: center; justify-content: center;">
 		<form style="display: flex; flex-direction: column; align-items: center;" method="post" action='/login'>
-			<h2>請登入</h2>
+			<h2 style="margin: 0.5rem;">請登入</h2>
 			<div class="input-text">
                 <input type="text" name="user_ID" value="a1095500" placeholder=" ">
                 <label for="uName">帳號</label>
@@ -26,8 +26,8 @@
             </div>
 			<input type="hidden" name="redirect" value="<%= redirect %>">
 			<input class="apply-button" type="submit" name="button" value="登入" />
-			<br>
-			<a href="/mail/forgotpassword">忘記密碼?</a>
+
+			<a style="font-size: 0.8rem; margin: 0.4rem;" href="/mail/forgotpassword">忘記密碼?</a>
 		</form>
 	</div>
 </body>

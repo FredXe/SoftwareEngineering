@@ -5,19 +5,19 @@ const public = {
     postViolationInsert: async (req, res) => {
         violation.insertVR(req.body.vr_date, req.body.vr_type, 
             req.body.resident_ID, req.body.housemaster_ID);
-        res.redirect('violation/list');
+        res.redirect('/violation/list');
     },
 
     //刪除違規紀錄
     postViolationDelete: async (req, res) => {
         violation.deleteVR(req.body.vr_ID);
-        res.redirect('violation/list');
+        res.redirect('/violation/list');
     },
 
     //修改違規紀錄
     postViolationModify: async (req, res) => {
         violation.modifyVR(req.body.vr_ID, req.body.vr_date, req.body.vr_type);
-        res.redirect('violation/list');
+        res.redirect('/violation/list');
     },
 
     //查看某住宿生違規紀錄

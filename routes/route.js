@@ -41,8 +41,8 @@ app.use(session({
 }));
 app.use(logger);
 app.use(dataInjector);
-app.use('/', root);
 app.use('/mail', mail);
+app.use('/', root);
 app.use(auth.auth('guest'));
 /**
  * setup routers

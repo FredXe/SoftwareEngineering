@@ -11,14 +11,14 @@ const public = {
 	//申請者必為非住宿生&&沒申請過；申請的大樓一定存在
 	insertRA: async function (rA_semester, dorm_name, rA_fee, student_ID) {
 		
-		const query1 = await db.query(`SELECT * FROM resident_student WHERE user_ID=${student_ID};`);
-		const query2 = await db.query(`SELECT * FROM dormitory WHERE dorm_name=${dorm_name};`);
-		const query3 = await db.query(`SELECT * FROM residentApplication WHERE student_ID=${student_ID};`);
+		const query1 = await db.query(`SELECT * FROM resident_student WHERE user_ID='${student_ID}';`);
+		const query2 = await db.query(`SELECT * FROM dormitory WHERE dorm_name='${dorm_name}';`);
+		const query3 = await db.query(`SELECT * FROM residentApplication WHERE student_ID='${student_ID}';`);
 		if(query1 === null && query2 != null && query3 === null){
 			try {
 				await db.query(`INSERT INTO residentApplication 
 				(rA_semester, dorm_name, rA_fee, student_ID) 
-				VALUES(${rA_semester},${dorm_name},${rA_fee},${student_ID});`);
+				VALUES('${rA_semester}','${dorm_name}','${rA_fee}','${student_ID}');`);
 				console.log('insertRA()');
 			} catch (err) {
 				console.error(err);
@@ -33,10 +33,10 @@ const public = {
 	//申請未通過的申請者&&申請存在
 	deleteRA: async function (rA_ID) {
 		const approve = 0;
-		const query = db.query(`SELECT * FROM residentApplication WHERE rA_ID=${rA_ID} AND rA_approve=${approve}`);
+		const query = db.query(`SELECT * FROM residentApplication WHERE rA_ID='${rA_ID}' AND rA_approve='${approve}'`);
 		if(query != null) {
 			try {
-				await db.query(`DELETE FROM residentApplication WHERE rA_ID=${rA_ID};`);
+				await db.query(`DELETE FROM residentApplication WHERE rA_ID='${rA_ID}';`);
 				console.log('deleteRA()');
 			} catch (err) {
 				console.error(err);
@@ -52,10 +52,10 @@ const public = {
 	//申請未通過的申請者&&有申請宿舍者
 	deleteStudentRA: async function (student_ID) {
 		const approve = 0;
-		const query = db.query(`SELECT * FROM residentApplication WHERE student_ID=${student_ID} AND rA_approve=${approve}`);
+		const query = db.query(`SELECT * FROM residentApplication WHERE student_ID='${student_ID}' AND rA_approve='${approve}'`);
 		if(query != null) {
 			try {
-				await db.query(`DELETE FROM residentApplication WHERE student_ID=${student_ID};`);
+				await db.query(`DELETE FROM residentApplication WHERE student_ID='${student_ID}';`);
 				console.log('deleteRA()');
 			} catch (err) {
 				console.error(err);
@@ -71,13 +71,13 @@ const public = {
 	//更改的大樓必存在&&必有此申請
 	modifyRA: async function (rA_semester, dorm_name, rA_fee, student_ID) {
 		const approve = 0;
-		const query1 = await db.query(`SELECT * FROM residentApplication WHERE student_ID=${student_ID} AND rA_approve=${approve};`);
-		const query2 = await db.query(`SELECT * FROM dormitory WHERE dorm_name=${dorm_name};`);
+		const query1 = await db.query(`SELECT * FROM residentApplication WHERE student_ID='${student_ID}' AND rA_approve='${approve}';`);
+		const query2 = await db.query(`SELECT * FROM dormitory WHERE dorm_name='${dorm_name}';`);
 		if(query1 != null && query2 != null) {
 			try {
 				await db.query(`UPDATE residentApplication 
-						SET rA_semester=${rA_semester}, dorm_name=${dorm_name}, rA_fee=${rA_fee} 
-						WHERE student_ID=${student_ID};`);
+						SET rA_semester='${rA_semester}', dorm_name='${dorm_name}', rA_fee='${rA_fee}' 
+						WHERE student_ID='${student_ID}';`);
 			} catch (err) {
 				console.error(err);
 			}
@@ -92,7 +92,7 @@ const public = {
 
 	//查詢一筆申請資料(所有人)
 	selectRA: async function (rA_ID) {
-		const row = await db.query(`SELECT * FROM residentApplication WHERE rA_ID=${rA_ID};`);
+		const row = await db.query(`SELECT * FROM residentApplication WHERE rA_ID='${rA_ID}';`);
 
 		return new Promise(resolve => {
 			resolve(utils.decodeRows(row));
@@ -113,7 +113,7 @@ const public = {
 		const approve = 1
 		const rows = await db.query(`SELECT rA_ID, rA_fee, student_ID 
 									FROM residentApplication 
-									WHERE rA_approve=${approve};`);
+									WHERE rA_approve='${approve}';`);
 
 		return new Promise(resolve => {
 			resolve(utils.decodeRows(rows));
@@ -122,7 +122,7 @@ const public = {
 
 	//查詢某學生申請資料(所有人)
 	selectStudentRA: async function (student_ID) {
-		const row = await db.query(`SELECT * FROM residentApplication WHERE student_ID=${student_ID};`);
+		const row = await db.query(`SELECT * FROM residentApplication WHERE student_ID='${student_ID}';`);
 		return new Promise(resolve => {
 			resolve(utils.decodeRows(row));
 		});
@@ -133,20 +133,20 @@ const public = {
 	//
 	approveRA: async function (rA_ID, r_number) {
 		let approve = 0;
-		const dorm_name = await db.query(`SELECT dorm_name FROM residentApplication WHERE rA_ID=${rA_ID};`);
-		const query1 = await db.query(`SELECT * FROM residentApplication WHERE rA_ID=${rA_ID} AND rA_approve=${approve};`);
-		const query2 = await db.query(`SELECT * FROM room WHERE r_number=${r_number} AND dorm_name=${dorm_name};`);
+		const dorm_name = await db.query(`SELECT dorm_name FROM residentApplication WHERE rA_ID='${rA_ID}';`);
+		const query1 = await db.query(`SELECT * FROM residentApplication WHERE rA_ID='${rA_ID}' AND rA_approve='${approve}';`);
+		const query2 = await db.query(`SELECT * FROM room WHERE r_number='${r_number}' AND dorm_name='${dorm_name}';`);
 		if(query1 != null && query2 != null) {
 			try {
 				const resident_student = 'resident_student';
 				approve = 1;
-				await db.query(`UPDATE residentApplication SET rA_approve=${approve} WHERE rA_ID=${rA_ID};`);
-				const user_ID = await db.query(`SELECT student_ID FROM residentApplication WHERE rA_ID=${rA_ID};`);
-				await db.query(`DELETE FROM non_resident_student WHERE student_ID=${student_ID};`);
+				await db.query(`UPDATE residentApplication SET rA_approve='${approve}' WHERE rA_ID='${rA_ID}';`);
+				const user_ID = await db.query(`SELECT student_ID FROM residentApplication WHERE rA_ID='${rA_ID}';`);
+				await db.query(`DELETE FROM non_resident_student WHERE student_ID='${student_ID}';`);
 				await db.query(`INSERT INTO resident_student
 								(user_ID, r_number, dorm_name) 
-								VALUES(${user_ID},${r_number},${dorm_name});`);
-				await db.query(`UPDATE users SET role=${resident_student} WHERE user_ID=${user_ID};`);
+								VALUES('${user_ID}','${r_number}','${dorm_name}');`);
+				await db.query(`UPDATE users SET role='${resident_student}' WHERE user_ID='${user_ID}';`);
 			} catch (err) {
 				console.error(err);
 			}

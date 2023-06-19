@@ -1,4 +1,3 @@
-const { log } = require('console');
 const querystring = require('querystring');
 
 const ROLE2NUM = {

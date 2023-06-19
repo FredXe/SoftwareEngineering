@@ -14,14 +14,6 @@ const transporter = nodemailer.createTransport({
 	},
 });
 
-// // send mail with defined transport object
-// let info = await transporter.sendMail({
-// 	to: "a1095532@mail.nuk.edu.tw, a1095510@mail.nuk.edu.tw", // list of receivers
-// 	subject: ":D:D:D", // Subject line
-// 	text: "Hello world?", // plain text body
-// 	html: "<b>http://localhost:8888/mail/forgotpassword</b>", // html body
-// });
-
 const public = {
 	postForgotPassword: async (req, res) => {
 		const user_ID = req.body.user_ID;
@@ -30,7 +22,7 @@ const public = {
 		const token = jwt.sign({ exp: Math.floor(Date.now() / 1000) + (5 * 60), user: user_ID }, process.env.SECRET)
 
 		try {
-			await transporter.sendMail({
+			transporter.sendMail({
 				to: userMail, // list of receivers
 				subject: "請在五分鐘以內重新設定您的密碼", // Subject line
 				html: `點擊下方的超連結以重新設定您的密碼，如果您沒有進行嘗試重設您的密碼的動作，請再麻煩您忽略我們系統自動發送的這封電子郵件。 \

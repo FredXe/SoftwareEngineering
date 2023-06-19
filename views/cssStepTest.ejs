@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Css Tesing Page👍</title>
+    <link rel="stylesheet" href="style/sidebar.css">
+    <link rel="stylesheet" href="style/shared.css">
+    <link rel="stylesheet" href="style/inputs.css">
+    <link rel="stylesheet" href="style/stepper.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC">
+    <link rel="stylesheet" href="style/table.css">
+
+    <script src="js/themeManager.js"></script>
+</head>
+<body>
+    <%- include('partials/sidebar') %>
+
+    <main>
+        <div class="stepperPageContainer">
+            <div class="stepperContainer">
+                <h2>
+                    宿舍申請流程
+                </h2>
+                <div class="stepperItem currentStepperItem">
+                    <svg class="stepperIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/></svg>
+                    <div class="stepperContentContainer">
+                        <h3>提 交 申 請</h3>
+                        <p>
+                            選擇欲申請的宿舍大樓，管理員將會為您分配房間。
+                        </p>
+                    </div>
+                </div>
+                <div class="stepperItem">
+                    <svg class="stepperIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M313.4 32.9c26 5.2 42.9 30.5 37.7 56.5l-2.3 11.4c-5.3 26.7-15.1 52.1-28.8 75.2H464c26.5 0 48 21.5 48 48c0 18.5-10.5 34.6-25.9 42.6C497 275.4 504 288.9 504 304c0 23.4-16.8 42.9-38.9 47.1c4.4 7.3 6.9 15.8 6.9 24.9c0 21.3-13.9 39.4-33.1 45.6c.7 3.3 1.1 6.8 1.1 10.4c0 26.5-21.5 48-48 48H294.5c-19 0-37.5-5.6-53.3-16.1l-38.5-25.7C176 420.4 160 390.4 160 358.3V320 272 247.1c0-29.2 13.3-56.7 36-75l7.4-5.9c26.5-21.2 44.6-51 51.2-84.2l2.3-11.4c5.2-26 30.5-42.9 56.5-37.7zM32 192H96c17.7 0 32 14.3 32 32V448c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32V224c0-17.7 14.3-32 32-32z"/></svg>
+                    <div class="stepperContentContainer">
+                        <h3>等 待 同 意</h3>
+                        <p>
+                            提交申請後，請靜候管理員的同意，通常不會超過三天。
+                        </p>
+                    </div>
+                </div>
+                <div class="stepperItem">
+                    <svg class="stepperIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM64 80c0-8.8 7.2-16 16-16h64c8.8 0 16 7.2 16 16s-7.2 16-16 16H80c-8.8 0-16-7.2-16-16zm0 64c0-8.8 7.2-16 16-16h64c8.8 0 16 7.2 16 16s-7.2 16-16 16H80c-8.8 0-16-7.2-16-16zm128 72c8.8 0 16 7.2 16 16v17.3c8.5 1.2 16.7 3.1 24.1 5.1c8.5 2.3 13.6 11 11.3 19.6s-11 13.6-19.6 11.3c-11.1-3-22-5.2-32.1-5.3c-8.4-.1-17.4 1.8-23.6 5.5c-5.7 3.4-8.1 7.3-8.1 12.8c0 3.7 1.3 6.5 7.3 10.1c6.9 4.1 16.6 7.1 29.2 10.9l.5 .1 0 0 0 0c11.3 3.4 25.3 7.6 36.3 14.6c12.1 7.6 22.4 19.7 22.7 38.2c.3 19.3-9.6 33.3-22.9 41.6c-7.7 4.8-16.4 7.6-25.1 9.1V440c0 8.8-7.2 16-16 16s-16-7.2-16-16V422.2c-11.2-2.1-21.7-5.7-30.9-8.9l0 0c-2.1-.7-4.2-1.4-6.2-2.1c-8.4-2.8-12.9-11.9-10.1-20.2s11.9-12.9 20.2-10.1c2.5 .8 4.8 1.6 7.1 2.4l0 0 0 0 0 0c13.6 4.6 24.6 8.4 36.3 8.7c9.1 .3 17.9-1.7 23.7-5.3c5.1-3.2 7.9-7.3 7.8-14c-.1-4.6-1.8-7.8-7.7-11.6c-6.8-4.3-16.5-7.4-29-11.2l-1.6-.5 0 0c-11-3.3-24.3-7.3-34.8-13.7c-12-7.2-22.6-18.9-22.7-37.3c-.1-19.4 10.8-32.8 23.8-40.5c7.5-4.4 15.8-7.2 24.1-8.7V232c0-8.8 7.2-16 16-16z"/></svg>
+                    <div class="stepperContentContainer">
+                        <h3>等 待 繳 費</h3>
+                        <p>
+                            管理員同意後，我們將寄送繳費單至您的電子郵件信箱。
+                        </p>
+                    </div>
+                </div>
+                <div class="stepperItem">
+                    <svg class="stepperIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M342.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 178.7l-57.4-57.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l80 80c12.5 12.5 32.8 12.5 45.3 0l160-160zm96 128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 402.7 54.6 297.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l256-256z"/></svg>
+                    <div class="stepperContentContainer">
+                        <h3>申 請 通 過</h3>
+                        <p>
+                            恭喜! 您現在是我們高雄大學宿舍大家庭的一員了!
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="stepperInfoContainer">
+                <h2>宿舍公約</h2>
+                <article class="">
+                    <h3>國立高雄大學住宿生活公約</h3>
+                    一、本公約依據「國立高雄大學學生宿舍管理辦法」及「國立高雄大學學生宿舍住宿契約」訂定，本校住宿學生，應遵守本公約。
+
+                    二、本公約所稱宿舍區，包含宿舍交誼廳、樓(電)梯、走廊、洗衣間、寢室。
+
+                    三、住宿學生違反下列規定，採違規扣點方式處理，並通知家長：
+
+                    (一)違反下列情形之一者，一次扣3 點：
+                    1.在宿舍區內製造噪音、大聲喧譁或妨礙他人自修或睡眠者。
+                    2.垃圾未清、未分類或妨害宿舍環境 清潔衛生者。
+                    3.在宿舍區內飼養寵物或餵食動物者。
+                    4.未經同意，擅自加裝寢室門鎖者。
+                    5.未辦妥異動手續，私自更換寢室者或未經許可佔用他人床位。
+                    6.故意損壞公物者。
+                    7.宿舍區內吸菸者。
+
+
+                    (二)違反下列情形之一者，一次扣5 點：
+                    1.未經同意使用或放置如電冰箱、電爐、電鍋、電暖氣、電暖氣毯或500W以上等影響用電安全之電器者。
+                    2.以物品阻檔宿舍出入口影響出入管制或安全者。
+                    3.未經報備核准從事具有安全顧慮或影響宿舍安寧之活動（例如：施放煙火炮竹、營火晚會、炊食等）。
+                    4.非經宿舍輔導員許可，於夜間22 點至隔日早上9 點，於異性宿舍走廊、樓(電)梯間、洗衣間、交誼廳等滯留者。
+                    5.攜帶任何危險物品或違禁物進入宿舍者。
+
+                    (三)違反下列情形之一者，一次扣7 點：
+                    1.在宿舍區賭博、酗酒、鬧事、鬥毆行為者或煽動械鬥行為者。
+                    2.未經同意，提供本宿舍以外人士集會或活動，妨害宿舍安寧者。
+                    3.在宿舍區飼養寵物或餵食動物，三次屢犯經查證屬實者。
+                    4.非經宿舍輔導員許可，於夜間22 點至隔日早上9 點，留置非住宿生或異性在寢室者情節輕微者。
+                    5.非經宿舍輔導員許可，於夜間22 點至隔日早上9 點，在異性寢室內滯留者情節輕微者。
+                    6.偷竊行為經查證屬實者。
+
+                    (四)違反下列情形之一者，一次扣10 點，立即退宿、沒收住宿押金並依學生獎懲辦法議處：
+                    1.私自頂讓床位、佔據他人床位或空床位。
+                    2.住宿區械鬥者。
+                    3.住宿區吸毒或攜帶毒品者。
+                    4.無故未參加住宿生防災逃生演練。
+                    5.以物品或滅火器阻擋門禁。
+                    6.未經全體室友同意帶異性回寢室。
+                    7.進入異性寢室，未經對方全體室友同意。
+                    8.異性留宿。
+
+                    四、扣點、申覆說明：
+
+                    (一)一學年內累計扣點達10 點者，必須在兩週內搬離宿舍，取消住宿申請
+                    資格。
+
+                    (二)住宿學生違反有關規定之扣點，由學宿會、宿舍輔導員執行，裁決結果
+                    有異議者，得向學務處生輔組申覆。
+
+                    (三)第3 點所列違規事項，生輔組得考量發生違規事件之動機、背景等相關
+                    因素，經學務長核定，改以愛校服務等方式實施。
+
+                    五、愛校服務內容：
+                    (一)維護宿舍環境整潔、美化宿舍有具體事實者，服務4 小時抵扣3 點。
+                    (二)維護宿舍秩序、公共安全有具體貢獻者，抵扣3 點。
+                    (三)積極辦理學生宿舍活動及參與宿舍公共事務者，抵扣5 點。
+                    (四)防止違法事件發生有具體事實者，抵扣7 點。
+                    (五)其他對宿舍有具體事實貢獻者，視情事給予抵扣點數。
+
+                    六、寢室會客相關關定：在不違返本公約下，各寢室得經所有成員協議制定寢規，限制異性於管制時間外出入寢室；因該寢規所生之損害與責任，其責任歸屬該寢室成員。
+
+                    七、本公約經住宿生大會通過，並報學務處核備後實施，修正時亦同。
+                    
+                    學生宿舍生活自治會關心您
+                </article>
+                <form action="/residentApplication/apply" method="post" style="display: flex; flex-direction: column; align-items: center;">
+                    <label for="agree">
+                        <input type="checkbox" name="agree" id="agree" required>
+                        我同意以上公約
+                    </label>
+                    <h4 style="margin: 1rem;">欲申請宿舍: </h4>
+                    <select class="select" name="dorm_name">
+                        <option value="學一">學一</option>
+                        <option value="學二">學二</option>
+                    </select>
+                    <!-- <span style="margin: 0.5rem 0">送出申請即同意以上公約</span> -->
+                    <input class="apply-button" type="submit" value="送出申請" style="margin-top: 1rem;">
+                </form>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

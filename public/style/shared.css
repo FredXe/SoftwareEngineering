@@ -13,9 +13,9 @@
     }
     
     &.dark-theme{
-        --background-color: rgb(34, 30, 35);
-        --primary-color: rgb(40, 31, 44);
-        --primary-color-darker: rgb(31, 24, 33);
+        --background-color: rgb(30, 26, 31);
+        --primary-color: rgb(51, 41, 56);
+        --primary-color-darker: rgb(44, 36, 46);
         --text-color: rgb(195, 195, 195);
     }
 }
@@ -43,7 +43,7 @@ main {
 .apply-button{
     font-size: 0.9rem;
     border:none;
-    padding:0.3rem 0.8rem;
+    padding:0.5rem 0.8rem;
     vertical-align:middle;
     overflow:hidden;
     color:white;

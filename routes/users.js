@@ -7,7 +7,7 @@ const usersCtrl = require('../controllers/users');
 router.get('/', usersCtrl.getRoot);
 router.get('/show', usersCtrl.getShow);
 router.get('/show/all', usersCtrl.getShowAll);
-router.get('/show/myown', usersCtrl.getShowMyown);
+router.get('/show/detail/:user_ID', usersCtrl.getShowDetail);
 router.post('/update', usersCtrl.postUpdate);
 router.post('/insert', usersCtrl.postInsert);
 

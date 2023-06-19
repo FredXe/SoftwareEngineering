@@ -23,8 +23,9 @@ const public = {
 		res.renderInjected('users');
 	},
 
-	getShowMyown: async (req, res) => {
-		const user_ID = req.session.user_ID;
+	getShowDetail: async (req, res) => {
+		const role = req.session.role;
+		const user_ID = (role == 'admin') ? req.params.user_ID : req.session.user_ID;
 		const user = await users.showUsers(user_ID);
 		console.log(user);
 		res.renderInjected('users');
@@ -71,7 +72,7 @@ const public = {
 		}
 		// { role, user_ID, user_name, sex, password, email, eroll_year, phnumber }
 		try {
-			await users.updateUser(
+			await users.insertUser(
 				{
 					user_ID: user_ID,
 					user_name: user_name,

@@ -60,24 +60,26 @@ const public = {
 	},
 
 	postInsert: async (req, res) => {
-		const role = req.session.role;
+		const userRole = req.session.role;
 		let user_ID = req.session.user_ID;
 
-		const user_name = req.body.user_name;
-		const sex = req.body.sex;
-		const email = req.body.email;
-
-		if (role == 'admin') {
+		if (userRole == 'admin') {
 			user_ID = req.body.user_ID;
 		}
-		// { role, user_ID, user_name, sex, password, email, eroll_year, phnumber }
+
+		const { insertRole, user_name, sex, password, email, eroll_year, phnumber } = req.body;
+
 		try {
 			await users.insertUser(
 				{
+					role: insertRole,
 					user_ID: user_ID,
 					user_name: user_name,
 					sex: sex,
+					password: password,
 					email: email,
+					eroll_year: eroll_year,
+					phnumber: phnumber
 				}
 			);
 

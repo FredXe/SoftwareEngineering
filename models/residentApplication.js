@@ -108,14 +108,6 @@ const public = {
 		});
 	},
 
-	//查詢某學生申請資料(所有人)
-	selectStudentRA: async function (student_ID) {
-		const row = await db.query(`SELECT * FROM resident_application WHERE student_ID='${student_ID}';`);
-		return new Promise(resolve => {
-			resolve(utils.decodeRows(row));
-		});
-	},
-
 	//核可申請
 	//有申請&&申請未通過&&房間存在在此大樓
 	//
@@ -125,7 +117,6 @@ const public = {
 		} catch (err) {
 			console.error(err);
 		}
-
 	},
 
 	payTheFee: async function (student_ID, r_number) {

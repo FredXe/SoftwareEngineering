@@ -39,7 +39,9 @@
 						<% for( let index = 0; index < residentApplicationInfos.length; index++ ) { %>
 							<tr>
 								<td>
-									<%= residentApplicationInfos[index].user_ID %>
+									<a href="/residentApplication/list/<%= residentApplicationInfos[index].user_ID %>">
+										<%= residentApplicationInfos[index].user_ID %>
+									</a>
 								</td>
 								<td>
 									<%= residentApplicationInfos[index].user_name %>

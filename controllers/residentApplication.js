@@ -21,9 +21,9 @@ const public = {
 	},
 
 	getResidentApplicationApprove: async (req, res) => {
-		const residentApplicationInfos = await residentApplication.selectAllRA();
-		res.renderInjected('residentApplication/list', {
-			residentApplicationInfos
+		const residentApplicationInfo = await residentApplication.selectRA(req.params.student_ID);
+		res.renderInjected('residentApplication/detail', {
+			residentApplicationInfo: residentApplicationInfo[0],
 		});
 	},
 
@@ -31,7 +31,7 @@ const public = {
 	postResidentApplicationApply: async (req, res) => {
 		const student_ID = req.session.user_ID;
 		const dorm_name = req.body.dorm_name;
-		residentApplication.insertRA(student_ID, dorm_name);
+		await residentApplication.insertRA(student_ID, dorm_name);
 		res.redirect('residentApplication/Info');
 	},
 
@@ -49,8 +49,10 @@ const public = {
 
 	//查詢一筆申請資料
 	getResidentApplicationInfo: async (req, res) => {
-		const residentApplicationInfo = await residentApplication.selectRA(req.body.student_ID);
-		res.renderInjected('residentApplication/detail', { residentApplicationInfo });
+		const residentApplicationInfo = await residentApplication.selectRA(req.session.user_ID);
+		res.renderInjected('residentApplication/detail', { 
+			residentApplicationInfo: residentApplicationInfo[0],
+		});
 	},
 
 	//核可某申請

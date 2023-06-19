@@ -66,7 +66,9 @@ const public = {
 
 	//查詢一筆申請資料(所有人)
 	selectRA: async function (student_ID) {
-		const rows = await db.query(`SELECT * FROM resident_application WHERE student_ID='${student_ID}';`);
+		// const rows = await db.query(`SELECT * FROM resident_application WHERE student_ID='${student_ID}';`);
+		const rows = await db.query(`SELECT student_ID, user_name, rA_semester, dorm_name, rA_approve, rA_fee FROM resident_application, users \
+		WHERE resident_application.student_ID = users.user_ID AND student_ID='${student_ID}';`);
 
 		return new Promise(resolve => {
 			resolve(utils.decodeRows(rows));

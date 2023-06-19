@@ -111,32 +111,6 @@ const public = {
 
 		res.redirect('/users');
 	},
-
-	postResidentStudentInsert: async (req, res) => {
-		const user_ID = req.body.user_ID;
-		const user_name = req.body.user_name;
-		const sex = req.body.sex;
-		const password = await hash.hash(req.body.password);
-		const email = req.body.email;
-		const eroll_year = req.body.eroll_year;
-		const phnumber = req.body.phnumber;
-		const dorm_name = req.body.dorm_name;
-		const r_number = req.body.r_number;
-
-		await users.insertResidentStudent(
-			user_ID,
-			user_name,
-			sex,
-			password,
-			email,
-			eroll_year,
-			phnumber,
-			dorm_name,
-			r_number
-		);
-
-		res.redirect('/users');
-	},
 }
 
 module.exports = public;

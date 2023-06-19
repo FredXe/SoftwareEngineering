@@ -5,69 +5,67 @@
 	<meta http-equiv='X-UA-Compatible' content='IE=edge'>
 	<title>:D</title>
 	<meta name='viewport' content='width=device-width, initial-scale=1'>
-	<link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-	<script src='main.js'></script>
+
+	<link rel="stylesheet" href="/style/sidebar.css">
+	<link rel="stylesheet" href="/style/shared.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC">
+
+    <script src="/js/themeManager.js"></script>
+    <script src="/js/sidebar.js" defer></script>
+
 </head>
 <body>
 
+	<%- include('partials/sidebar') %> 
 
-	<form method="post" action='/users/admin/insert'>
-		<input type="text" name="user_ID" value="a1095500" />
-		<input type="text" name="user_name" value="NODE" />
-		<input type="text" name="sex" value="0" />
-		<input type="text" name="password" value="password" />
-		<input type="text" name="email" value="test@node.js" />
-		<input type="text" name="eroll_year" value="2023" />
-		<input type="text" name="phnumber" value="0911222333" />
-		<input type="submit" name="button" value="insert admin" />
-	</form>
-
-	<form method="post" action='/users/housemaster/insert'>
-		<input type="text" name="user_ID" value="a1095599" />
-		<input type="text" name="user_name" value="NODE" />
-		<input type="text" name="sex" value="0" />
-		<input type="text" name="password" value="password" />
-		<input type="text" name="email" value="test@node.js" />
-		<input type="text" name="eroll_year" value="2023" />
-		<input type="text" name="phnumber" value="0911222333" />
-		<input type="submit" name="button" value="insert housemaster" />
-	</form>
-
-	<form method="post" action='/users/nonResidentStudent/insert'>
-		<input type="text" name="user_ID" value="a1095532" />
-		<input type="text" name="user_name" value="NODE" />
-		<input type="text" name="sex" value="0" />
-		<input type="text" name="password" value="password" />
-		<input type="text" name="email" value="test@node.js" />
-		<input type="text" name="eroll_year" value="2023" />
-		<input type="text" name="phnumber" value="0911222333" />
-		<input type="submit" name="button" value="insert nonresident student" />
-	</form>
-
-	<form method="post" action='/users/residentStudent/insert'>
-		<input type="text" name="user_ID" value="a1095501" />
-		<input type="text" name="user_name" value="Bob" />
-		<input type="text" name="sex" value="0" />
-		<input type="text" name="password" value="password" />
-		<input type="text" name="email" value="test@node.js" />
-		<input type="text" name="eroll_year" value="2023" />
-		<input type="text" name="phnumber" value="0911222333" />
-		<input type="text" name="dorm_name" value="學一" />
-		<input type="text" name="r_number" value="1" />
-		<input type="submit" name="button" value="insert resident student" />
-	</form>
-
-	<form method="get" action='/users/admin/show'>
-		<input type="submit" name="button" value="show admin" />
-	</form>
-
-	<form method="get" action='/users/housemaster/show'>
-		<input type="submit" name="button" value="show housemaster" />
-	</form>
-
-	<form method="get" action='/users/nonResidentStudent/show'>
-		<input type="submit" name="button" value="show nonResidentStudent" />
-	</form>
+	<main>
+		<div>
+			<form method="post" action='/users/admin/insert'>
+				<input type="text" name="user_ID" value="a1095500" />
+				<input type="text" name="user_name" value="NODE" />
+				<input type="text" name="sex" value="0" />
+				<input type="text" name="password" value="password" />
+				<input type="text" name="email" value="test@node.js" />
+				<input type="text" name="eroll_year" value="2023" />
+				<input type="text" name="phnumber" value="0911222333" />
+				<input type="submit" name="button" value="insert admin" />
+			</form>
+		
+			<form method="post" action='/users/housemaster/insert'>
+				<input type="text" name="user_ID" value="a1095599" />
+				<input type="text" name="user_name" value="NODE" />
+				<input type="text" name="sex" value="0" />
+				<input type="text" name="password" value="password" />
+				<input type="text" name="email" value="test@node.js" />
+				<input type="text" name="eroll_year" value="2023" />
+				<input type="text" name="phnumber" value="0911222333" />
+				<input type="submit" name="button" value="insert housemaster" />
+			</form>
+		
+			<form method="post" action='/users/nonResidentStudent/insert'>
+				<input type="text" name="user_ID" value="a1095532" />
+				<input type="text" name="user_name" value="NODE" />
+				<input type="text" name="sex" value="0" />
+				<input type="text" name="password" value="password" />
+				<input type="text" name="email" value="test@node.js" />
+				<input type="text" name="eroll_year" value="2023" />
+				<input type="text" name="phnumber" value="0911222333" />
+				<input type="submit" name="button" value="insert nonresident student" />
+			</form>
+		
+			<form method="get" action='/users/admin/show'>
+				<input type="submit" name="button" value="show admin" />
+			</form>
+		
+			<form method="get" action='/users/housemaster/show'>
+				<input type="submit" name="button" value="show housemaster" />
+			</form>
+		
+			<form method="get" action='/users/nonResidentStudent/show'>
+				<input type="submit" name="button" value="show nonResidentStudent" />
+			</form>
+		</div>
+	</main>
 
 </body>
 </html>

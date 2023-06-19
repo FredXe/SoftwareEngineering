@@ -14,6 +14,5 @@ router.get('/nonResidentStudent/show', usersCtrl.getNonResidentStudentShow);
 router.post('/nonResidentStudent/insert', usersCtrl.postNonResidentStudentInsert);
 router.get('/maintainer/show', usersCtrl.getMaintainerShow);
 router.post('/maintainer/insert', usersCtrl.postMaintainerInsert);
-router.post('/residentStudent/insert', usersCtrl.postResidentStudentInsert);
 
 module.exports = router;

@@ -108,31 +108,45 @@ const public = {
 	},
 
 	selectAvailableRoom: async function (dorm_name) {
-		const query = `SELECT r_number FROM room WHERE;`;
+		const query = `SELECT available_room.r_number AS availableRoom FROM ` +
+			`(SELECT rs.r_number, COUNT(rs.r_number) AS people, r_volume ` +
+			`FROM resident_student=rs JOIN room ON rs.dorm_name=room.dorm_name ` +
+			`AND rs.r_number=room.r_number WHERE rs.dorm_name='${dorm_name}' ` +
+			`GROUP BY r_number HAVING people<r_volume ORDER BY r_number ASC LIMIT 1) AS available_room;`;
 
+		let availableRoom;
 		try {
-			// await db.query(`UPDATE resident_application SET rA_approve=1 WHERE student_ID='${student_ID}';`);
+			availableRoom = await db.query(query);
 		} catch (err) {
 			console.error(err);
 		}
+
+		return new Promise(resolve => {
+			resolve(utils.decodeRows(availableRoom)[0].availableRoom);
+		});
 	},
 
 	payTheFee: async function (student_ID) {
 		const payTheFee = `UPDATE resident_application SET rA_fee=1 WHERE student_ID='${student_ID}';`;
 		const updateUserRole = `UPDATE users SET role='resident_student' WHERE user_ID='${student_ID}';`;
 		const deleteNonresident = `DELETE FROM non_resident_student WHERE user_ID='${student_ID}';`;
+
+		let dorm_name, availableRoom;
+
+		try {
+			dorm_name = await db.query(`SELECT dorm_name FROM resident_application WHERE student_ID='${student_ID}';`);
+			dorm_name = utils.decodeRows(dorm_name)[0].dorm_name;
+			availableRoom = await this.selectAvailableRoom(dorm_name);
+		} catch (err) {
+			console.error(err);
+		}
+
 		/**
 		 * 分配房間
 		 */
 		const insertResident =
-			`INSERT resident_student (user_ID, r_number, dorm_name) VALUE ('${student_ID}', ` +
-			`(SELECT available_room.r_number FROM ` +
-			`(SELECT rs.r_number, COUNT(rs.r_number) AS people, r_volume ` +
-			`FROM resident_student=rs JOIN room ON rs.dorm_name=room.dorm_name ` +
-			`AND rs.r_number=room.r_number WHERE rs.dorm_name= ` +
-			`(SELECT dorm_name FROM resident_application WHERE student_ID='${student_ID}') ` +
-			`GROUP BY r_number HAVING people<r_volume ORDER BY r_number ASC LIMIT 1) AS available_room), ` +
-			`(SELECT dorm_name FROM resident_application WHERE student_ID='${student_ID}'));`;
+			`INSERT resident_student (user_ID, r_number, dorm_name) ` +
+			`VALUE ('${student_ID}', ${availableRoom}, '${dorm_name}');`;
 
 		try {
 			await db.query(payTheFee);
@@ -142,9 +156,12 @@ const public = {
 		} catch (err) {
 			console.error(err);
 		}
+
+		return new Promise(resolve => {
+			resolve({ dorm_name: dorm_name, room: availableRoom });
+		});
 	},
 
 }
-
 
 module.exports = public;

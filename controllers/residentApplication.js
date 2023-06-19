@@ -17,9 +17,9 @@ const public = {
 		const role = req.session.role;
 
 		if (role == 'admin') {
-			res.redirect('residentApplication/list');
+			res.redirect('/residentApplication/list');
 		} else {
-			res.redirect('residentApplication/info');
+			res.redirect('/residentApplication/info');
 		}
 	},
 
@@ -44,13 +44,13 @@ const public = {
 		const student_ID = req.session.user_ID;
 		const dorm_name = req.body.dorm_name;
 		await residentApplication.insertRA(student_ID, dorm_name);
-		res.redirect('residentApplication/Info');
+		res.redirect('/residentApplication/Info');
 	},
 
 	//駁回申請
 	postResidentApplicationDelete: async (req, res) => {
 		residentApplication.deleteRA(req.body.student_ID);
-		res.redirect('residentApplication/');
+		res.redirect(`/residentApplication/${req.body.student_ID}`);
 	},
 
 	//查詢已核可學生之住宿費
@@ -81,7 +81,7 @@ const public = {
 				html: `請在繳交期限前繳交費用`, // html body
 			});
 
-			res.redirect('residentApplication/list');
+			res.redirect('/residentApplication/list');
 		} catch (err) {
 			console.error(err);
 		}
@@ -93,13 +93,15 @@ const public = {
 
 		try {
 			const { dorm_name, room } = await residentApplication.payTheFee(student_ID);
-			const userMail = await mail.selectMail(user_ID);
+			const userMail = await mail.selectMail(student_ID);
 
 			transporter.sendMail({
 				to: userMail, // list of receivers
 				subject: "您的住宿費用已繳交", // Subject line
 				html: `您已經入住 ${dorm_name} ${room} 號房`, // html body
 			});
+			
+			res.redirect('/residentApplication/list')
 		} catch (err) {
 			console.error(err);
 		}

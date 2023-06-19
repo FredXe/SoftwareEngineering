@@ -18,9 +18,9 @@ const public = {
 
 	//申請駁回(管理員)
 	//申請未通過的申請者&&申請存在
-	deleteRA: async function (studen_ID) {
+	deleteRA: async function (student_ID) {
 		try {
-			await db.query(`UPDATE resident_application SET rA_approve=-1 WHERE student_ID='${studen_ID}';`);
+			await db.query(`DELETE FROM resident_application WHERE student_ID='${student_ID}';`);
 		} catch (err) {
 			console.error(err);
 		}
@@ -79,7 +79,7 @@ const public = {
 	selectAllRA: async function () {
 		const rows = await db.query(
 			'SELECT user_name, user_ID, rA_fee, rA_approve, ' +
-			'dorm_name FROM resident_application, users WHERE student_ID = user_ID ORDER BY rA_approve DESC;');
+			'dorm_name FROM resident_application, users WHERE student_ID = user_ID ORDER BY rA_approve ASC;');
 
 		return new Promise(resolve => {
 			resolve(utils.decodeRows(rows));

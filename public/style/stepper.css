@@ -131,6 +131,28 @@
                 filter: opacity(100%);
             }
         }
+        &.currentStepperItem+.stepperItem {
+            &::after {
+                animation-name: blinking;
+                animation-duration: 2s;
+                animation-iteration-count: infinite;
+                filter: opacity(100%);
+            }
+        }
     }
+}
 
+@keyframes blinking {
+    0% {
+        opacity: 100%;
+        border-color: var(--accent-color);
+    }
+    50% {
+        opacity: 30%;
+        border-color: var(--icon-color);
+    }
+    100% {
+        opacity: 100%;
+        border-color: var(--accent-color);
+    }
 }

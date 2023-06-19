@@ -48,10 +48,21 @@
 									<%= residentApplicationInfos[index].dorm_name %>
 								</td>
 								<td>
-									<%= 
-										residentApplicationInfos[index].rA_approve == 1 ? 
-										(residentApplicationInfos[index].rA_fee == 1 ? '已繳費' : '未繳費' ) : '待審核'
-									%>
+									<% if (residentApplicationInfos[index].rA_approve == 1) { %>
+										<% if (residentApplicationInfos[index].rA_fee == 1) { %>
+											已入住
+										<% } else { %>
+											未繳費
+										<% } %>
+									<% } else if (residentApplicationInfos[index].rA_approve == 0) { %>
+										<% if (residentApplicationInfos[index].rA_fee == 1) { %>
+											WTF
+										<% } else { %>
+											等待審核
+										<% } %>
+									<% } else { %>
+										駁回
+									<% } %>
 								</td>
 							</tr>
 						<% } %>

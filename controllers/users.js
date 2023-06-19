@@ -35,9 +35,7 @@ const public = {
 		const role = req.session.role;
 		let user_ID = req.session.user_ID;
 
-		const user_name = req.body.user_name;
-		const sex = req.body.sex;
-		const email = req.body.email;
+		const { user_name, sex, email, phnumber } = req.body;
 
 		if (role == 'admin') {
 			user_ID = req.body.user_ID;
@@ -50,6 +48,7 @@ const public = {
 					user_name: user_name,
 					sex: sex,
 					email: email,
+					phnumber: phnumber,
 				}
 			);
 

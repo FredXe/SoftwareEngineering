@@ -19,8 +19,8 @@ const public = {
 	},
 
 	updateUser: async function (
-		{ user_ID, user_name, sex, email }) {
-		const query = `update users set user_name='${user_name}', sex=${sex}, email=${email} where user_ID=${user_ID};`;
+		{ user_ID, user_name, sex, email, phnumber }) {
+		const query = `update users set user_name='${user_name}', sex=${sex}, email='${email}', phnumber='${phnumber}' where user_ID='${user_ID}';`;
 
 		try {
 			const rows = await db.query(query);

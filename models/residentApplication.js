@@ -119,19 +119,44 @@ const public = {
 		}
 	},
 
-	payTheFee: async function (student_ID, r_number) {
-		/**
-		 * modify rA_fee
-		 * modify users.role
-		 * delete nonresident
-		 * insert resident
-		 * 
-		 * 分配房間
-		 */
+	selectAvailableRoom: async function (dorm_name) {
+		const query = `SELECT r_number FROM room WHERE;`;
+
+		try {
+			// await db.query(`UPDATE resident_application SET rA_approve=1 WHERE student_ID='${student_ID}';`);
+		} catch (err) {
+			console.error(err);
+		}
 	},
 
+	payTheFee: async function (student_ID) {
+		const payTheFee = `UPDATE resident_application SET rA_fee=1 WHERE student_ID='${student_ID}';`;
+		const updateUserRole = `UPDATE users SET role='resident_student' WHERE user_ID='${student_ID}';`;
+		const deleteNonresident = `DELETE FROM non_resident_student WHERE user_ID='${student_ID}';`;
+		/**
+		 * 分配房間
+		 */
+		const insertResident =
+			`INSERT resident_student (user_ID, r_number, dorm_name) VALUE ('${student_ID}', ` +
+			`(SELECT available_room.r_number FROM ` +
+			`(SELECT rs.r_number, COUNT(rs.r_number) AS people, r_volume ` +
+			`FROM resident_student=rs JOIN room ON rs.dorm_name=room.dorm_name ` +
+			`AND rs.r_number=room.r_number WHERE rs.dorm_name= ` +
+			`(SELECT dorm_name FROM resident_application WHERE student_ID='${student_ID}') ` +
+			`GROUP BY r_number HAVING people<r_volume ORDER BY r_number ASC LIMIT 1) AS available_room), ` +
+			`(SELECT dorm_name FROM resident_application WHERE student_ID='${student_ID}'));`;
 
+		try {
+			await db.query(payTheFee);
+			await db.query(updateUserRole);
+			await db.query(deleteNonresident);
+			await db.query(insertResident);
+		} catch (err) {
+			console.error(err);
+		}
+	},
 
 }
+
 
 module.exports = public;

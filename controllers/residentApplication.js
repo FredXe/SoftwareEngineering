@@ -58,7 +58,10 @@ const public = {
 		res.redirect('residentApplication/list');
 	},
 
-
+	postPayTheFee: async (req, res) => {
+		const student_ID = req.body.student_ID;
+		residentApplication.payTheFee(student_ID);
+	},
 
 }
 

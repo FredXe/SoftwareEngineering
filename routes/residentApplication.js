@@ -19,6 +19,7 @@ router.post('/delete', residentApplicationCtrl.postResidentApplicationDelete); /
 router.get('/info', residentApplicationCtrl.getResidentApplicationInfo);
 
 router.post('/apply', residentApplicationCtrl.postResidentApplicationApply);
+router.post('/pay', residentApplicationCtrl.postPayTheFee);
 
 
 

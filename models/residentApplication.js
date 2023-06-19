@@ -66,9 +66,9 @@ const public = {
 
 	//查詢一筆申請資料(所有人)
 	selectRA: async function (student_ID) {
-		// const rows = await db.query(`SELECT * FROM resident_application WHERE student_ID='${student_ID}';`);
-		const rows = await db.query(`SELECT student_ID, user_name, rA_semester, dorm_name, rA_approve, rA_fee FROM resident_application, users \
-		WHERE resident_application.student_ID = users.user_ID AND student_ID='${student_ID}';`);
+		const rows = await db.query(`SELECT ` +
+			`student_ID, user_name, rA_semester, dorm_name, rA_approve, rA_fee FROM resident_application, users ` +
+			`WHERE resident_application.student_ID = users.user_ID AND student_ID='${student_ID}';`);
 
 		return new Promise(resolve => {
 			resolve(utils.decodeRows(rows));
@@ -119,13 +119,14 @@ const public = {
 		let availableRoom;
 		try {
 			availableRoom = await db.query(query);
+
+			return new Promise(resolve => {
+				resolve(utils.decodeRows(availableRoom)[0].availableRoom);
+			});
 		} catch (err) {
 			console.error(err);
 		}
 
-		return new Promise(resolve => {
-			resolve(utils.decodeRows(availableRoom)[0].availableRoom);
-		});
 	},
 
 	payTheFee: async function (student_ID) {
@@ -143,6 +144,10 @@ const public = {
 			console.error(err);
 		}
 
+		if (!(availableRoom && dorm_name)) {
+			return;
+		}
+
 		/**
 		 * 分配房間
 		 */
@@ -155,13 +160,13 @@ const public = {
 			await db.query(updateUserRole);
 			await db.query(deleteNonresident);
 			await db.query(insertResident);
+
+			return new Promise(resolve => {
+				resolve({ dorm_name: dorm_name, room: availableRoom });
+			});
 		} catch (err) {
 			console.error(err);
 		}
-
-		return new Promise(resolve => {
-			resolve({ dorm_name: dorm_name, room: availableRoom });
-		});
 	},
 
 }

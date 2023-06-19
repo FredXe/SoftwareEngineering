@@ -62,15 +62,30 @@ const public = {
 	//查詢一筆申請資料
 	getResidentApplicationInfo: async (req, res) => {
 		const residentApplicationInfo = await residentApplication.selectRA(req.session.user_ID);
-		res.renderInjected('residentApplication/detail', { 
+		res.renderInjected('residentApplication/detail', {
 			residentApplicationInfo: residentApplicationInfo[0],
 		});
 	},
 
 	//核可某申請
 	postResidentApprove: async (req, res) => {
-		residentApplication.approveRA(req.body.student_ID);
-		res.redirect('residentApplication/list');
+		const student_ID = req.body.student_ID;
+		residentApplication.approveRA(student_ID);
+
+		try {
+			const userMail = await mail.selectMail(student_ID);
+
+			transporter.sendMail({
+				to: userMail, // list of receivers
+				subject: "您的住宿申請已通過", // Subject line
+				html: `請在繳交期限前繳交費用`, // html body
+			});
+
+			res.redirect('residentApplication/list');
+		} catch (err) {
+			console.error(err);
+		}
+
 	},
 
 	postPayTheFee: async (req, res) => {

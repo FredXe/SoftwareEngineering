@@ -1,4 +1,16 @@
+const nodemailer = require('nodemailer');
+
 const residentApplication = require('../models/residentApplication');
+const mail = require('../models/mail');
+
+const transporter = nodemailer.createTransport({
+	host: "smtp.gmail.com",
+	port: 465,
+	auth: {
+		user: process.env.MAIL_ACCOUNT, // generated ethereal user
+		pass: process.env.MAIL_PASSWORD, // generated ethereal password
+	},
+});
 
 const public = {
 	getRoot: async (req, res) => {
@@ -63,7 +75,19 @@ const public = {
 
 	postPayTheFee: async (req, res) => {
 		const student_ID = req.body.student_ID;
-		residentApplication.payTheFee(student_ID);
+
+		try {
+			const { dorm_name, room } = await residentApplication.payTheFee(student_ID);
+			const userMail = await mail.selectMail(user_ID);
+
+			transporter.sendMail({
+				to: userMail, // list of receivers
+				subject: "您的住宿費用已繳交", // Subject line
+				html: `您已經入住 ${dorm_name} ${room} 號房`, // html body
+			});
+		} catch (err) {
+			console.error(err);
+		}
 	},
 
 }

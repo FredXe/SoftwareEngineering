@@ -90,7 +90,9 @@
     flex-direction: column;
     height: 0;
     margin: 0;
-
+    
+    text-decoration: none;
+    color: var(--text-color);
     overflow: hidden;
 
     transition: 200ms;
@@ -100,12 +102,12 @@
         margin-inline: 2em;
     }
     &:hover {
-        cursor: default;
+        background-color: var(--primary-color-darker);
     }
 }
 
 .sidebar-botton:hover .sidebar-botton-info {
-    height: 20vh;
+    height: 18.3vh;
     margin: 0.5em 0;
     gap: 0.5em;
 }

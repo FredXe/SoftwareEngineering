@@ -95,3 +95,8 @@ main {
     text-decoration: none;
     color: var(--accent-color);
 }
+
+.not-allowed:hover,
+.not-allowed *:hover{
+    cursor: not-allowed;
+}

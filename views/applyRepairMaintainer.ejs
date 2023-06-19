@@ -58,7 +58,7 @@
 									<input name="dormName" type="hidden" value="<%= repairContent[index].dorm_name %>">
 									<input name="roomNum" type="hidden" value="<%= repairContent[index].r_number %>">
 									<td class="center-container">
-										<% if( ['admin', 'housemaster', 'maintainer'].includes(userData.role) ){ %>
+										<% if( ['maintainer'].includes(userData.role) ){ %>
 											<input class="apply-button" type="submit" name="repaired" value="已維修">
 										<% } %>
 									</td>

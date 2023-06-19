@@ -59,3 +59,14 @@
 .list-table li:last-child{
     border-bottom: 0px;
 }
+
+.grid-row-4 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+
+    &>div{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

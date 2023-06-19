@@ -4,138 +4,107 @@ const hash = require('./hash');
 
 const public = {
 	getRoot: async (req, res) => {
-		res.renderInjected('users');
+		res.redirect('/users/show');
 	},
 
-	getAdminShow: async (req, res) => {
+	getShow: async (req, res) => {
+		const role = req.session.role;
 
-		res.send(await users.showAdmin());
+		if (role == 'admin') {
+			res.redirect('/users/show/all');
+		} else {
+			res.redirect(`/users/show/detail/${req.session.user_ID}`);
+		}
 	},
 
-	getHousemasterShow: async (req, res) => {
-		res.send(await users.showHousemaster());
+	getShowAll: async (req, res) => {
+		const user = await users.showUsers();
+		// console.log(user, '🤯');
+		res.renderInjected('users/list', {
+			userInfo: user,
+		});
 	},
 
-	getNonResidentStudentShow: async (req, res) => {
-		res.send(await users.showNonResidentStudent());
+	getShowDetail: async (req, res) => {
+		const role = req.session.role;
+		const user_ID = (role == 'admin') ? req.params.user_ID : req.session.user_ID;
+		const user = await users.showUsers(user_ID);
+		// console.log(user);
+		res.renderInjected('users/detail', {
+			userInfo: user[0],
+		});
 	},
 
-	getMaintainerShow: async (req, res) => {
-		res.send(await users.showUsers());
+	postUpdate: async (req, res) => {
+		const role = req.session.role;
+		let user_ID = req.session.user_ID;
+
+		const { user_name, sex, email, phnumber } = req.body;
+
+		if (role == 'admin') {
+			user_ID = req.body.user_ID;
+		}
+		console.log(user_ID);
+		try {
+			await users.updateUser(
+				{
+					user_ID: user_ID,
+					user_name: user_name,
+					sex: sex,
+					email: email,
+					phnumber: phnumber,
+				}
+			);
+
+			res.redirect(`/users/show/detail/${user_ID}`);
+		} catch (err) {
+			console.error(err);
+		}
 	},
 
-	postAdminInsert: async (req, res) => {
-		const user_ID = req.body.user_ID;
-		const user_name = req.body.user_name;
-		const sex = req.body.sex;
-		const password = await hash.hash(req.body.password);
-		const email = req.body.email;
-		const eroll_year = req.body.eroll_year;
-		const phnumber = req.body.phnumber;
+	postInsert: async (req, res) => {
+		const { role, user_ID, user_name, sex, email, eroll_year, phnumber } = req.body;
 
-		await users.insertAdmin(
-			user_ID,
-			user_name,
-			sex,
-			password,
-			email,
-			eroll_year,
-			phnumber
-		);
+		try {
+			const password = await hash.hash(req.body.password);
 
-		res.redirect('/users');
+			await users.insertUser(
+				{
+					role: role,
+					user_ID: user_ID,
+					user_name: user_name,
+					sex: sex,
+					password: password,
+					email: email,
+					eroll_year: eroll_year,
+					phnumber: phnumber
+				}
+			);
+
+			res.redirect('/users/show');
+		} catch (err) {
+			console.error(err);
+		}
 	},
 
-	postHousemasterInsert: async (req, res) => {
-		const user_ID = req.body.user_ID;
-		const user_name = req.body.user_name;
-		const sex = req.body.sex;
-		const password = await hash.hash(req.body.password);
-		const email = req.body.email;
-		const eroll_year = req.body.eroll_year;
-		const phnumber = req.body.phnumber;
+	postDelete: async (req, res) => {
+		const userRole = req.session.role;
+		let user_ID = req.session.user_ID;
+		let deleteRole = req.session.role;
 
-		await users.insertHousemaster(
-			user_ID,
-			user_name,
-			sex,
-			password,
-			email,
-			eroll_year,
-			phnumber
-		);
+		if (userRole == 'admin') {
+			user_ID = req.body.user_ID;
+			deleteRole = req.body.role;
+		}
 
-		res.redirect('/users');
-	},
 
-	postNonResidentStudentInsert: async (req, res) => {
-		const user_ID = req.body.user_ID;
-		const user_name = req.body.user_name;
-		const sex = req.body.sex;
-		const password = await hash.hash(req.body.password);
-		const email = req.body.email;
-		const eroll_year = req.body.eroll_year;
-		const phnumber = req.body.phnumber;
+		try {
+			await users.insertUser({ role: deleteRole, user_ID: user_ID, });
 
-		await users.insertNonResidentStudent(
-			user_ID,
-			user_name,
-			sex,
-			password,
-			email,
-			eroll_year,
-			phnumber
-		);
-
-		res.redirect('/users');
-	},
-
-	postMaintainerInsert: async (req, res) => {
-		const user_ID = req.body.user_ID;
-		const user_name = req.body.user_name;
-		const sex = req.body.sex;
-		const password = await hash.hash(req.body.password);
-		const email = req.body.email;
-		const eroll_year = req.body.eroll_year;
-		const phnumber = req.body.phnumber;
-
-		await users.insertMaintainer(
-			user_ID,
-			user_name,
-			sex,
-			password,
-			email,
-			eroll_year,
-			phnumber
-		);
-
-		res.redirect('/users');
-	},
-
-	postResidentStudentInsert: async (req, res) => {
-		const user_ID = req.body.user_ID;
-		const user_name = req.body.user_name;
-		const sex = req.body.sex;
-		const password = await hash.hash(req.body.password);
-		const email = req.body.email;
-		const eroll_year = req.body.eroll_year;
-		const phnumber = req.body.phnumber;
-		const dorm_name = req.body.dorm_name;
-		const r_number = req.body.r_number;
-
-		await users.insertResidentStudent(
-			user_ID,
-			user_name,
-			sex,
-			password,
-			email,
-			eroll_year,
-			phnumber,
-			dorm_name,
-			r_number
-		);
-
-		res.redirect('/users');
+			res.redirect('/users/show');
+		} catch (err) {
+			console.error(err);
+		}
 	},
 }
 

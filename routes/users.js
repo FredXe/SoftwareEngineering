@@ -1,19 +1,17 @@
 const express = require('express');
 const router = express.Router();
 
+const auth = require('../middlewares/auth');
+
 const usersCtrl = require('../controllers/users');
 
 
 router.get('/', usersCtrl.getRoot);
-// router.get('/show', usersCtrl.getUserShow);
-router.get('/admin/show', usersCtrl.getAdminShow);
-router.post('/admin/insert', usersCtrl.postAdminInsert);
-router.get('/housemaster/show', usersCtrl.getHousemasterShow);
-router.post('/housemaster/insert', usersCtrl.postHousemasterInsert);
-router.get('/nonResidentStudent/show', usersCtrl.getNonResidentStudentShow);
-router.post('/nonResidentStudent/insert', usersCtrl.postNonResidentStudentInsert);
-router.get('/maintainer/show', usersCtrl.getMaintainerShow);
-router.post('/maintainer/insert', usersCtrl.postMaintainerInsert);
-router.post('/residentStudent/insert', usersCtrl.postResidentStudentInsert);
+router.get('/show', usersCtrl.getShow);
+router.get('/show/all', usersCtrl.getShowAll);
+router.get('/show/detail/:user_ID', usersCtrl.getShowDetail);
+router.post('/update', usersCtrl.postUpdate);
+router.post('/insert', auth.auth('admin'), usersCtrl.postInsert);
+router.post('/delete', usersCtrl.postDelete);
 
 module.exports = router;

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+	<title>:D</title>
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+
+	<link rel="stylesheet" href="/style/sidebar.css">
+	<link rel="stylesheet" href="/style/shared.css">
+	<link rel="stylesheet" href="/style/table.css">
+	<link rel="stylesheet" href="/style/inputs.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC">
+
+    <script src="/js/themeManager.js"></script>
+    <script src="/js/sidebar.js" defer></script>
+
+</head>
+<body>
+
+	<%- include('../partials/sidebar') %> 
+
+	<main>
+		<div class="center-container" style="padding:2rem;">
+			<h2>使用者管理</h2>
+			<table class="white-gray-table table--radius-border" style="width: 50%; height: 50vh; overflow-y: scroll;">
+				<head>
+					<tr style="background-color: var(--primary-color-darker);">
+						<th style="width: 15%;">ID</th>
+						<th style="width: 10%;">姓名</th>
+						<th style="width: 15%;">身份</th>
+					</tr>
+				</head>
+				<tbody>
+					<% if(userInfo.length == 0){ %>
+						<tr>
+							<td>N/A</td>
+							<td>N/A</td>
+							<td>N/A</td>
+						</tr>
+					<% }else{ %>
+						<% for( let index = 0; index < userInfo.length; index++ ) { %>
+							<tr>
+								<td>
+									<a href="/users/show/detail/<%= userInfo[index].user_ID %>">
+										<%= userInfo[index].user_ID %>
+									</a>
+								</td>
+								<td>
+									<%= userInfo[index].user_name %>
+								</td>
+								<td>
+									<%= userInfo[index].role %>
+								</td>
+							</tr>
+						<% } %>
+					<% } %>
+				</tbody>
+			</table>
+			<form method="post" action='/users/insert' class="grid-row-4" style="margin-top: 3rem;">
+				<div>
+					<div class="input-text">
+						<input type="text" name="user_ID" value="" placeholder=" "/>
+						<label>ID</label>
+					</div>
+				</div>
+				<div>
+					<div class="input-text">
+						<input type="text" name="user_name" value="" placeholder=" "/>
+						<label>名稱</label>
+					</div>
+				</div>
+				<div>
+					<div class="input-text">
+						<input type="text" name="password" value="" placeholder=" "/>
+						<label>密碼</label>
+					</div>
+				</div>
+				<div>
+					<label style="margin-right: 1rem;">性別</label>
+					<select name="sex" class="select">
+						<option value="0">男</option>
+						<option value="1">女</option>
+					</select>
+				</div>
+				<div>
+					<div class="input-text">
+						<input type="text" name="email" value="" placeholder=" "/>
+						<label>Email</label>
+					</div>
+				</div>
+				<div>
+					<div class="input-text">
+						<input type="text" name="eroll_year" value="" placeholder=" "/>
+						<label>入學年分</label>
+					</div>
+				</div>
+				<div>
+					<div class="input-text">
+						<input type="text" name="phnumber" value="" placeholder=" "/>
+						<label>電話</label>
+					</div>
+				</div>
+				<div>
+					<label style="margin-right: 1rem;">身份</label>
+					<select name="role" class="select">
+						<option value="admin">admin</option>
+						<option value="housemaster">housemaster</option>
+						<option value="non_resident_student">non_resident_student</option>
+						<option value="maintainer">maintainer</option>
+					</select>
+				</div>
+				<div style="grid-column: 4; justify-content: end; margin-right: 2.5rem;">
+					<input type="submit" name="button" value="新增使用者"  class="apply-button"/>
+				</div>
+			</form>
+		</div>
+	</main>
+
+</body>
+</html>

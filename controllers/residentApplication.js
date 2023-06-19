@@ -29,8 +29,9 @@ const public = {
 
 	//申請宿舍
 	postResidentApplicationApply: async (req, res) => {
-		residentApplication.insertRA(req, body.rA_semester,
-			req, body.dorm_name, req, body.rA_fee, req, body.student_ID);
+		const student_ID = req.session.user_ID;
+		const dorm_name = req.body.dorm_name;
+		residentApplication.insertRA(student_ID, dorm_name);
 		res.redirect('residentApplication/Info');
 	},
 

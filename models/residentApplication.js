@@ -8,24 +8,12 @@ const public = {
 
 	//宿舍申請(非住宿生)
 	//申請者必為非住宿生&&沒申請過；申請的大樓一定存在
-	insertRA: async function (rA_semester, dorm_name, rA_fee, student_ID) {
-
-		const query1 = await db.query(`SELECT * FROM resident_student WHERE user_ID='${student_ID}';`);
-		const query2 = await db.query(`SELECT * FROM dormitory WHERE dorm_name='${dorm_name}';`);
-		const query3 = await db.query(`SELECT * FROM resident_application WHERE student_ID='${student_ID}';`);
-		if (query1 === null && query2 != null && query3 === null) {
-			try {
-				await db.query(`INSERT INTO resident_application 
-				(rA_semester, dorm_name, rA_fee, student_ID) 
-				VALUES('${rA_semester}','${dorm_name}','${rA_fee}','${student_ID}');`);
-				console.log('insertRA()');
-			} catch (err) {
-				console.error(err);
-			}
-		} else {
-			console.log('fail insertRA().');
+	insertRA: async function (student_ID, dorm_name) {
+		try {
+			db.query(`INSERT resident_application (student_ID, dorm_name) VALUE ('${student_ID}', '${dorm_name}');`);
+		} catch (err) {
+			console.error(err);
 		}
-
 	},
 
 	//申請駁回(管理員)

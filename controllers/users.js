@@ -13,22 +13,26 @@ const public = {
 		if (role == 'admin') {
 			res.redirect('/users/show/all');
 		} else {
-			res.redirect('/users/show/myown');
+			res.redirect(`/users/show/detail/${req.session.user_ID}`);
 		}
 	},
 
 	getShowAll: async (req, res) => {
 		const user = await users.showUsers();
-		console.log(user, '🤯');
-		res.renderInjected('users');
+		// console.log(user, '🤯');
+		res.renderInjected('users/list', {
+			userInfo: user,
+		});
 	},
 
 	getShowDetail: async (req, res) => {
 		const role = req.session.role;
 		const user_ID = (role == 'admin') ? req.params.user_ID : req.session.user_ID;
 		const user = await users.showUsers(user_ID);
-		console.log(user);
-		res.renderInjected('users');
+		// console.log(user);
+		res.renderInjected('users/detail', {
+			userInfo: user[0],
+		});
 	},
 
 	postUpdate: async (req, res) => {
@@ -40,7 +44,7 @@ const public = {
 		if (role == 'admin') {
 			user_ID = req.body.user_ID;
 		}
-
+		console.log(user_ID);
 		try {
 			await users.updateUser(
 				{
@@ -52,7 +56,7 @@ const public = {
 				}
 			);
 
-			res.redirect('/users/show');
+			res.redirect(`/users/show/detail/${user_ID}`);
 		} catch (err) {
 			console.error(err);
 		}

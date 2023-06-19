@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+	<title>:D</title>
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+
+	<link rel="stylesheet" href="/style/sidebar.css">
+	<link rel="stylesheet" href="/style/shared.css">
+	<link rel="stylesheet" href="/style/table.css">
+	<link rel="stylesheet" href="/style/inputs.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC">
+
+    <script src="/js/themeManager.js"></script>
+    <script src="/js/sidebar.js" defer></script>
+
+</head>
+<body>
+
+	<%- include('../partials/sidebar') %> 
+
+	<main>
+		<div class="center-container" style="padding:2rem;">
+			<h2>修改資料</h2>
+			<form action='/users/update' method="post" class="grid-row-4" style="margin-top: 3rem;">
+                <input name="user_ID" type="hidden" value="<%= userInfo.user_ID %>"/>
+				<div class="not-allowed">
+					<div class="input-text">
+						<input type="text" value="<%= userInfo.user_ID %>" placeholder=" " readonly disabled/>
+						<label>ID</label>
+					</div>
+				</div>
+				<div class="not-allowed">
+					<div class="input-text">
+						<input type="password" value="The quick brown fox jumps over the lazy dog." placeholder=" " readonly disabled/>
+						<label>密碼</label>
+					</div>
+				</div>
+				<div class="not-allowed">
+					<div class="input-text">
+						<input type="text" value="<%= userInfo.eroll_year %>" placeholder=" " readonly disabled/>
+						<label>入學年分</label>
+					</div>
+				</div>
+				<div class="not-allowed">
+					<label style="margin-right: 1rem;">身份</label>
+					<select class="select" disabled>
+						<option <%= userInfo.role == 'admin'? 'selected' : '' %>>admin</option>
+						<option <%= userInfo.role == 'housemaster'? 'selected' : '' %>>housemaster</option>
+						<option <%= userInfo.role == 'non_resident_student'? 'selected' : '' %>>non_resident_student</option>
+						<option <%= userInfo.role == 'maintainer'? 'selected' : '' %>>maintainer</option>
+						<option <%= userInfo.role == 'resident_student'? 'selected' : '' %>>resident_student</option>
+					</select>
+				</div>
+				<div>
+					<div class="input-text">
+						<input type="text" name="user_name" value="<%= userInfo.user_name %>" placeholder=" " required/>
+						<label>名稱</label>
+					</div>
+				</div>
+				<div>
+					<div class="input-text">
+						<input type="email" name="email" value="<%= userInfo.email %>" placeholder=" " required/>
+						<label>Email</label>
+					</div>
+				</div>
+				<div>
+					<div class="input-text">
+						<input type="text" name="phnumber" value="<%= userInfo.phnumber %>" placeholder=" " required/>
+						<label>電話</label>
+					</div>
+				</div>
+				<div>
+					<label style="margin-right: 1rem;">性別</label>
+					<select name="sex" class="select">
+						<option value="0" <%= userInfo.sex == 0? 'selected' : '' %>>男</option>
+						<option value="1" <%= userInfo.sex == 1? 'selected' : '' %>>女</option>
+					</select>
+				</div>
+				<div style="grid-column: 4; justify-content: end; margin-right: 2.5rem;">
+					<input type="submit" name="button" value="變更"  class="apply-button"/>
+				</div>
+			</form>
+		</div>
+	</main>
+
+</body>
+</html>

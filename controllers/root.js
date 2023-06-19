@@ -32,7 +32,11 @@ const public = {
 				req.session.phnumber = data.phnumber;
 				
 				if(req.body.redirect == ''){
-					res.redirect('/bulletion');
+					if (req.session.role == 'maintainer') {
+						res.redirect('/applyRepair');
+					} else {
+						res.redirect('/bulletion');
+					}
 				}else{
 					res.redirect(req.body.redirect);
 				}

@@ -5,7 +5,8 @@ const ROLE2NUM = {
 	'housemaster': 1,
 	'resident_student': 2,
 	'non_resident_student': 3,
-	'guest': 4
+	'maintainer': 4,
+	'guest': 5
 }
 
 const public = {
@@ -20,6 +21,9 @@ const public = {
 
 			if (pass) {
 				next();
+				return;
+			} else {
+				res.send('權限不足');
 				return;
 			}
 

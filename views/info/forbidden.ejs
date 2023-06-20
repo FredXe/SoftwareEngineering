@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>有人調皮囉</title>
+
+    <link rel="stylesheet" href="/style/shared.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC">
+    <script src="/js/themeManager.js"></script>
+
+</head>
+<body>
+    <span class="gradient-text">403</span>
+    <div class="center-container" style="height: 100vh; padding: 0;">
+        <h1>你不應該出現在這的🤔</h1>
+        <form id="logoutForm" action="/logout" method="post"></form>
+        <span style="color: var(--icon-color);">點我<a logoutBtn href="/login">登出並重新登入</a></span>
+    </div>
+    <script>
+        let logoutForm = document.querySelector('#logoutForm');
+        let logoutBtn = document.querySelector('[logoutBtn]');
+
+        logoutBtn.addEventListener('click', event => {
+            event.preventDefault();
+            logoutForm.submit();
+        });
+    </script>
+</body>
+</html>

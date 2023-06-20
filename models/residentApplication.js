@@ -118,15 +118,21 @@ const public = {
 
 		let availableRoom;
 		try {
-			availableRoom = await db.query(query);
+			availableRoom = utils.decodeRows(await db.query(query));
+
+
+			if (!availableRoom[0]) {
+				const j = `SELECT r_number AS availableRoom FROM room WHERE dorm_name='${dorm_name}' ORDER BY availableRoom
+				ASC LIMIT 1;`;
+				availableRoom = utils.decodeRows(await db.query(j));
+			}
 
 			return new Promise(resolve => {
-				resolve(utils.decodeRows(availableRoom)[0].availableRoom);
+				resolve(availableRoom[0].availableRoom);
 			});
 		} catch (err) {
 			console.error(err);
 		}
-
 	},
 
 	payTheFee: async function (student_ID) {
@@ -168,6 +174,17 @@ const public = {
 			console.error(err);
 		}
 	},
+
+	getDormNames: async function () {
+		const dormNamesQuery = 'SELECT dorm_name FROM dormitory;';
+
+		try {
+			return utils.decodeRows(await db.query(dormNamesQuery));
+		} catch (err) {
+			console.error(err);
+		}
+
+	}
 
 }
 

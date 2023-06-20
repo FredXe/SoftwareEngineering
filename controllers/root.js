@@ -11,7 +11,7 @@ const public = {
 	postLogin: async (req, res) => {
 		const user_ID = req.body.user_ID;
 		const password = req.body.password;
-		try{
+		try {
 			const hashpasswd = await root.showPassword(user_ID);
 
 			const success = await hash.compare(password, hashpasswd);
@@ -23,29 +23,29 @@ const public = {
 
 					const data = await root.showUserData(user_ID);
 
-				req.session.user_ID = data.user_ID;
-				req.session.user_name = data.user_name;
-				req.session.role = data.role;
-				req.session.sex = data.sex;
-				req.session.email = data.email;
-				req.session.eroll_year = data.eroll_year;
-				req.session.phnumber = data.phnumber;
-				
-				if(req.body.redirect == ''){
-					if (req.session.role == 'maintainer') {
-						res.redirect('/applyRepair');
-					} else {
-						res.redirect('/bulletion');
-					}
-				}else{
-					res.redirect(req.body.redirect);
-				}
-			});
+					req.session.user_ID = data.user_ID;
+					req.session.user_name = data.user_name;
+					req.session.role = data.role;
+					req.session.sex = data.sex;
+					req.session.email = data.email;
+					req.session.eroll_year = data.eroll_year;
+					req.session.phnumber = data.phnumber;
 
-			}else{
+					if (req.body.redirect == '') {
+						if (req.session.role == 'maintainer') {
+							res.redirect('/applyRepair');
+						} else {
+							res.redirect('/bulletion');
+						}
+					} else {
+						res.redirect(req.body.redirect);
+					}
+				});
+
+			} else {
 				res.redirect('/');
 			}
-		}catch(err){
+		} catch (err) {
 			console.log(err);
 			res.redirect('/');
 		}

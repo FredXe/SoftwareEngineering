@@ -144,8 +144,9 @@
                             </label>
                             <h4 style="margin: 1rem;">欲申請宿舍: </h4>
                             <select class="select" name="dorm_name">
-                                <option value="學一">學一</option>
-                                <option value="學二">學二</option>
+                                <% dormNames.forEach(element => { %>
+                                    <option value="<%= element.dorm_name %>"><%= element.dorm_name %></option>
+                                <% }) %>
                             </select>
                             <!-- <span style="margin: 0.5rem 0">送出申請即同意以上公約</span> -->
                             <input class="apply-button" type="submit" value="送出申請" style="margin-top: 1rem;">

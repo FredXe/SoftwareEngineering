@@ -169,6 +169,17 @@ const public = {
 		}
 	},
 
+	getDormNames: async function(){
+		const dormNamesQuery = 'SELECT dorm_name FROM dormitory;';
+
+		try {
+			return utils.decodeRows(await db.query(dormNamesQuery));
+		} catch (err) {
+			console.error(err);
+		}
+
+	}
+
 }
 
 module.exports = public;

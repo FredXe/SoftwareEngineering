@@ -62,8 +62,10 @@ const public = {
 	//查詢一筆申請資料
 	getResidentApplicationInfo: async (req, res) => {
 		const residentApplicationInfo = await residentApplication.selectRA(req.session.user_ID);
+		const dormNames = await residentApplication.getDormNames();
 		res.renderInjected('residentApplication/detail', {
 			residentApplicationInfo: residentApplicationInfo[0],
+			dormNames: dormNames,
 		});
 	},
 

@@ -100,3 +100,17 @@ main {
 .not-allowed *:hover{
     cursor: not-allowed;
 }
+
+.gradient-text {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 50vh;
+    z-index: -1;
+    color: black;
+    background: -webkit-linear-gradient(var(--accent-color), var(--background-color));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

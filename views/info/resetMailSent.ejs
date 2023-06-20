@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>快點你只有五分鐘!!</title>
+
+    <link rel="stylesheet" href="/style/shared.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC">
+    <script src="/js/themeManager.js"></script>
+
+</head>
+<body>
+    <div class="center-container" style="height: 100vh; padding: 0;">
+        <h1>重設密碼的email已寄送至您的信箱</h1>
+        <span style="color: var(--icon-color);">將在5秒後跳轉至<a href="/login">登入頁面</a>...</span>
+    </div>
+    <script>
+        setTimeout(() => {
+            window.location.replace('/login');
+        }, 5000);
+    </script>
+</body>
+</html>

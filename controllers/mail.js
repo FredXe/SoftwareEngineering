@@ -30,7 +30,7 @@ const public = {
 					請勿回覆這封電子郵件。`, // html body
 			});
 
-			res.send('page for password change has been mailed to your email');
+			res.render('info/resetMailSent');
 		} catch (err) {
 			console.error(err);
 		}
@@ -73,7 +73,7 @@ const public = {
 		} catch (err) {
 			console.error(err);
 		}
-		res.send('changed password successfully');
+		res.render('info/passwordChanged');
 	},
 
 }

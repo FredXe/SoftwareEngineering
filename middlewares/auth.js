@@ -15,6 +15,14 @@ const public = {
 		return (req, res, next) => {
 			const role = req.session.role;
 
+			if(!role){
+				const query = querystring.stringify({
+					'redirect': req.url,
+				});
+				res.redirect('/login?' + query);
+				return;
+			}
+
 			const pass = only ? requiredRole == role : ROLE2NUM[requiredRole] >= ROLE2NUM[role];
 
 			console.log('required=' + requiredRole + ' role=' + role + ' pass=' + pass);
@@ -23,15 +31,9 @@ const public = {
 				next();
 				return;
 			} else {
-				res.send('權限不足');
+				res.status(403).renderInjected('info/forbidden');
 				return;
 			}
-
-			const query = querystring.stringify({
-				'redirect': req.url,
-			});
-
-			res.redirect('/login?' + query);
 		};
 	}
 }
